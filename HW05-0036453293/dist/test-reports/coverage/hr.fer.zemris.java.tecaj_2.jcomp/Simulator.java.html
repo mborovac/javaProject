@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Simulator.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp</a> &gt; <span class="el_source">Simulator.java</span></div><h1>Simulator.java</h1><pre class="source lang-java linenums">/**
+ * Package holding the class Simulator for Java 4th homework
+ */
+package hr.fer.zemris.java.tecaj_2.jcomp;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.impl.ComputerImpl;
+import hr.fer.zemris.java.tecaj_2.jcomp.impl.ExecutionUnitImpl;
+import hr.fer.zemris.java.tecaj_2.jcomp.parser.InstructionCreatorImpl;
+import hr.fer.zemris.java.tecaj_2.jcomp.parser.ProgramParser;
+
+<span class="nc" id="L11">public class Simulator {</span>
+
+	/**
+	 * @param args
+	 * @throws Exception 
+	 */
+	public static void main(String[] args) throws Exception {
+		
+<span class="nc bnc" id="L19" title="All 2 branches missed.">		if(args.length != 1) {</span>
+<span class="nc" id="L20">			throw new IllegalArgumentException(&quot;Expected 1 argument&quot;);</span>
+		}
+		
+		// Stvori računalo s 256 memorijskih lokacija i 16 registara
+<span class="nc" id="L24">		Computer comp = new ComputerImpl(256, 16);</span>
+		
+		// Stvori objekt koji zna stvarati primjerke instrukcija
+<span class="nc" id="L27">		InstructionCreator creator = new InstructionCreatorImpl(</span>
+		&quot;hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions&quot;
+		);
+		
+		// Napuni memoriju računala programom iz datoteke; instrukcije stvaraj
+		// uporabom predanog objekta za stvaranje instrukcija
+<span class="nc" id="L33">		ProgramParser.parse(</span>
+		args[0],
+		comp,
+		creator
+		);
+		
+		// Stvori izvršnu jedinicu
+<span class="nc" id="L40">		ExecutionUnit exec = new ExecutionUnitImpl();</span>
+		
+		// Izvedi program
+<span class="nc" id="L43">		exec.go(comp);</span>
+<span class="nc" id="L44">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

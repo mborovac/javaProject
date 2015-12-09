@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SquaresServlet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW13</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw13.servlets</a> &gt; <span class="el_source">SquaresServlet.java</span></div><h1>SquaresServlet.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw13.servlets;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet used to create a table with 2 columns. 1st column are normal numbers from a to b, 2nd
+ * column are the 1st coumn's squares.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L19">public class SquaresServlet extends HttpServlet {</span>
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method requires 2 parameters: a and b. It creates a table with 2 columns. 1st Column contains
+	 * numbers from a to b and the 2nd column consists of the 1st column number's squares.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+<span class="nc" id="L34">		Integer a = null;</span>
+<span class="nc" id="L35">		Integer b = null;</span>
+		
+		try {
+<span class="nc" id="L38">			a = Integer.valueOf(req.getParameter(&quot;a&quot;));</span>
+<span class="nc" id="L39">		} catch (Exception e) {</span>
+<span class="nc" id="L40">			a = 0;</span>
+		}
+		
+		try {
+<span class="nc" id="L44">			b = Integer.valueOf(req.getParameter(&quot;b&quot;));</span>
+<span class="nc" id="L45">		} catch (Exception e) {</span>
+<span class="nc" id="L46">			b = 0;</span>
+		}
+		
+<span class="nc bnc" id="L49" title="All 2 branches missed.">		if(a &gt; b) {</span>
+<span class="nc" id="L50">			int tmp = a;</span>
+<span class="nc" id="L51">			a = b;</span>
+<span class="nc" id="L52">			b = tmp;</span>
+		}
+		
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		if(a - b &gt; 20) {</span>
+<span class="nc" id="L56">			b = a + 20;</span>
+		}
+		
+<span class="nc" id="L59">		List&lt;Pair&gt; elements = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		for(int i = a; i &lt;= b; i++) {</span>
+<span class="nc" id="L61">			elements.add(new Pair(i, i*i));</span>
+		}
+		
+<span class="nc" id="L64">		req.setAttribute(&quot;result&quot;, elements);</span>
+<span class="nc" id="L65">		req.getRequestDispatcher(&quot;/WEB-INF/pages/squares.jsp&quot;).forward(req, resp);</span>
+<span class="nc" id="L66">	}</span>
+	
+	/**
+	 * Static class used to represent a pair of numbers, the original number and it's square value.
+	 */
+	public static class Pair {
+		int number;
+		int square;
+		
+		/**
+		 * Class constructor.
+		 * 
+		 * @param number
+		 * @param square
+		 */
+		public Pair(int number, int square) {
+<span class="nc" id="L82">			super();</span>
+<span class="nc" id="L83">			this.number = number;</span>
+<span class="nc" id="L84">			this.square = square;</span>
+<span class="nc" id="L85">		}</span>
+		
+		/**
+		 * Number getter.
+		 * 
+		 * @return the number
+		 */
+		public int getNumber() {
+<span class="nc" id="L93">			return number;</span>
+		}
+		
+		/**
+		 * Square value getter.
+		 * 
+		 * @return the square
+		 */
+		public int getSquare() {
+<span class="nc" id="L102">			return square;</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

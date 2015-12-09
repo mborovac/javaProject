@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>InstrTestEquals.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions</a> &gt; <span class="el_source">InstrTestEquals.java</span></div><h1>InstrTestEquals.java</h1><pre class="source lang-java linenums">/**
+ * Package holding all the classes of supported microprocessor methods for java 4th homework.
+ */
+package hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions;
+
+import java.util.List;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.Computer;
+import hr.fer.zemris.java.tecaj_2.jcomp.Instruction;
+import hr.fer.zemris.java.tecaj_2.jcomp.InstructionArgument;
+
+/**
+ * Class used to support the microprocessor operation testEquals. Both constructor arguments are registers whose
+ * content is checked to be equal.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class InstrTestEquals implements Instruction {
+	
+	private int registerIndex1;
+	private int registerIndex2;
+	
+	/**
+	 * Class constructor. Constructor takes 2 arguments, both must be registers.
+	 * 
+	 * @param arguments registers whose value is to be compared
+	 */
+<span class="fc" id="L29">	public InstrTestEquals(List&lt;InstructionArgument&gt; arguments) {</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if(arguments.size()!=2) {</span>
+<span class="fc" id="L31">			throw new IllegalArgumentException(&quot;Expected 2 arguments!&quot;);</span>
+		}
+<span class="fc bfc" id="L33" title="All 2 branches covered.">		if(!arguments.get(0).isRegister()) {</span>
+<span class="fc" id="L34">			throw new IllegalArgumentException(&quot;Type mismatch for argument 0!&quot;);</span>
+		}
+<span class="fc bfc" id="L36" title="All 2 branches covered.">		if(!arguments.get(1).isRegister()) {</span>
+<span class="fc" id="L37">			throw new IllegalArgumentException(&quot;Type mismatch for argument 1!&quot;);</span>
+		}
+		
+<span class="fc" id="L40">		this.registerIndex1 = ((Integer) arguments.get(0).getValue()).intValue();</span>
+<span class="fc" id="L41">		this.registerIndex2 = ((Integer) arguments.get(1).getValue()).intValue();</span>
+<span class="fc" id="L42">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Instruction#execute(hr.fer.zemris.java.tecaj_2.jcomp.Computer)
+	 * 
+	 * Method sets the register flag to true if the contents of both given registers are equal, false otherwise
+	 */
+	@Override
+	public boolean execute(Computer computer) {
+<span class="fc" id="L51">		Object value1 = computer.getRegisters().getRegisterValue(registerIndex1);</span>
+<span class="fc" id="L52">		Object value2 = computer.getRegisters().getRegisterValue(registerIndex2);</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">		if(value1.equals(value2)) {</span>
+<span class="fc" id="L54">			computer.getRegisters().setFlag(true);</span>
+		} else {
+<span class="fc" id="L56">			computer.getRegisters().setFlag(false);</span>
+		}
+<span class="fc" id="L58">		return false;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>InstrJumpIfTrueTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions</a> &gt; <span class="el_source">InstrJumpIfTrueTest.java</span></div><h1>InstrJumpIfTrueTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.Computer;
+import hr.fer.zemris.java.tecaj_2.jcomp.InstructionArgument;
+import hr.fer.zemris.java.tecaj_2.jcomp.Memory;
+import hr.fer.zemris.java.tecaj_2.jcomp.Registers;
+import hr.fer.zemris.java.tecaj_2.jcomp.impl.InstructionArgumentImpl;
+
+<span class="fc" id="L15">public class InstrJumpIfTrueTest {</span>
+	
+<span class="fc" id="L17">	Computer c = Mockito.mock(Computer.class); </span>
+<span class="fc" id="L18">	Registers r = Mockito.mock(Registers.class);</span>
+<span class="fc" id="L19">	Memory m = Mockito.mock(Memory.class);</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void JumpIfTrueTestException1() {
+<span class="nc" id="L23">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L24">		arguments.add(new InstructionArgumentImpl(0, false));</span>
+<span class="nc" id="L25">		arguments.add(new InstructionArgumentImpl(1, false));</span>
+<span class="nc" id="L26">		new InstrJumpIfTrue(arguments).execute(c);</span>
+<span class="nc" id="L27">	}</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void JumpIfTrueTestException2() {
+<span class="nc" id="L31">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L32">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="nc" id="L33">		new InstrJumpIfTrue(arguments).execute(c);</span>
+<span class="nc" id="L34">	}</span>
+	
+	@Test
+	public void JumpIfTrueTest1() {
+<span class="fc" id="L38">		Mockito.when(c.getRegisters()).thenReturn(r);</span>
+<span class="fc" id="L39">		Mockito.when(c.getRegisters().getFlag()).thenReturn(true);</span>
+<span class="fc" id="L40">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L41">		arguments.add(new InstructionArgumentImpl(5, false));</span>
+<span class="fc" id="L42">		new InstrJumpIfTrue(arguments).execute(c);</span>
+<span class="fc" id="L43">		Mockito.verify(r).setProgramCounter(5);</span>
+<span class="fc" id="L44">	}</span>
+	
+	@Test
+	public void JumpIfTrueTest2() {
+<span class="fc" id="L48">		Mockito.when(c.getRegisters()).thenReturn(r);</span>
+<span class="fc" id="L49">		Mockito.when(c.getRegisters().getFlag()).thenReturn(false);</span>
+<span class="fc" id="L50">		Mockito.when(c.getRegisters().getProgramCounter()).thenReturn(0);</span>
+<span class="fc" id="L51">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L52">		arguments.add(new InstructionArgumentImpl(5, false));</span>
+<span class="fc" id="L53">		Mockito.verifyNoMoreInteractions(r);</span>
+<span class="fc" id="L54">		new InstrJumpIfTrue(arguments).execute(c);</span>
+<span class="fc" id="L55">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

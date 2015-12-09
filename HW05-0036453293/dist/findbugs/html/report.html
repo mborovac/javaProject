@@ -1,0 +1,1210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<title>
+        FindBugs (2.0.3)
+         Analysis for
+         HW4</title>
+<script type="text/javascript">
+         function show(foo) {
+            document.getElementById(foo).style.display="block";
+         }
+         function hide(foo) {
+            document.getElementById(foo).style.display="none";
+         }
+         function toggle(foo) {
+            if( document.getElementById(foo).style.display == "none") {
+               show(foo);
+            } else {
+               if( document.getElementById(foo).style.display == "block") {
+                  hide(foo);
+               } else {
+                  show(foo);
+               }
+            }
+         }
+
+         function showmenu(foo) {
+            if( document.getElementById(foo).style.display == "none") {
+               hide("bug-summary");
+               document.getElementById("bug-summary-tab").className="menu-tab";
+               hide("analysis-data");
+               document.getElementById("analysis-data-tab").className="menu-tab";
+               //hide("list-by-b-t");
+               //document.getElementById("list-by-b-t-tab").className="menu-tab";
+               hide("list-by-package");
+               document.getElementById("list-by-package-tab").className="menu-tab";
+               hide("list-by-category");
+               document.getElementById("list-by-category-tab").className="menu-tab";
+               document.getElementById(foo+"-tab").className="menu-tab-selected";
+               show(foo);
+
+            }
+            // else menu already selected!
+         }
+         function showbug(buguid, list) {
+            var bugplaceholder   = document.getElementById(buguid+'-ph-'+list);
+            var bug              = document.getElementById(buguid);
+
+            if ( bugplaceholder==null) {
+               alert(buguid+'-ph-'+list+' - '+buguid+' - bugplaceholder==null');
+               return;
+            }
+            if ( bug==null) {
+               alert(buguid+'-ph-'+list+' - '+buguid+' - bug==null');
+               return;
+            }
+
+            var oldBug = bugplaceholder.innerHTML;
+            var newBug = bug.innerHTML;
+            //alert(oldBug);
+            //alert(newBug);
+            toggle(buguid+'-ph-'+list);
+            bugplaceholder.innerHTML = newBug;
+         }
+      </script>
+<script type="text/javascript">
+     /*  */
+         // Extended Tooltip Javascript
+         // copyright 9th August 2002, 3rd July 2005
+         // by Stephen Chapman, Felgall Pty Ltd
+
+         // permission is granted to use this javascript provided that the below code is not altered
+         var DH = 0;var an = 0;var al = 0;var ai = 0;if (document.getElementById) {ai = 1; DH = 1;}else {if (document.all) {al = 1; DH = 1;} else { browserVersion = parseInt(navigator.appVersion); if (navigator.appName.indexOf('Netscape') != -1) if (browserVersion == 4) {an = 1; DH = 1;}}}
+         function fd(oi, wS) {if (ai) return wS ? document.getElementById(oi).style:document.getElementById(oi); if (al) return wS ? document.all[oi].style: document.all[oi]; if (an) return document.layers[oi];}
+         function pw() {return window.innerWidth != null? window.innerWidth: document.body.clientWidth != null? document.body.clientWidth:null;}
+         function mouseX(evt) {if (evt.pageX) return evt.pageX; else if (evt.clientX)return evt.clientX + (document.documentElement.scrollLeft ?  document.documentElement.scrollLeft : document.body.scrollLeft); else return null;}
+         function mouseY(evt) {if (evt.pageY) return evt.pageY; else if (evt.clientY)return evt.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop); else return null;}
+         function popUp(evt,oi) {if (DH) {var wp = pw(); ds = fd(oi,1); dm = fd(oi,0); st = ds.visibility; if (dm.offsetWidth) ew = dm.offsetWidth; else if (dm.clip.width) ew = dm.clip.width; if (st == "visible" || st == "show") { ds.visibility = "hidden"; } else {tv = mouseY(evt) + 20; lv = mouseX(evt) - (ew/4); if (lv < 2) lv = 2; else if (lv + ew > wp) lv -= ew/2; if (!an) {lv += 'px';tv += 'px';} ds.left = lv; ds.top = tv; ds.visibility = "visible";}}}
+  /*  */
+</script>
+<style type="text/css">
+         html, body {
+            background-color: #ffffff;
+         }
+         a, a:link , a:active, a:visited, a:hover {
+            text-decoration: none; color: black;
+         }
+         .b-r a {
+            text-decoration: underline; color: blue;
+         }
+         div, span {
+            vertical-align: top;
+         }
+         p {
+            margin: 0px;
+         }
+         h1 {
+            /*font-size: 14pt;*/
+            color: red;
+         }
+         #menu {
+            margin-bottom: 10px;
+         }
+         #menu ul {
+            margin-left: 0;
+            padding-left: 0;
+            display: inline;
+         }
+         #menu ul li {
+            margin-left: 0;
+            margin-bottom: 0;
+            padding: 2px 15px 5px;
+            border: 1px solid #000;
+            list-style: none;
+            display: inline;
+         }
+         #menu ul li.here {
+            border-bottom: 1px solid #ffc;
+            list-style: none;
+            display: inline;
+         }
+         .menu-tab {
+            background: white;
+         }
+         .menu-tab:hover {
+            background: grey;
+         }
+         .menu-tab-selected {
+            background: #aaaaaa;
+         }
+         #analysis-data ul {
+            margin-left: 15px;
+         }
+         #analyzed-files, #used-libraries, #analysis-error {
+           margin: 2px;
+           border: 1px black solid;
+           padding: 2px;
+           float: left;
+           overflow:auto;
+         }
+         #analyzed-files {
+           width: 25%;
+         }
+         #used-libraries {
+           width: 25%;
+         }
+         #analysis-error {
+           width: 40%;
+         }
+         div.summary {
+            width:100%;
+            text-align:left;
+         }
+         .summary table {
+            border:1px solid black;
+         }
+         .summary th {
+            background: #aaaaaa;
+            color: white;
+         }
+         .summary th, .summary td {
+            padding: 2px 4px 2px 4px;
+         }
+         .summary-name {
+            background: #eeeeee;
+            text-align:left;
+         }
+         .summary-size {
+            background: #eeeeee;
+            text-align:center;
+         }
+         .summary-ratio {
+            background: #eeeeee;
+            text-align:center;
+         }
+         .summary-priority-all {
+            background: #dddddd;
+            text-align:center;
+         }
+         .summary-priority-1 {
+            background: red;
+            text-align:center;
+         }
+         .summary-priority-2 {
+            background: orange;
+            text-align:center;
+         }
+         .summary-priority-3 {
+            background: green;
+            text-align:center;
+         }
+         .summary-priority-4 {
+            background: blue;
+            text-align:center;
+         }
+         .ob {
+            border: 1px solid black;
+            margin: 10px;
+         }
+         .ob-t {
+            border-bottom: 1px solid #000000; font-size: 12pt; font-weight: bold;
+            background: #cccccc; margin: 0; padding: 0 5px 0 5px;
+         }
+         .t-h {
+            font-weight: normal;
+         }
+         .ib-1, .ib-2 {
+            margin: 0 0 0 10px;
+         }
+         .ib-1-t, .ib-2-t {
+            border-bottom: 1px solid #000000; border-left: 1px solid #000000;
+            margin: 0; padding: 0 5px 0 5px;
+            font-size: 12pt; font-weight: bold; background: #cccccc;
+         }
+         .bb {
+            border-bottom: 1px solid #000000; border-left: 1px solid #000000;
+         }
+         .b-1 {
+            background: red; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-2 {
+            background: orange; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-3 {
+            background: green; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-4 {
+            background: blue; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-t {
+         }
+         .b-r {
+            font-size: 10pt; font-weight: bold; padding: 0 0 0 60px;
+         }
+         .b-d {
+            font-weight: normal; background: #eeeee0;
+            padding: 0 5px 0 5px; margin: 0px;
+         }
+         .bug-placeholder {
+            top:140px;
+            border:1px solid black;
+            display:none;
+         }
+         .tip {
+            border:solid 1px #666666;
+            width:600px;
+            padding:3px;
+            position:absolute;
+            z-index:100;
+            visibility:hidden;
+            color:#333333;
+            top:20px;
+            left:90px;
+            background-color:#ffffcc;
+            layer-background-color:#ffffcc;
+         }
+
+
+      </style>
+</head>
+<body>
+<div id="content">
+<h1>
+         FindBugs (2.0.3)
+         Analysis for
+         HW4</h1>
+<div id="menu">
+<ul>
+<li class="menu-tab-selected" id="bug-summary-tab" onclick="showmenu('bug-summary');return false;">
+<a onclick="return false;" href="">Bug Summary</a>
+</li>
+<li class="menu-tab" id="analysis-data-tab" onclick="showmenu('analysis-data');return false;">
+<a onclick="return false;" href="">Analysis Information</a>
+</li>
+<li class="menu-tab" id="list-by-category-tab" onclick="showmenu('list-by-category');return false;">
+<a onclick="return false;" href="">List bugs by bug category</a>
+</li>
+<li class="menu-tab" id="list-by-package-tab" onclick="showmenu('list-by-package');return false;">
+<a onclick="return false;" href="">List bugs by package</a>
+</li>
+</ul>
+</div>
+<div id="bug-summary" class="summary">
+<h2>FindBugs Analysis generated at: Sun, 13 Apr 2014 19:32:26 +0200</h2>
+<table>
+<tr>
+<th>Package</th>
+<th>Code Size</th>
+<th>Bugs</th>
+<th>High Prio Bugs</th>
+<th>Medium Prio Bugs</th>
+<th>Low Prio Bugs</th>
+<th>Exp. Bugs</th>
+<th>Ratio</th>
+</tr>
+<tr>
+<td class="summary-name">
+            Overall
+            (4 packages),
+            (28 classes)
+         </td>
+<td class="summary-size">622</td>
+<td class="summary-priority-all">16</td>
+<td class="summary-priority-1">2</td>
+<td class="summary-priority-2">14</td>
+<td class="summary-priority-3" />
+<td class="summary-priority-4" />
+<td class="summary-ratio" />
+</tr>
+<tr>
+<td class="summary-name">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions</td>
+<td class="summary-size">183</td>
+<td class="summary-priority-all">7</td>
+<td class="summary-priority-1">2</td>
+<td class="summary-priority-2">5</td>
+<td class="summary-priority-3" />
+<td class="summary-priority-4" />
+<td class="summary-ratio" />
+</tr>
+<tr>
+<td class="summary-name">hr.fer.zemris.java.tecaj.hw5</td>
+<td class="summary-size">323</td>
+<td class="summary-priority-all">9</td>
+<td class="summary-priority-1" />
+<td class="summary-priority-2">9</td>
+<td class="summary-priority-3" />
+<td class="summary-priority-4" />
+<td class="summary-ratio" />
+</tr>
+</table>
+</div>
+<div style="display:none;" id="analysis-data">
+<div id="analyzed-files">
+<h3>Analyzed Files:</h3>
+<ul>
+<li>C:\Users\Marko\javaTecaj\HW05-0036453293\build\classes</li>
+</ul>
+</div>
+<div id="used-libraries">
+<h3>Used Libraries:</h3>
+<ul>
+<li>None</li>
+</ul>
+</div>
+<div id="analysis-error">
+<h3>Analysis Errors:</h3>
+<ul>
+<li>Missing ref classes for analysis:
+                     <ul>
+<li>hr.fer.zemris.java.tecaj_2.jcomp.Computer</li>
+<li>hr.fer.zemris.java.tecaj_2.jcomp.ExecutionUnit</li>
+<li>hr.fer.zemris.java.tecaj_2.jcomp.Instruction</li>
+<li>hr.fer.zemris.java.tecaj_2.jcomp.InstructionArgument</li>
+<li>hr.fer.zemris.java.tecaj_2.jcomp.Memory</li>
+<li>hr.fer.zemris.java.tecaj_2.jcomp.Registers</li>
+<li>hr.fer.zemris.java.tecaj_2.jcomp.parser.InstructionCreatorImpl</li>
+<li>hr.fer.zemris.java.tecaj_2.jcomp.parser.ProgramParser</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div style="display:none;" class="data-box" id="list-by-category">
+<span class="b-1">&nbsp;&nbsp;</span> High Prio
+   <span class="b-2">&nbsp;&nbsp;</span> Medium Prio
+   <span class="b-3">&nbsp;&nbsp;</span> Low Prio
+   <span class="b-4">&nbsp;&nbsp;</span> Exp.
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE');return false;">Bad practice
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-Se');return false;">Se: Incorrect definition of Serializable class
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-Se">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-Se-and-bug-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE');return false;" onmouseout="popUp(event,'tip-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE');" onmouseover="popUp(event,'tip-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE');">Comparator doesn't implement Serializable&nbsp;&nbsp;
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-Se-and-bug-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-ca1445f9db08424ad62e3a032cf4f1a7-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.tecaj.hw5.Dir</a>
+<div style="display:none;" id="b-uid-ca1445f9db08424ad62e3a032cf4f1a7-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-94bfe7b4fc4f8f06472abf4d2c655f04-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator</a>
+<div style="display:none;" id="b-uid-94bfe7b4fc4f8f06472abf4d2c655f04-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('category-I18N');return false;">Internationalization
+            (2:
+            <span class="t-h">2/0/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-I18N">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-I18N-and-code-Dm');return false;">Dm: Dubious method used
+            (2:
+            <span class="t-h">2/0/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-I18N-and-code-Dm">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-I18N-and-code-Dm-and-bug-DM_DEFAULT_ENCODING');return false;" onmouseout="popUp(event,'tip-DM_DEFAULT_ENCODING');" onmouseover="popUp(event,'tip-DM_DEFAULT_ENCODING');">Reliance on default encoding&nbsp;&nbsp;
+            (2:
+            <span class="t-h">2/0/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-I18N-and-code-Dm-and-bug-DM_DEFAULT_ENCODING">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-d4812bcb95d71ba12b31c6a7e88c0522-0','c');return false;">
+<span class="b-1">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</a>
+<div style="display:none;" id="b-uid-d4812bcb95d71ba12b31c6a7e88c0522-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-200fb0f247eaf0cc6d21b3f6049befc8-0','c');return false;">
+<span class="b-1">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</a>
+<div style="display:none;" id="b-uid-200fb0f247eaf0cc6d21b3f6049befc8-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('category-PERFORMANCE');return false;">Performance
+            (7:
+            <span class="t-h">0/7/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-PERFORMANCE">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-PERFORMANCE-and-code-Bx');return false;">Bx: Questionable Boxing of primitive value
+            (5:
+            <span class="t-h">0/5/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-PERFORMANCE-and-code-Bx">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-PERFORMANCE-and-code-Bx-and-bug-BX_BOXING_IMMEDIATELY_UNBOXED');return false;" onmouseout="popUp(event,'tip-BX_BOXING_IMMEDIATELY_UNBOXED');" onmouseover="popUp(event,'tip-BX_BOXING_IMMEDIATELY_UNBOXED');">Primitive value is boxed and then immediately unboxed&nbsp;&nbsp;
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-PERFORMANCE-and-code-Bx-and-bug-BX_BOXING_IMMEDIATELY_UNBOXED">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-d2ea39e007630b32c2cbd5e1b742fcea-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement</a>
+<div style="display:none;" id="b-uid-d2ea39e007630b32c2cbd5e1b742fcea-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-4e774339c67ecaeda7bf93e645e4fe26-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement</a>
+<div style="display:none;" id="b-uid-4e774339c67ecaeda7bf93e645e4fe26-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-PERFORMANCE-and-code-Bx-and-bug-BX_UNBOXING_IMMEDIATELY_REBOXED');return false;" onmouseout="popUp(event,'tip-BX_UNBOXING_IMMEDIATELY_REBOXED');" onmouseover="popUp(event,'tip-BX_UNBOXING_IMMEDIATELY_REBOXED');">Boxed value is unboxed and then immediately reboxed&nbsp;&nbsp;
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-PERFORMANCE-and-code-Bx-and-bug-BX_UNBOXING_IMMEDIATELY_REBOXED">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-48a85506248df1229e2b980407146570-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</a>
+<div style="display:none;" id="b-uid-48a85506248df1229e2b980407146570-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-PERFORMANCE-and-code-Bx-and-bug-DM_NUMBER_CTOR');return false;" onmouseout="popUp(event,'tip-DM_NUMBER_CTOR');" onmouseover="popUp(event,'tip-DM_NUMBER_CTOR');">Method invokes inefficient Number constructor; use static valueOf instead&nbsp;&nbsp;
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-PERFORMANCE-and-code-Bx-and-bug-DM_NUMBER_CTOR">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-4833a45c0037ebd579d16cd59ee677c3-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement</a>
+<div style="display:none;" id="b-uid-4833a45c0037ebd579d16cd59ee677c3-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-76b0c623a65c07937535635acfabdb4-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement</a>
+<div style="display:none;" id="b-uid-76b0c623a65c07937535635acfabdb4-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-PERFORMANCE-and-code-Dm');return false;">Dm: Dubious method used
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-PERFORMANCE-and-code-Dm">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-PERFORMANCE-and-code-Dm-and-bug-DM_STRING_CTOR');return false;" onmouseout="popUp(event,'tip-DM_STRING_CTOR');" onmouseover="popUp(event,'tip-DM_STRING_CTOR');">Method invokes inefficient new String(String) constructor&nbsp;&nbsp;
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-PERFORMANCE-and-code-Dm-and-bug-DM_STRING_CTOR">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-dee2577795a4d4ac141e566ac33977b8-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.tecaj.hw5.FileComparators</a>
+<div style="display:none;" id="b-uid-dee2577795a4d4ac141e566ac33977b8-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-d8a13f2d40f4cef3cf33dd613a902385-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.tecaj.hw5.FilterSpecs</a>
+<div style="display:none;" id="b-uid-d8a13f2d40f4cef3cf33dd613a902385-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('category-STYLE');return false;">Dodgy code
+            (5:
+            <span class="t-h">0/5/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-STYLE">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-STYLE-and-code-SF');return false;">SF: Switch case falls through
+            (5:
+            <span class="t-h">0/5/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-STYLE-and-code-SF">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-STYLE-and-code-SF-and-bug-SF_SWITCH_FALLTHROUGH');return false;" onmouseout="popUp(event,'tip-SF_SWITCH_FALLTHROUGH');" onmouseover="popUp(event,'tip-SF_SWITCH_FALLTHROUGH');">Switch statement found where one case falls through to the next case&nbsp;&nbsp;
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-STYLE-and-code-SF-and-bug-SF_SWITCH_FALLTHROUGH">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-186e967e943a4eb5658e5e2a9e76182c-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</a>
+<div style="display:none;" id="b-uid-186e967e943a4eb5658e5e2a9e76182c-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-STYLE-and-code-SF-and-bug-SF_SWITCH_NO_DEFAULT');return false;" onmouseout="popUp(event,'tip-SF_SWITCH_NO_DEFAULT');" onmouseover="popUp(event,'tip-SF_SWITCH_NO_DEFAULT');">Switch statement found where default case is missing&nbsp;&nbsp;
+            (4:
+            <span class="t-h">0/4/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-STYLE-and-code-SF-and-bug-SF_SWITCH_NO_DEFAULT">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-45ca0e47c6db9ad3e35813d9d476ecbc-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.FilterSpecs</a>
+<div style="display:none;" id="b-uid-45ca0e47c6db9ad3e35813d9d476ecbc-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-b1b7f3350df40d05de6c74d918c9c848-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</a>
+<div style="display:none;" id="b-uid-b1b7f3350df40d05de6c74d918c9c848-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-b7e11d679a394cfbabc09182033414c-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</a>
+<div style="display:none;" id="b-uid-b7e11d679a394cfbabc09182033414c-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-de6381e48a9d6653cb9a6e38ae2fe387-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</a>
+<div style="display:none;" id="b-uid-de6381e48a9d6653cb9a6e38ae2fe387-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="display:none;" class="data-box" id="list-by-package">
+<span class="b-1">&nbsp;&nbsp;</span> High Prio
+   <span class="b-2">&nbsp;&nbsp;</span> Medium Prio
+   <span class="b-3">&nbsp;&nbsp;</span> Low Prio
+   <span class="b-4">&nbsp;&nbsp;</span> Exp.
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions');return false;">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions
+            (7:
+            <span class="t-h">2/5/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement');return false;">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement  (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement-and-type-BX_BOXING_IMMEDIATELY_UNBOXED');return false;" onmouseout="popUp(event,'tip-BX_BOXING_IMMEDIATELY_UNBOXED')" onmouseover="popUp(event,'tip-BX_BOXING_IMMEDIATELY_UNBOXED')">Primitive value is boxed and then immediately unboxed&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement-and-type-BX_BOXING_IMMEDIATELY_UNBOXED">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-d2ea39e007630b32c2cbd5e1b742fcea-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement</a>
+<div style="display:none;" id="b-uid-d2ea39e007630b32c2cbd5e1b742fcea-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement-and-type-DM_NUMBER_CTOR');return false;" onmouseout="popUp(event,'tip-DM_NUMBER_CTOR')" onmouseover="popUp(event,'tip-DM_NUMBER_CTOR')">Method invokes inefficient Number constructor; use static valueOf instead&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement-and-type-DM_NUMBER_CTOR">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-4833a45c0037ebd579d16cd59ee677c3-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement</a>
+<div style="display:none;" id="b-uid-4833a45c0037ebd579d16cd59ee677c3-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput');return false;">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput  (3:
+            <span class="t-h">2/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput-and-type-BX_UNBOXING_IMMEDIATELY_REBOXED');return false;" onmouseout="popUp(event,'tip-BX_UNBOXING_IMMEDIATELY_REBOXED')" onmouseover="popUp(event,'tip-BX_UNBOXING_IMMEDIATELY_REBOXED')">Boxed value is unboxed and then immediately reboxed&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput-and-type-BX_UNBOXING_IMMEDIATELY_REBOXED">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-48a85506248df1229e2b980407146570-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</a>
+<div style="display:none;" id="b-uid-48a85506248df1229e2b980407146570-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput-and-type-DM_DEFAULT_ENCODING');return false;" onmouseout="popUp(event,'tip-DM_DEFAULT_ENCODING')" onmouseover="popUp(event,'tip-DM_DEFAULT_ENCODING')">Reliance on default encoding&nbsp;&nbsp;
+            (2)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput-and-type-DM_DEFAULT_ENCODING">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-d4812bcb95d71ba12b31c6a7e88c0522-0','p');return false;">
+<span class="b-1">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</a>
+<div style="display:none;" id="b-uid-d4812bcb95d71ba12b31c6a7e88c0522-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-200fb0f247eaf0cc6d21b3f6049befc8-0','p');return false;">
+<span class="b-1">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</a>
+<div style="display:none;" id="b-uid-200fb0f247eaf0cc6d21b3f6049befc8-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement');return false;">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement  (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement-and-type-BX_BOXING_IMMEDIATELY_UNBOXED');return false;" onmouseout="popUp(event,'tip-BX_BOXING_IMMEDIATELY_UNBOXED')" onmouseover="popUp(event,'tip-BX_BOXING_IMMEDIATELY_UNBOXED')">Primitive value is boxed and then immediately unboxed&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement-and-type-BX_BOXING_IMMEDIATELY_UNBOXED">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-4e774339c67ecaeda7bf93e645e4fe26-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement</a>
+<div style="display:none;" id="b-uid-4e774339c67ecaeda7bf93e645e4fe26-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement-and-type-DM_NUMBER_CTOR');return false;" onmouseout="popUp(event,'tip-DM_NUMBER_CTOR')" onmouseover="popUp(event,'tip-DM_NUMBER_CTOR')">Method invokes inefficient Number constructor; use static valueOf instead&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions-and-class-hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement-and-type-DM_NUMBER_CTOR">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-76b0c623a65c07937535635acfabdb4-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Bx: </span>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement</a>
+<div style="display:none;" id="b-uid-76b0c623a65c07937535635acfabdb4-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5');return false;">hr.fer.zemris.java.tecaj.hw5
+            (9:
+            <span class="t-h">0/9/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.Dir');return false;">hr.fer.zemris.java.tecaj.hw5.Dir  (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.Dir">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.Dir-and-type-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE');return false;" onmouseout="popUp(event,'tip-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE')" onmouseover="popUp(event,'tip-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE')">Comparator doesn't implement Serializable&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.Dir-and-type-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-ca1445f9db08424ad62e3a032cf4f1a7-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.tecaj.hw5.Dir</a>
+<div style="display:none;" id="b-uid-ca1445f9db08424ad62e3a032cf4f1a7-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FileComparators');return false;">hr.fer.zemris.java.tecaj.hw5.FileComparators  (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FileComparators">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FileComparators-and-type-DM_STRING_CTOR');return false;" onmouseout="popUp(event,'tip-DM_STRING_CTOR')" onmouseover="popUp(event,'tip-DM_STRING_CTOR')">Method invokes inefficient new String(String) constructor&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FileComparators-and-type-DM_STRING_CTOR">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-dee2577795a4d4ac141e566ac33977b8-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.tecaj.hw5.FileComparators</a>
+<div style="display:none;" id="b-uid-dee2577795a4d4ac141e566ac33977b8-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator');return false;">hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator  (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator-and-type-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE');return false;" onmouseout="popUp(event,'tip-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE')" onmouseover="popUp(event,'tip-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE')">Comparator doesn't implement Serializable&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator-and-type-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-94bfe7b4fc4f8f06472abf4d2c655f04-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator</a>
+<div style="display:none;" id="b-uid-94bfe7b4fc4f8f06472abf4d2c655f04-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FilterSpecs');return false;">hr.fer.zemris.java.tecaj.hw5.FilterSpecs  (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FilterSpecs">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FilterSpecs-and-type-DM_STRING_CTOR');return false;" onmouseout="popUp(event,'tip-DM_STRING_CTOR')" onmouseover="popUp(event,'tip-DM_STRING_CTOR')">Method invokes inefficient new String(String) constructor&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FilterSpecs-and-type-DM_STRING_CTOR">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-d8a13f2d40f4cef3cf33dd613a902385-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.tecaj.hw5.FilterSpecs</a>
+<div style="display:none;" id="b-uid-d8a13f2d40f4cef3cf33dd613a902385-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FilterSpecs-and-type-SF_SWITCH_NO_DEFAULT');return false;" onmouseout="popUp(event,'tip-SF_SWITCH_NO_DEFAULT')" onmouseover="popUp(event,'tip-SF_SWITCH_NO_DEFAULT')">Switch statement found where default case is missing&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.FilterSpecs-and-type-SF_SWITCH_NO_DEFAULT">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-45ca0e47c6db9ad3e35813d9d476ecbc-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.FilterSpecs</a>
+<div style="display:none;" id="b-uid-45ca0e47c6db9ad3e35813d9d476ecbc-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.PrintSpecs');return false;">hr.fer.zemris.java.tecaj.hw5.PrintSpecs  (4:
+            <span class="t-h">0/4/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.PrintSpecs">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.PrintSpecs-and-type-SF_SWITCH_FALLTHROUGH');return false;" onmouseout="popUp(event,'tip-SF_SWITCH_FALLTHROUGH')" onmouseover="popUp(event,'tip-SF_SWITCH_FALLTHROUGH')">Switch statement found where one case falls through to the next case&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.PrintSpecs-and-type-SF_SWITCH_FALLTHROUGH">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-186e967e943a4eb5658e5e2a9e76182c-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</a>
+<div style="display:none;" id="b-uid-186e967e943a4eb5658e5e2a9e76182c-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.PrintSpecs-and-type-SF_SWITCH_NO_DEFAULT');return false;" onmouseout="popUp(event,'tip-SF_SWITCH_NO_DEFAULT')" onmouseover="popUp(event,'tip-SF_SWITCH_NO_DEFAULT')">Switch statement found where default case is missing&nbsp;&nbsp;
+            (3)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.tecaj.hw5-and-class-hr.fer.zemris.java.tecaj.hw5.PrintSpecs-and-type-SF_SWITCH_NO_DEFAULT">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-b1b7f3350df40d05de6c74d918c9c848-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</a>
+<div style="display:none;" id="b-uid-b1b7f3350df40d05de6c74d918c9c848-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-b7e11d679a394cfbabc09182033414c-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</a>
+<div style="display:none;" id="b-uid-b7e11d679a394cfbabc09182033414c-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-de6381e48a9d6653cb9a6e38ae2fe387-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">SF: </span>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</a>
+<div style="display:none;" id="b-uid-de6381e48a9d6653cb9a6e38ae2fe387-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tip-DM_DEFAULT_ENCODING" class="tip">
+<b>Dm / DM_DEFAULT_ENCODING</b>
+<br />
+
+<p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
+
+      </div>
+<div id="tip-SF_SWITCH_FALLTHROUGH" class="tip">
+<b>SF / SF_SWITCH_FALLTHROUGH</b>
+<br />
+
+  <p> This method contains a switch statement where one case branch will fall through to the next case.
+  Usually you need to end this case with a break or return.</p>
+
+    </div>
+<div id="tip-BX_BOXING_IMMEDIATELY_UNBOXED" class="tip">
+<b>Bx / BX_BOXING_IMMEDIATELY_UNBOXED</b>
+<br />
+
+  <p>A primitive is boxed, and then immediately unboxed. This probably is due to a manual
+    boxing in a place where an unboxed value is required, thus forcing the compiler
+to immediately undo the work of the boxing.
+</p>
+
+    </div>
+<div id="tip-SF_SWITCH_NO_DEFAULT" class="tip">
+<b>SF / SF_SWITCH_NO_DEFAULT</b>
+<br />
+
+  <p> This method contains a switch statement where default case is missing.
+  Usually you need to provide a default case.</p>
+  <p>Because the analysis only looks at the generated bytecode, this warning can be incorrect triggered if
+the default case is at the end of the switch statement and doesn't end with a break statement.
+
+    </div>
+<div id="tip-SE_COMPARATOR_SHOULD_BE_SERIALIZABLE" class="tip">
+<b>Se / SE_COMPARATOR_SHOULD_BE_SERIALIZABLE</b>
+<br />
+
+  <p> This class implements the <code>Comparator</code> interface. You
+should consider whether or not it should also implement the <code>Serializable</code>
+interface. If a comparator is used to construct an ordered collection
+such as a <code>TreeMap</code>, then the <code>TreeMap</code>
+will be serializable only if the comparator is also serializable.
+As most comparators have little or no state, making them serializable
+is generally easy and good defensive programming.
+</p>
+
+    </div>
+<div id="tip-DM_STRING_CTOR" class="tip">
+<b>Dm / DM_STRING_CTOR</b>
+<br />
+
+  <p> Using the <code>java.lang.String(String)</code> constructor wastes memory
+  because the object so constructed will be functionally indistinguishable
+  from the <code>String</code> passed as a parameter.&nbsp; Just use the
+  argument <code>String</code> directly.</p>
+
+    </div>
+<div id="tip-DM_NUMBER_CTOR" class="tip">
+<b>Bx / DM_NUMBER_CTOR</b>
+<br />
+      
+      <p>
+      Using <code>new Integer(int)</code> is guaranteed to always result in a new object whereas
+      <code>Integer.valueOf(int)</code> allows caching of values to be done by the compiler, class library, or JVM.
+      Using of cached values avoids object allocation and the code will be faster.
+      </p>
+      <p>
+      Values between -128 and 127 are guaranteed to have corresponding cached instances
+      and using <code>valueOf</code> is approximately 3.5 times faster than using constructor.
+      For values outside the constant range the performance of both styles is the same.
+      </p>
+      <p>
+      Unless the class must be compatible with JVMs predating Java 1.5,
+      use either autoboxing or the <code>valueOf()</code> method when creating instances of
+      <code>Long</code>, <code>Integer</code>, <code>Short</code>, <code>Character</code>, and <code>Byte</code>.
+      </p>
+      
+    </div>
+<div id="tip-BX_UNBOXING_IMMEDIATELY_REBOXED" class="tip">
+<b>Bx / BX_UNBOXING_IMMEDIATELY_REBOXED</b>
+<br />
+
+  <p>A boxed value is unboxed and then immediately reboxed.
+</p>
+
+    </div>
+<div style="display:none;" id="b-uid-ca1445f9db08424ad62e3a032cf4f1a7-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.Dir</div>
+<div class="b-r">At Dir.java:[lines 22-120]</div>
+<div class="b-d">hr.fer.zemris.java.tecaj.hw5.Dir implements Comparator but not Serializable</div>
+</div>
+<div style="display:none;" id="b-uid-dee2577795a4d4ac141e566ac33977b8-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.FileComparators</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj.hw5.FileComparators.createComparator(String)</div>
+<div class="b-r">At FileComparators.java:[line 171]</div>
+<div class="b-d">hr.fer.zemris.java.tecaj.hw5.FileComparators.createComparator(String) invokes inefficient new String(String) constructor</div>
+</div>
+<div style="display:none;" id="b-uid-94bfe7b4fc4f8f06472abf4d2c655f04-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator</div>
+<div class="b-r">At FileComparators.java:[lines 136-158]</div>
+<div class="b-d">hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator implements Comparator but not Serializable</div>
+</div>
+<div style="display:none;" id="b-uid-d8a13f2d40f4cef3cf33dd613a902385-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.FilterSpecs</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj.hw5.FilterSpecs.createFilterSpec(String, Map)</div>
+<div class="b-r">At FilterSpecs.java:[line 53]</div>
+<div class="b-d">hr.fer.zemris.java.tecaj.hw5.FilterSpecs.createFilterSpec(String, Map) invokes inefficient new String(String) constructor</div>
+</div>
+<div style="display:none;" id="b-uid-45ca0e47c6db9ad3e35813d9d476ecbc-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.FilterSpecs</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj.hw5.FilterSpecs.fileFulfilsFilterSpec(File, Map$Entry)</div>
+<div class="b-r">At FilterSpecs.java:[lines 124-149]</div>
+<div class="b-d">Switch statement found in hr.fer.zemris.java.tecaj.hw5.FilterSpecs.fileFulfilsFilterSpec(File, Map$Entry) where default case is missing</div>
+</div>
+<div style="display:none;" id="b-uid-186e967e943a4eb5658e5e2a9e76182c-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj.hw5.PrintSpecs.setSizeOfPrintedSpecs(List, List)</div>
+<div class="b-r">At PrintSpecs.java:[lines 66-68]</div>
+<div class="b-d">Switch statement found in hr.fer.zemris.java.tecaj.hw5.PrintSpecs.setSizeOfPrintedSpecs(List, List) where one case falls through to the next case</div>
+</div>
+<div style="display:none;" id="b-uid-b1b7f3350df40d05de6c74d918c9c848-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj.hw5.PrintSpecs.printBorder(List)</div>
+<div class="b-r">At PrintSpecs.java:[lines 150-163]</div>
+<div class="b-d">Switch statement found in hr.fer.zemris.java.tecaj.hw5.PrintSpecs.printBorder(List) where default case is missing</div>
+</div>
+<div style="display:none;" id="b-uid-b7e11d679a394cfbabc09182033414c-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj.hw5.PrintSpecs.printFileSpec(File, String)</div>
+<div class="b-r">At PrintSpecs.java:[lines 95-118]</div>
+<div class="b-d">Switch statement found in hr.fer.zemris.java.tecaj.hw5.PrintSpecs.printFileSpec(File, String) where default case is missing</div>
+</div>
+<div style="display:none;" id="b-uid-de6381e48a9d6653cb9a6e38ae2fe387-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj.hw5.PrintSpecs.setSizeOfPrintedSpecs(List, List)</div>
+<div class="b-r">At PrintSpecs.java:[lines 55-81]</div>
+<div class="b-d">Switch statement found in hr.fer.zemris.java.tecaj.hw5.PrintSpecs.setSizeOfPrintedSpecs(List, List) where default case is missing</div>
+</div>
+<div style="display:none;" id="b-uid-d2ea39e007630b32c2cbd5e1b742fcea-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement.execute(Computer)</div>
+<div class="b-r">At InstrDecrement.java:[line 47]</div>
+<div class="b-d">Primitive value is boxed and then immediately unboxed in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement.execute(Computer)</div>
+</div>
+<div style="display:none;" id="b-uid-4833a45c0037ebd579d16cd59ee677c3-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement.execute(Computer)</div>
+<div class="b-r">Called method new Integer(int)</div>
+<div class="b-r">Should call Integer.valueOf(int) instead</div>
+<div class="b-r">At InstrDecrement.java:[line 47]</div>
+<div class="b-d">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement.execute(Computer) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</div>
+</div>
+<div style="display:none;" id="b-uid-48a85506248df1229e2b980407146570-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer)</div>
+<div class="b-r">Called method Integer.valueOf(int)</div>
+<div class="b-r">At InstrIinput.java:[line 67]</div>
+<div class="b-d">Boxed value is unboxed and then immediately reboxed in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer)</div>
+</div>
+<div style="display:none;" id="b-uid-d4812bcb95d71ba12b31c6a7e88c0522-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer)</div>
+<div class="b-r">Called method new java.io.InputStreamReader(InputStream)</div>
+<div class="b-r">At InstrIinput.java:[line 54]</div>
+<div class="b-d">Found reliance on default encoding in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer): new java.io.InputStreamReader(InputStream)</div>
+</div>
+<div style="display:none;" id="b-uid-200fb0f247eaf0cc6d21b3f6049befc8-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer)</div>
+<div class="b-r">Called method new java.util.Scanner(InputStream)</div>
+<div class="b-r">At InstrIinput.java:[line 53]</div>
+<div class="b-d">Found reliance on default encoding in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer): new java.util.Scanner(InputStream)</div>
+</div>
+<div style="display:none;" id="b-uid-4e774339c67ecaeda7bf93e645e4fe26-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement.execute(Computer)</div>
+<div class="b-r">At InstrIncrement.java:[line 47]</div>
+<div class="b-d">Primitive value is boxed and then immediately unboxed in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement.execute(Computer)</div>
+</div>
+<div style="display:none;" id="b-uid-76b0c623a65c07937535635acfabdb4-0">
+<div class="b-r">In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement</div>
+<div class="b-r">In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement.execute(Computer)</div>
+<div class="b-r">Called method new Integer(int)</div>
+<div class="b-r">Should call Integer.valueOf(int) instead</div>
+<div class="b-r">At InstrIncrement.java:[line 47]</div>
+<div class="b-d">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement.execute(Computer) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</div>
+</div>
+</div>
+<div id="fixedbox">
+<div id="bug-placeholder" />
+</div>
+</body>
+</html>

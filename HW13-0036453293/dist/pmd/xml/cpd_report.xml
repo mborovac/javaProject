@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="WINDOWS-1250" standalone="no"?>
+<pmd-cpd>
+<duplication lines="27" tokens="233">
+<file line="48" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="42" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		String fileName = req.getServletContext().getRealPath("/WEB-INF/glasanje-rezultati.txt");
+		Map<String, Integer> bandVotes = new LinkedHashMap<>();
+		BufferedReader in = new BufferedReader(
+				new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
+		String line;
+		
+		while((line = in.readLine()) != null) {
+			String[] splitLine = line.split("\t");
+			bandVotes.put(splitLine[0], Integer.parseInt(splitLine[1]));
+		}
+		in.close();
+		
+		String bandInfoFile = req.getServletContext().getRealPath("/WEB-INF/glasanje-definicija.txt");
+		Map<String, String> bandInfo = new LinkedHashMap<>();
+		in = new BufferedReader(
+				new InputStreamReader(new FileInputStream(bandInfoFile), "UTF-8"));
+		
+		while((line = in.readLine()) != null) {
+			String[] splitLine = line.split("\t");
+			bandInfo.put(splitLine[0], splitLine[1]);
+		}
+		in.close();
+		
+		Map<String, Integer> mapOfVotes = new HashMap<>();
+		for(String bandID: bandInfo.keySet()) {
+			mapOfVotes.put(bandInfo.get(bandID), bandVotes.get(bandID));
+		}]]></codefragment>
+</duplication>
+<duplication lines="26" tokens="125">
+<file line="24" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[public class GlasanjeGlasajServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method reads the request parameter, increases the corresponding band's vote count and writes
+	 * the updated count in to the file.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		String fileName = req.getServletContext().getRealPath("/WEB-INF/glasanje-rezultati.txt");
+		Map<String, Integer> bandVotes = new LinkedHashMap<>();
+		BufferedReader in = new BufferedReader(
+				new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
+		String line;
+		
+		while((line = in.readLine()) != null) {
+			String[] splitLine = line.split("\t");
+			bandVotes.put(splitLine[0], Integer.parseInt(splitLine[1]));
+		}
+		in.close();]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="98">
+<file line="39" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="48" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="42" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<codefragment><![CDATA[		String fileName = req.getServletContext().getRealPath("/WEB-INF/glasanje-rezultati.txt");
+		Map<String, Integer> bandVotes = new LinkedHashMap<>();
+		BufferedReader in = new BufferedReader(
+				new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
+		String line;
+		
+		while((line = in.readLine()) != null) {
+			String[] splitLine = line.split("\t");
+			bandVotes.put(splitLine[0], Integer.parseInt(splitLine[1]));
+		}
+		in.close();]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="61">
+<file line="61" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="73" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="55" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		Map<String, String> bandInfo = new LinkedHashMap<>();
+		in = new BufferedReader(
+				new InputStreamReader(new FileInputStream(bandInfoFile), "UTF-8"));
+		
+		while((line = in.readLine()) != null) {
+			String[] splitLine = line.split("\t");
+			bandInfo.put(splitLine[0], splitLine[1]);]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="53">
+<file line="40" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="49" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="43" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="37" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="43" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		Map<String, Integer> bandVotes = new LinkedHashMap<>();
+		BufferedReader in = new BufferedReader(
+				new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
+		String line;
+		
+		while((line = in.readLine()) != null) {
+			String[] splitLine = line.split("\t");]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="53">
+<file line="67" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="80" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[			bandInfo.put(splitLine[0], splitLine[1]);
+		}
+		in.close();
+		
+		Map<String, Integer> mapOfVotes = new HashMap<>();
+		for(String bandID: bandInfo.keySet()) {
+			mapOfVotes.put(bandInfo.get(bandID), bandVotes.get(bandID));
+		}]]></codefragment>
+</duplication>
+<duplication lines="16" tokens="38">
+<file line="24" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="22" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[public class GlasanjeGlasajServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method reads the request parameter, increases the corresponding band's vote count and writes
+	 * the updated count in to the file.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		String fileName = req.getServletContext().getRealPath("/WEB-INF/glasanje-rezultati.txt");]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="36">
+<file line="84" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="79" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<codefragment><![CDATA[		}
+		
+		resp.setContentType("application/vnd.ms-excel; charset=UTF-8");
+		resp.setHeader("Content-Disposition", "inline");
+		
+		ServletOutputStream fileOut =  resp.getOutputStream();
+		hwb.write(fileOut);
+		fileOut.close();
+	}
+}]]></codefragment>
+</duplication>
+<duplication lines="18" tokens="35">
+<file line="21" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="19" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\SquaresServlet.java"/>
+<codefragment><![CDATA[public class PowersServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method requires 3 parameters: a, b and n. It creates a Microsoft excel file with n sheets,
+	 * each sheet containing 2 columns. 1st Column contains numbers from a to b and the 2nd column
+	 * consists of the 1st column number's power depending on the sheet number.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		Integer a = null;
+		Integer b = null;]]></codefragment>
+</duplication>
+<duplication lines="15" tokens="33">
+<file line="32" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="26" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PieChartServlet.java"/>
+<codefragment><![CDATA[public class GlasanjeGrafikaServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method reads the file with vote state and creates a pie chart.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		resp.setContentType("image/png");]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="31">
+<file line="89" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="55" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PieChartServlet.java"/>
+<codefragment><![CDATA[		return result;
+	}
+	
+	private JFreeChart createChart(PieDataset dataset, String title) {
+		JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="30">
+<file line="95" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PieChartServlet.java"/>
+<codefragment><![CDATA[		PiePlot plot = (PiePlot) chart.getPlot();
+		plot.setStartAngle(290);
+		plot.setDirection(Rotation.CLOCKWISE);
+		plot.setForegroundAlpha(0.5f);
+		return chart;
+	}
+}]]></codefragment>
+</duplication>
+<duplication lines="16" tokens="28">
+<file line="24" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="22" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="16" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\SetColorServlet.java"/>
+<codefragment><![CDATA[public class GlasanjeGlasajServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method reads the request parameter, increases the corresponding band's vote count and writes
+	 * the updated count in to the file.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		String fileName = req.getServletContext().getRealPath("/WEB-INF/glasanje-rezultati.txt");]]></codefragment>
+</duplication>
+<duplication lines="14" tokens="27">
+<file line="24" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="22" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="26" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PieChartServlet.java"/>
+<file line="21" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="16" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\SetColorServlet.java"/>
+<file line="19" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\SquaresServlet.java"/>
+<codefragment><![CDATA[public class GlasanjeGlasajServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method reads the request parameter, increases the corresponding band's vote count and writes
+	 * the updated count in to the file.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="27">
+<file line="60" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="71" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="54" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		String bandInfoFile = req.getServletContext().getRealPath("/WEB-INF/glasanje-definicija.txt");
+		Map<String, String> bandInfo = new LinkedHashMap<>();]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="26">
+<file line="45" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="54" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="65" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="48" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="77" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="42" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="48" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="59" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		while((line = in.readLine()) != null) {
+			String[] splitLine = line.split("\t");]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="25">
+<file line="80" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="46" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PieChartServlet.java"/>
+<codefragment><![CDATA[        BufferedImage image = chart.createBufferedImage(400, 400, new ChartRenderingInfo());
+        ImageIO.write(image, "png", resp.getOutputStream());
+	}
+	
+	private  PieDataset createDataset(Map<String, Integer> mapOfVotes) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="25">
+<file line="42" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="51" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="60" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<codefragment><![CDATA[			a = Integer.valueOf(req.getParameter("a"));
+		} catch (Exception e) {
+			req.getRequestDispatcher("/WEB-INF/pages/powerError.jsp").forward(req, resp);
+		}
+		if(a < -100 || a > 100) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="24">
+<file line="39" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="35" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\SquaresServlet.java"/>
+<codefragment><![CDATA[		Integer n = null;
+		
+		try {
+			a = Integer.valueOf(req.getParameter("a"));
+		} catch (Exception e) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="23">
+<file line="48" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="41" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\SquaresServlet.java"/>
+<codefragment><![CDATA[		}
+		
+		try {
+			b = Integer.valueOf(req.getParameter("b"));
+		} catch (Exception e) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="20">
+<file line="46" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="55" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<codefragment><![CDATA[		if(a < -100 || a > 100) {
+			req.getRequestDispatcher("/WEB-INF/pages/powerError.jsp").forward(req, resp);
+		}
+		
+		try {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="19">
+<file line="71" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="70" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<codefragment><![CDATA[		HSSFSheet sheet =  hwb.createSheet("Band votes");
+		HSSFRow rowhead = sheet.createRow(0);
+		rowhead.createCell(0).setCellValue("Band name");]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="17">
+<file line="77" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="43" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PieChartServlet.java"/>
+<codefragment><![CDATA[        PieDataset dataset = createDataset(mapOfVotes);
+        // based on the dataset we create the chart
+        JFreeChart chart = createChart(dataset, "");
+        BufferedImage image = chart.createBufferedImage(400, 400, new ChartRenderingInfo());]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="16">
+<file line="43" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="46" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="52" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="55" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<file line="64" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<codefragment><![CDATA[		} catch (Exception e) {
+			req.getRequestDispatcher("/WEB-INF/pages/powerError.jsp").forward(req, resp);
+		}]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="13">
+<file line="60" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="71" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="36" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="54" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		String bandInfoFile = req.getServletContext().getRealPath("/WEB-INF/glasanje-definicija.txt");
+		Map<String, String> bandInfo = new LinkedHashMap<>();]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="12">
+<file line="67" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="44" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[			bandInfo.put(splitLine[0], splitLine[1]);
+		}
+		in.close();]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="12">
+<file line="86" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="76" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		for(String band: mapOfVotes.keySet()) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="19" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\listeners\ServletListener.java"/>
+<file line="27" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\listeners\ServletListener.java"/>
+<codefragment><![CDATA[	public void contextDestroyed(ServletContextEvent event) {
+		event.getServletContext().removeAttribute("creationTime");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="41" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="50" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="62" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="44" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="74" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="38" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="44" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="56" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		BufferedReader in = new BufferedReader(
+				new InputStreamReader(new FileInputStream(fileName), "UTF-8"));]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="48" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="36" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<codefragment><![CDATA[		String fileName = req.getServletContext().getRealPath("/WEB-INF/glasanje-rezultati.txt");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="56" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+<file line="64" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<codefragment><![CDATA[		for(String id: bandVotes.keySet()) {
+			if(id.equals(req.getParameter("id"))) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="67" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="79" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="80" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[			bandInfo.put(splitLine[0], splitLine[1]);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="71" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+<file line="84" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="91" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="65" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<codefragment><![CDATA[		Map<String, Integer> mapOfVotes = new HashMap<>();
+		for(String bandID: bandInfo.keySet()) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="103" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+<file line="49" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeServlet.java"/>
+<file line="36" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\SetColorServlet.java"/>
+<codefragment><![CDATA[		req.getRequestDispatcher("/WEB-INF/pages/glasanjeRez.jsp").forward(req, resp);
+	}
+}]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="73" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="72" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<codefragment><![CDATA[		rowhead.createCell(0).setCellValue("Band name");
+		rowhead.createCell(1).setCellValue("Number of votes");]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="77" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="75" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<codefragment><![CDATA[			HSSFRow row = sheet.createRow(i);
+			row.createCell(0).setCellValue(band);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="78" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+<file line="76" path="C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java\hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+<codefragment><![CDATA[			row.createCell(0).setCellValue(band);
+			row.createCell(1).setCellValue(mapOfVotes.get(band));]]></codefragment>
+</duplication>
+</pmd-cpd>

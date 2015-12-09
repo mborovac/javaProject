@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SetColorServlet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW13</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw13.servlets</a> &gt; <span class="el_source">SetColorServlet.java</span></div><h1>SetColorServlet.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw13.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet used to enable the user to choose the background color of the pages he visits.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L16">public class SetColorServlet extends HttpServlet {</span>
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method reads the selected color from the request parameter and sets the session
+	 * attribute pickedBgCol.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+<span class="nc" id="L30">		String color = req.getParameter(&quot;color&quot;);</span>
+<span class="nc bnc" id="L31" title="All 4 branches missed.">		if(color == null || color.isEmpty()) {</span>
+<span class="nc" id="L32">			color = &quot;white&quot;;</span>
+		}
+		
+<span class="nc" id="L35">		req.getSession().setAttribute(&quot;pickedBgCol&quot;, color);</span>
+<span class="nc" id="L36">		req.getRequestDispatcher(&quot;/colors.jsp&quot;).forward(req, resp);</span>
+<span class="nc" id="L37">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

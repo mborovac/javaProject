@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.3" sequence="0" timestamp="1397410346674" analysisTimestamp="1397410346902" release="">
+  <Project projectName="HW4">
+    <Jar>C:\Users\Marko\javaTecaj\HW05-0036453293\build\classes</Jar>
+    <SrcDir>C:\Users\Marko\javaTecaj\HW05-0036453293\src\main\java</SrcDir>
+  </Project>
+  <BugInstance type="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE" priority="2" abbrev="Se" category="BAD_PRACTICE" instanceHash="ca1445f9db08424ad62e3a032cf4f1a7" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="19">
+    <ShortMessage>Comparator doesn&apos;t implement Serializable</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.tecaj.hw5.Dir implements Comparator but not Serializable</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.Dir" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.Dir" start="22" end="120" sourcefile="Dir.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/Dir.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\Dir.java">
+        <Message>At Dir.java:[lines 22-120]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.Dir</Message>
+    </Class>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.Dir" start="22" end="120" sourcefile="Dir.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/Dir.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\Dir.java" synthetic="true">
+      <Message>At Dir.java:[lines 22-120]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_STRING_CTOR" priority="2" abbrev="Dm" category="PERFORMANCE" instanceHash="dee2577795a4d4ac141e566ac33977b8" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Method invokes inefficient new String(String) constructor</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.tecaj.hw5.FileComparators.createComparator(String) invokes inefficient new String(String) constructor</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.FileComparators" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FileComparators" start="20" end="212" sourcefile="FileComparators.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FileComparators.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FileComparators.java">
+        <Message>At FileComparators.java:[lines 20-212]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.FileComparators</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj.hw5.FileComparators" name="createComparator" signature="(Ljava/lang/String;)Ljava/util/Comparator;" isStatic="true" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FileComparators" start="169" end="212" startBytecode="0" endBytecode="622" sourcefile="FileComparators.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FileComparators.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FileComparators.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj.hw5.FileComparators.createComparator(String)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FileComparators" primary="true" start="171" end="171" startBytecode="16" endBytecode="16" sourcefile="FileComparators.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FileComparators.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FileComparators.java">
+      <Message>At FileComparators.java:[line 171]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE" priority="2" abbrev="Se" category="BAD_PRACTICE" instanceHash="94bfe7b4fc4f8f06472abf4d2c655f04" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="19">
+    <ShortMessage>Comparator doesn&apos;t implement Serializable</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator implements Comparator but not Serializable</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator" start="136" end="158" sourcefile="FileComparators.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FileComparators.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FileComparators.java">
+        <Message>At FileComparators.java:[lines 136-158]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator</Message>
+    </Class>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator" start="136" end="158" sourcefile="FileComparators.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FileComparators.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FileComparators.java" synthetic="true">
+      <Message>At FileComparators.java:[lines 136-158]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_STRING_CTOR" priority="2" abbrev="Dm" category="PERFORMANCE" instanceHash="d8a13f2d40f4cef3cf33dd613a902385" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Method invokes inefficient new String(String) constructor</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.tecaj.hw5.FilterSpecs.createFilterSpec(String, Map) invokes inefficient new String(String) constructor</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" start="20" end="156" sourcefile="FilterSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FilterSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FilterSpecs.java">
+        <Message>At FilterSpecs.java:[lines 20-156]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.FilterSpecs</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" name="createFilterSpec" signature="(Ljava/lang/String;Ljava/util/Map;)Ljava/util/Map;" isStatic="true" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" start="51" end="83" startBytecode="0" endBytecode="490" sourcefile="FilterSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FilterSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FilterSpecs.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj.hw5.FilterSpecs.createFilterSpec(String, Map)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" primary="true" start="53" end="53" startBytecode="16" endBytecode="16" sourcefile="FilterSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FilterSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FilterSpecs.java">
+      <Message>At FilterSpecs.java:[line 53]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SF_SWITCH_NO_DEFAULT" priority="2" abbrev="SF" category="STYLE" instanceHash="45ca0e47c6db9ad3e35813d9d476ecbc" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="19">
+    <ShortMessage>Switch statement found where default case is missing</ShortMessage>
+    <LongMessage>Switch statement found in hr.fer.zemris.java.tecaj.hw5.FilterSpecs.fileFulfilsFilterSpec(File, Map$Entry) where default case is missing</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" start="20" end="156" sourcefile="FilterSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FilterSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FilterSpecs.java">
+        <Message>At FilterSpecs.java:[lines 20-156]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.FilterSpecs</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" name="fileFulfilsFilterSpec" signature="(Ljava/io/File;Ljava/util/Map$Entry;)Z" isStatic="true" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" start="117" end="156" startBytecode="0" endBytecode="561" sourcefile="FilterSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FilterSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FilterSpecs.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj.hw5.FilterSpecs.fileFulfilsFilterSpec(File, Map$Entry)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" primary="true" start="124" end="149" startBytecode="163" endBytecode="305" sourcefile="FilterSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/FilterSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\FilterSpecs.java">
+      <Message>At FilterSpecs.java:[lines 124-149]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SF_SWITCH_FALLTHROUGH" priority="2" abbrev="SF" category="STYLE" instanceHash="186e967e943a4eb5658e5e2a9e76182c" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="17" cweid="484">
+    <ShortMessage>Switch statement found where one case falls through to the next case</ShortMessage>
+    <LongMessage>Switch statement found in hr.fer.zemris.java.tecaj.hw5.PrintSpecs.setSizeOfPrintedSpecs(List, List) where one case falls through to the next case</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" start="19" end="191" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java">
+        <Message>At PrintSpecs.java:[lines 19-191]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" name="setSizeOfPrintedSpecs" signature="(Ljava/util/List;Ljava/util/List;)V" isStatic="true" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" start="48" end="86" startBytecode="0" endBytecode="807" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj.hw5.PrintSpecs.setSizeOfPrintedSpecs(List, List)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" primary="true" start="66" end="68" startBytecode="356" endBytecode="357" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java">
+      <Message>At PrintSpecs.java:[lines 66-68]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SF_SWITCH_NO_DEFAULT" priority="2" abbrev="SF" category="STYLE" instanceHash="b1b7f3350df40d05de6c74d918c9c848" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="19">
+    <ShortMessage>Switch statement found where default case is missing</ShortMessage>
+    <LongMessage>Switch statement found in hr.fer.zemris.java.tecaj.hw5.PrintSpecs.printBorder(List) where default case is missing</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" start="19" end="191" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java">
+        <Message>At PrintSpecs.java:[lines 19-191]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" name="printBorder" signature="(Ljava/util/List;)V" isStatic="true" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" start="148" end="177" startBytecode="0" endBytecode="566" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj.hw5.PrintSpecs.printBorder(List)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" primary="true" start="150" end="163" startBytecode="183" endBytecode="237" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java">
+      <Message>At PrintSpecs.java:[lines 150-163]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SF_SWITCH_NO_DEFAULT" priority="2" abbrev="SF" category="STYLE" instanceHash="b7e11d679a394cfbabc09182033414c" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="19">
+    <ShortMessage>Switch statement found where default case is missing</ShortMessage>
+    <LongMessage>Switch statement found in hr.fer.zemris.java.tecaj.hw5.PrintSpecs.printFileSpec(File, String) where default case is missing</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" start="19" end="191" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java">
+        <Message>At PrintSpecs.java:[lines 19-191]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" name="printFileSpec" signature="(Ljava/io/File;Ljava/lang/String;)V" isStatic="true" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" start="95" end="122" startBytecode="0" endBytecode="558" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj.hw5.PrintSpecs.printFileSpec(File, String)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" primary="true" start="95" end="118" startBytecode="144" endBytecode="391" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java">
+      <Message>At PrintSpecs.java:[lines 95-118]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SF_SWITCH_NO_DEFAULT" priority="2" abbrev="SF" category="STYLE" instanceHash="de6381e48a9d6653cb9a6e38ae2fe387" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="19">
+    <ShortMessage>Switch statement found where default case is missing</ShortMessage>
+    <LongMessage>Switch statement found in hr.fer.zemris.java.tecaj.hw5.PrintSpecs.setSizeOfPrintedSpecs(List, List) where default case is missing</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" start="19" end="191" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java">
+        <Message>At PrintSpecs.java:[lines 19-191]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj.hw5.PrintSpecs</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" name="setSizeOfPrintedSpecs" signature="(Ljava/util/List;Ljava/util/List;)V" isStatic="true" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" start="48" end="86" startBytecode="0" endBytecode="807" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj.hw5.PrintSpecs.setSizeOfPrintedSpecs(List, List)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" primary="true" start="55" end="81" startBytecode="238" endBytecode="462" sourcefile="PrintSpecs.java" sourcepath="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" relSourcepath="hr\fer\zemris\java\tecaj\hw5\PrintSpecs.java">
+      <Message>At PrintSpecs.java:[lines 55-81]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="BX_BOXING_IMMEDIATELY_UNBOXED" priority="2" abbrev="Bx" category="PERFORMANCE" instanceHash="d2ea39e007630b32c2cbd5e1b742fcea" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Primitive value is boxed and then immediately unboxed</ShortMessage>
+    <LongMessage>Primitive value is boxed and then immediately unboxed in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement.execute(Computer)</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" start="28" end="48" sourcefile="InstrDecrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrDecrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrDecrement.java">
+        <Message>At InstrDecrement.java:[lines 28-48]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" name="execute" signature="(Lhr/fer/zemris/java/tecaj_2/jcomp/Computer;)Z" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" start="46" end="48" startBytecode="0" endBytecode="124" sourcefile="InstrDecrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrDecrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrDecrement.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement.execute(Computer)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" primary="true" start="47" end="47" startBytecode="41" endBytecode="41" sourcefile="InstrDecrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrDecrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrDecrement.java">
+      <Message>At InstrDecrement.java:[line 47]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_NUMBER_CTOR" priority="2" abbrev="Bx" category="PERFORMANCE" instanceHash="4833a45c0037ebd579d16cd59ee677c3" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Method invokes inefficient Number constructor; use static valueOf instead</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement.execute(Computer) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" start="28" end="48" sourcefile="InstrDecrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrDecrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrDecrement.java">
+        <Message>At InstrDecrement.java:[lines 28-48]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" name="execute" signature="(Lhr/fer/zemris/java/tecaj_2/jcomp/Computer;)Z" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" start="46" end="48" startBytecode="0" endBytecode="124" sourcefile="InstrDecrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrDecrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrDecrement.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement.execute(Computer)</Message>
+    </Method>
+    <Method classname="java.lang.Integer" name="&lt;init&gt;" signature="(I)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.Integer" start="659" end="661" startBytecode="0" endBytecode="41" sourcefile="Integer.java" sourcepath="java/lang/Integer.java"/>
+      <Message>Called method new Integer(int)</Message>
+    </Method>
+    <Method classname="java.lang.Integer" name="valueOf" signature="(I)Ljava/lang/Integer;" isStatic="true" role="SHOULD_CALL">
+      <SourceLine classname="java.lang.Integer" start="639" end="642" startBytecode="0" endBytecode="99" sourcefile="Integer.java" sourcepath="java/lang/Integer.java"/>
+      <Message>Should call Integer.valueOf(int) instead</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" primary="true" start="47" end="47" startBytecode="38" endBytecode="38" sourcefile="InstrDecrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrDecrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrDecrement.java">
+      <Message>At InstrDecrement.java:[line 47]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="BX_UNBOXING_IMMEDIATELY_REBOXED" priority="2" abbrev="Bx" category="PERFORMANCE" instanceHash="48a85506248df1229e2b980407146570" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Boxed value is unboxed and then immediately reboxed</ShortMessage>
+    <LongMessage>Boxed value is unboxed and then immediately reboxed in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer)</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" start="33" end="68" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java">
+        <Message>At InstrIinput.java:[lines 33-68]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" name="execute" signature="(Lhr/fer/zemris/java/tecaj_2/jcomp/Computer;)Z" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" start="52" end="68" startBytecode="0" endBytecode="349" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer)</Message>
+    </Method>
+    <Method classname="java.lang.Integer" name="valueOf" signature="(I)Ljava/lang/Integer;" isStatic="true" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.Integer" start="639" end="642" startBytecode="0" endBytecode="99" sourcefile="Integer.java" sourcepath="java/lang/Integer.java"/>
+      <Message>Called method Integer.valueOf(int)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" primary="true" start="67" end="67" startBytecode="129" endBytecode="129" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java">
+      <Message>At InstrIinput.java:[line 67]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" instanceHash="d4812bcb95d71ba12b31c6a7e88c0522" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="19">
+    <ShortMessage>Reliance on default encoding</ShortMessage>
+    <LongMessage>Found reliance on default encoding in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer): new java.io.InputStreamReader(InputStream)</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" start="33" end="68" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java">
+        <Message>At InstrIinput.java:[lines 33-68]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" name="execute" signature="(Lhr/fer/zemris/java/tecaj_2/jcomp/Computer;)Z" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" start="52" end="68" startBytecode="0" endBytecode="349" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer)</Message>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+      <Message>Called method new java.io.InputStreamReader(InputStream)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" primary="true" start="54" end="54" startBytecode="24" endBytecode="24" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java">
+      <Message>At InstrIinput.java:[line 54]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" instanceHash="200fb0f247eaf0cc6d21b3f6049befc8" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="19">
+    <ShortMessage>Reliance on default encoding</ShortMessage>
+    <LongMessage>Found reliance on default encoding in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer): new java.util.Scanner(InputStream)</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" start="33" end="68" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java">
+        <Message>At InstrIinput.java:[lines 33-68]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" name="execute" signature="(Lhr/fer/zemris/java/tecaj_2/jcomp/Computer;)Z" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" start="52" end="68" startBytecode="0" endBytecode="349" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput.execute(Computer)</Message>
+    </Method>
+    <Method classname="java.util.Scanner" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.util.Scanner" start="608" end="609" startBytecode="0" endBytecode="43" sourcefile="Scanner.java" sourcepath="java/util/Scanner.java"/>
+      <Message>Called method new java.util.Scanner(InputStream)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" primary="true" start="53" end="53" startBytecode="9" endBytecode="9" sourcefile="InstrIinput.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIinput.java">
+      <Message>At InstrIinput.java:[line 53]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="BX_BOXING_IMMEDIATELY_UNBOXED" priority="2" abbrev="Bx" category="PERFORMANCE" instanceHash="4e774339c67ecaeda7bf93e645e4fe26" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Primitive value is boxed and then immediately unboxed</ShortMessage>
+    <LongMessage>Primitive value is boxed and then immediately unboxed in hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement.execute(Computer)</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" start="28" end="48" sourcefile="InstrIncrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIncrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIncrement.java">
+        <Message>At InstrIncrement.java:[lines 28-48]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" name="execute" signature="(Lhr/fer/zemris/java/tecaj_2/jcomp/Computer;)Z" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" start="46" end="48" startBytecode="0" endBytecode="124" sourcefile="InstrIncrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIncrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIncrement.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement.execute(Computer)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" primary="true" start="47" end="47" startBytecode="41" endBytecode="41" sourcefile="InstrIncrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIncrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIncrement.java">
+      <Message>At InstrIncrement.java:[line 47]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_NUMBER_CTOR" priority="2" abbrev="Bx" category="PERFORMANCE" instanceHash="76b0c623a65c07937535635acfabdb4" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Method invokes inefficient Number constructor; use static valueOf instead</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement.execute(Computer) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</LongMessage>
+    <Class classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" start="28" end="48" sourcefile="InstrIncrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIncrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIncrement.java">
+        <Message>At InstrIncrement.java:[lines 28-48]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" name="execute" signature="(Lhr/fer/zemris/java/tecaj_2/jcomp/Computer;)Z" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" start="46" end="48" startBytecode="0" endBytecode="124" sourcefile="InstrIncrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIncrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIncrement.java"/>
+      <Message>In method hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement.execute(Computer)</Message>
+    </Method>
+    <Method classname="java.lang.Integer" name="&lt;init&gt;" signature="(I)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.Integer" start="659" end="661" startBytecode="0" endBytecode="41" sourcefile="Integer.java" sourcepath="java/lang/Integer.java"/>
+      <Message>Called method new Integer(int)</Message>
+    </Method>
+    <Method classname="java.lang.Integer" name="valueOf" signature="(I)Ljava/lang/Integer;" isStatic="true" role="SHOULD_CALL">
+      <SourceLine classname="java.lang.Integer" start="639" end="642" startBytecode="0" endBytecode="99" sourcefile="Integer.java" sourcepath="java/lang/Integer.java"/>
+      <Message>Should call Integer.valueOf(int) instead</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" primary="true" start="47" end="47" startBytecode="38" endBytecode="38" sourcefile="InstrIncrement.java" sourcepath="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIncrement.java" relSourcepath="hr\fer\zemris\java\tecaj_2\jcomp\impl\instructions\InstrIncrement.java">
+      <Message>At InstrIncrement.java:[line 47]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugCategory category="STYLE">
+    <Description>Dodgy code</Description>
+  </BugCategory>
+  <BugCategory category="BAD_PRACTICE">
+    <Description>Bad practice</Description>
+  </BugCategory>
+  <BugCategory category="I18N">
+    <Description>Internationalization</Description>
+  </BugCategory>
+  <BugCategory category="PERFORMANCE">
+    <Description>Performance</Description>
+  </BugCategory>
+  <BugPattern type="DM_DEFAULT_ENCODING" abbrev="Dm" category="I18N">
+    <ShortDescription>Reliance on default encoding</ShortDescription>
+    <Details><![CDATA[
+
+<p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
+
+      ]]></Details>
+  </BugPattern>
+  <BugPattern type="SF_SWITCH_FALLTHROUGH" abbrev="SF" category="STYLE" cweid="484">
+    <ShortDescription>Switch statement found where one case falls through to the next case</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This method contains a switch statement where one case branch will fall through to the next case.
+  Usually you need to end this case with a break or return.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="BX_BOXING_IMMEDIATELY_UNBOXED" abbrev="Bx" category="PERFORMANCE">
+    <ShortDescription>Primitive value is boxed and then immediately unboxed</ShortDescription>
+    <Details><![CDATA[
+
+  <p>A primitive is boxed, and then immediately unboxed. This probably is due to a manual
+    boxing in a place where an unboxed value is required, thus forcing the compiler
+to immediately undo the work of the boxing.
+</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="SF_SWITCH_NO_DEFAULT" abbrev="SF" category="STYLE">
+    <ShortDescription>Switch statement found where default case is missing</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This method contains a switch statement where default case is missing.
+  Usually you need to provide a default case.</p>
+  <p>Because the analysis only looks at the generated bytecode, this warning can be incorrect triggered if
+the default case is at the end of the switch statement and doesn't end with a break statement.
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE" abbrev="Se" category="BAD_PRACTICE">
+    <ShortDescription>Comparator doesn&apos;t implement Serializable</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This class implements the <code>Comparator</code> interface. You
+should consider whether or not it should also implement the <code>Serializable</code>
+interface. If a comparator is used to construct an ordered collection
+such as a <code>TreeMap</code>, then the <code>TreeMap</code>
+will be serializable only if the comparator is also serializable.
+As most comparators have little or no state, making them serializable
+is generally easy and good defensive programming.
+</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="DM_STRING_CTOR" abbrev="Dm" category="PERFORMANCE">
+    <ShortDescription>Method invokes inefficient new String(String) constructor</ShortDescription>
+    <Details><![CDATA[
+
+  <p> Using the <code>java.lang.String(String)</code> constructor wastes memory
+  because the object so constructed will be functionally indistinguishable
+  from the <code>String</code> passed as a parameter.&nbsp; Just use the
+  argument <code>String</code> directly.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="DM_NUMBER_CTOR" abbrev="Bx" category="PERFORMANCE">
+    <ShortDescription>Method invokes inefficient Number constructor; use static valueOf instead</ShortDescription>
+    <Details><![CDATA[
+      
+      <p>
+      Using <code>new Integer(int)</code> is guaranteed to always result in a new object whereas
+      <code>Integer.valueOf(int)</code> allows caching of values to be done by the compiler, class library, or JVM.
+      Using of cached values avoids object allocation and the code will be faster.
+      </p>
+      <p>
+      Values between -128 and 127 are guaranteed to have corresponding cached instances
+      and using <code>valueOf</code> is approximately 3.5 times faster than using constructor.
+      For values outside the constant range the performance of both styles is the same.
+      </p>
+      <p>
+      Unless the class must be compatible with JVMs predating Java 1.5,
+      use either autoboxing or the <code>valueOf()</code> method when creating instances of
+      <code>Long</code>, <code>Integer</code>, <code>Short</code>, <code>Character</code>, and <code>Byte</code>.
+      </p>
+      
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="BX_UNBOXING_IMMEDIATELY_REBOXED" abbrev="Bx" category="PERFORMANCE">
+    <ShortDescription>Boxed value is unboxed and then immediately reboxed</ShortDescription>
+    <Details><![CDATA[
+
+  <p>A boxed value is unboxed and then immediately reboxed.
+</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugCode abbrev="Bx">
+    <Description>Questionable Boxing of primitive value</Description>
+  </BugCode>
+  <BugCode abbrev="Se">
+    <Description>Incorrect definition of Serializable class</Description>
+  </BugCode>
+  <BugCode abbrev="SF">
+    <Description>Switch case falls through</Description>
+  </BugCode>
+  <BugCode abbrev="Dm">
+    <Description>Dubious method used</Description>
+  </BugCode>
+  <Errors errors="0" missingClasses="8">
+    <MissingClass>hr.fer.zemris.java.tecaj_2.jcomp.Computer</MissingClass>
+    <MissingClass>hr.fer.zemris.java.tecaj_2.jcomp.ExecutionUnit</MissingClass>
+    <MissingClass>hr.fer.zemris.java.tecaj_2.jcomp.Instruction</MissingClass>
+    <MissingClass>hr.fer.zemris.java.tecaj_2.jcomp.InstructionArgument</MissingClass>
+    <MissingClass>hr.fer.zemris.java.tecaj_2.jcomp.Memory</MissingClass>
+    <MissingClass>hr.fer.zemris.java.tecaj_2.jcomp.Registers</MissingClass>
+    <MissingClass>hr.fer.zemris.java.tecaj_2.jcomp.parser.InstructionCreatorImpl</MissingClass>
+    <MissingClass>hr.fer.zemris.java.tecaj_2.jcomp.parser.ProgramParser</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Sun, 13 Apr 2014 19:32:26 +0200" total_classes="28" referenced_classes="63" total_bugs="16" total_size="622" num_packages="4" vm_version="23.7-b01" cpu_seconds="38.19" clock_seconds="23.60" peak_mbytes="142.02" alloc_mbytes="682.69" gc_seconds="0.27" priority_2="14" priority_1="2">
+    <FileStats path="hr/fer/zemris/java/tecaj/hw5/Dir.java" bugCount="1" size="49" bugHash="0f91ebbd5b0d9f11a89d72817c7f8eee"/>
+    <FileStats path="hr/fer/zemris/java/tecaj/hw5/FileComparators.java" bugCount="2" size="114" bugHash="62b19b8c54e047ab42e9e2c916990c1c"/>
+    <FileStats path="hr/fer/zemris/java/tecaj/hw5/FilterSpecs.java" bugCount="2" size="68" bugHash="f4efbbf4fbc031a2a6cf68520326df57"/>
+    <FileStats path="hr/fer/zemris/java/tecaj/hw5/PrintSpecs.java" bugCount="4" size="92" bugHash="e3785cbb65ace1440834a2806b153dd0"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/Simulator.java" bugCount="0" size="12"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/ComputerImpl.java" bugCount="0" size="16"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/ExecutionUnitImpl.java" bugCount="0" size="14"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/InstructionArgumentImpl.java" bugCount="0" size="19"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/MemoryImpl.java" bugCount="0" size="19"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/RegistersImpl.java" bugCount="0" size="36"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrAdd.java" bugCount="0" size="23"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrDecrement.java" bugCount="2" size="14" bugHash="d49fba0188730b54bf0c4fda7f0931a0"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrEcho.java" bugCount="0" size="14"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrHalt.java" bugCount="0" size="8"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIinput.java" bugCount="3" size="26" bugHash="fca9fe52ddca37e0663b3e463cf1aff3"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrIncrement.java" bugCount="2" size="14" bugHash="ac2c74733e74fcae64133921c00cb3c6"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrJump.java" bugCount="0" size="13"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrJumpIfTrue.java" bugCount="0" size="14"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrLoad.java" bugCount="0" size="18"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrMove.java" bugCount="0" size="18"/>
+    <FileStats path="hr/fer/zemris/java/tecaj_2/jcomp/impl/instructions/InstrTestEquals.java" bugCount="0" size="21"/>
+    <PackageStats package="hr.fer.zemris.java.tecaj.hw5" total_bugs="9" total_types="11" total_size="323" priority_2="9">
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.Dir" sourceFile="Dir.java" interface="false" size="49" bugs="1" priority_2="1"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FileComparators" sourceFile="FileComparators.java" interface="false" size="51" bugs="1" priority_2="1"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FileComparators$1" sourceFile="FileComparators.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FileComparators$2" sourceFile="FileComparators.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FileComparators$3" sourceFile="FileComparators.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FileComparators$4" sourceFile="FileComparators.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FileComparators$5" sourceFile="FileComparators.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FileComparators$6" sourceFile="FileComparators.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FileComparators$CompositeComparator" sourceFile="FileComparators.java" interface="false" size="15" bugs="1" priority_2="1"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.FilterSpecs" sourceFile="FilterSpecs.java" interface="false" size="68" bugs="2" priority_2="2"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj.hw5.PrintSpecs" sourceFile="PrintSpecs.java" interface="false" size="92" bugs="4" priority_2="4"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.tecaj_2.jcomp" total_bugs="0" total_types="1" total_size="12">
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.Simulator" sourceFile="Simulator.java" interface="false" size="12" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.tecaj_2.jcomp.impl" total_bugs="0" total_types="5" total_size="104">
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.ComputerImpl" sourceFile="ComputerImpl.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.ExecutionUnitImpl" sourceFile="ExecutionUnitImpl.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.InstructionArgumentImpl" sourceFile="InstructionArgumentImpl.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.MemoryImpl" sourceFile="MemoryImpl.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.RegistersImpl" sourceFile="RegistersImpl.java" interface="false" size="36" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions" total_bugs="7" total_types="11" total_size="183" priority_2="5" priority_1="2">
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrAdd" sourceFile="InstrAdd.java" interface="false" size="23" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrDecrement" sourceFile="InstrDecrement.java" interface="false" size="14" bugs="2" priority_2="2"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrEcho" sourceFile="InstrEcho.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrHalt" sourceFile="InstrHalt.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIinput" sourceFile="InstrIinput.java" interface="false" size="26" bugs="3" priority_2="1" priority_1="2"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrIncrement" sourceFile="InstrIncrement.java" interface="false" size="14" bugs="2" priority_2="2"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrJump" sourceFile="InstrJump.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrJumpIfTrue" sourceFile="InstrJumpIfTrue.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrLoad" sourceFile="InstrLoad.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrMove" sourceFile="InstrMove.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrTestEquals" sourceFile="InstrTestEquals.java" interface="false" size="21" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="2416" invocations="63" avgMicrosecondsPerInvocation="38356" maxMicrosecondsPerInvocation="1127797" standardDeviationMircosecondsPerInvocation="159962"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="2415" invocations="488" avgMicrosecondsPerInvocation="4948" maxMicrosecondsPerInvocation="633867" standardDeviationMircosecondsPerInvocation="33318"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="1740" invocations="489" avgMicrosecondsPerInvocation="3560" maxMicrosecondsPerInvocation="834059" standardDeviationMircosecondsPerInvocation="38546"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ExplicitSerialization" totalMilliseconds="1637" invocations="63" avgMicrosecondsPerInvocation="25994" maxMicrosecondsPerInvocation="1587215" standardDeviationMircosecondsPerInvocation="198311"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="1434" invocations="63" avgMicrosecondsPerInvocation="22770" maxMicrosecondsPerInvocation="1334899" standardDeviationMircosecondsPerInvocation="166746"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="1112" invocations="63" avgMicrosecondsPerInvocation="17663" maxMicrosecondsPerInvocation="960422" standardDeviationMircosecondsPerInvocation="119818"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="905" invocations="86" avgMicrosecondsPerInvocation="10525" maxMicrosecondsPerInvocation="346462" standardDeviationMircosecondsPerInvocation="41024"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="748" invocations="76" avgMicrosecondsPerInvocation="9851" maxMicrosecondsPerInvocation="569631" standardDeviationMircosecondsPerInvocation="64767"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="714" invocations="87" avgMicrosecondsPerInvocation="8217" maxMicrosecondsPerInvocation="462851" standardDeviationMircosecondsPerInvocation="49275"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="663" invocations="275" avgMicrosecondsPerInvocation="2412" maxMicrosecondsPerInvocation="215617" standardDeviationMircosecondsPerInvocation="13429"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="515" invocations="86" avgMicrosecondsPerInvocation="5992" maxMicrosecondsPerInvocation="70136" standardDeviationMircosecondsPerInvocation="11558"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ComparatorIdiom" totalMilliseconds="463" invocations="28" avgMicrosecondsPerInvocation="16543" maxMicrosecondsPerInvocation="461529" standardDeviationMircosecondsPerInvocation="85637"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="452" invocations="78" avgMicrosecondsPerInvocation="5807" maxMicrosecondsPerInvocation="156877" standardDeviationMircosecondsPerInvocation="18085"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUnsatisfiedObligation" totalMilliseconds="445" invocations="28" avgMicrosecondsPerInvocation="15917" maxMicrosecondsPerInvocation="442364" standardDeviationMircosecondsPerInvocation="82069"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

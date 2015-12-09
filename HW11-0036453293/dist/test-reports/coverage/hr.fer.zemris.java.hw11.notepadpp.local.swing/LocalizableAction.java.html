@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>LocalizableAction.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW11</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw11.notepadpp.local.swing</a> &gt; <span class="el_source">LocalizableAction.java</span></div><h1>LocalizableAction.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw11.notepadpp.local.swing;
+
+import hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationListener;
+import hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationProvider;
+
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+
+/**
+ * Class representing a fully localizable action. It is a listener registered on the localization
+ * provider and it changes it's name as the language changes.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public abstract class LocalizableAction extends AbstractAction implements ILocalizationListener {
+	
+	private static final long serialVersionUID = 1L;
+	private String key;
+	private ILocalizationProvider provider;
+	
+	/**
+	 * Class constructor. Constructor takes 2 arguments, key based on which it will get the 
+	 * adequate String from the localization provider and the reference to the localization provider.
+	 * 
+	 * @param key key based on which the LocalizableAction will get the adequate String from the localization provider
+	 * @param provider the reference to the localization provider
+	 */
+<span class="nc" id="L30">	public LocalizableAction(final String key, final ILocalizationProvider provider) {</span>
+<span class="nc" id="L31">		this.key = key;</span>
+<span class="nc" id="L32">		this.provider = provider;</span>
+<span class="nc" id="L33">		provider.addLocalizationListener(new ILocalizationListener() {</span>
+			@Override
+			public void localizationChanged() {
+<span class="nc" id="L36">			}</span>
+		});
+<span class="nc" id="L38">		putValue(NAME, provider.getString(key));</span>
+<span class="nc" id="L39">	}</span>
+	
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public abstract void actionPerformed(ActionEvent e);
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationListener#localizationChanged()
+	 */
+	@Override
+	public void localizationChanged() {
+<span class="nc" id="L52">		putValue(NAME, provider.getString(key));</span>
+<span class="nc" id="L53">	}</span>
+	
+	/**
+	 * Method used to acquire the current instance's key.
+	 * 
+	 * @return the key of the current instance
+	 */
+	public String getKey() {
+<span class="nc" id="L61">		return this.key;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

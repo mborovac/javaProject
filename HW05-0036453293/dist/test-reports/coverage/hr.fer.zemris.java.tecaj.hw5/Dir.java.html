@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Dir.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw5</a> &gt; <span class="el_source">Dir.java</span></div><h1>Dir.java</h1><pre class="source lang-java linenums">/**
+ * Package holding all the classes needed to implement the operation dir for Java 4th homework
+ */
+package hr.fer.zemris.java.tecaj.hw5;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Class used to support the operation dir used to print the contents of the given directory
+ * with specified comparison, print and file specifications.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L22">public class Dir implements Comparator&lt;File&gt; {</span>
+
+	/**
+	 * Main class of the program. It takes at least one argument. 1st argument must be the path
+	 * to the desired directory, the rest can be desired specifications.
+	 * 
+	 * -s:X specification sets file parameters by which they will be ordered. Supported orderings
+	 * can be found in class FileComparators in this package.
+	 * 
+	 * -w:X specification defines which file parameters will be printed. Supported parameters
+	 * can be found in class PrintSpecs in this package.
+	 * 
+	 * -f:X specification defines which filters the printed files must fulfill. Supported filters
+	 * can be found in class FilterSpecs in this package.
+	 * 
+	 * -X:-Y declares a negative specification, it does the opposite of what the positive one does.
+	 * 
+	 * @param args 1st argument must be the path to the desired directory, the rest can be desired
+	 * specifications, can not take less than 1 argument.
+	 * @throws IOException if less than 1 argument was given or given specifications aren't well-formed
+	 */
+	public static void main(String[] args) {
+		
+<span class="nc bnc" id="L45" title="All 2 branches missed.">		if(args.length &lt; 1) {</span>
+<span class="nc" id="L46">			throw new IllegalArgumentException(&quot;Expected at least 1 argument!&quot;);</span>
+		}
+<span class="nc" id="L48">		List&lt;Comparator&lt;File&gt;&gt; listOfComparators = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L49">		List&lt;String&gt; listOfPrintSpecs = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L50">		Map&lt;String, Integer&gt; filterSpecs = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">		if(args.length &gt; 1) {</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">			for(int i = 1; i &lt; args.length; i++) {</span>
+<span class="nc" id="L53">				String argument = args[i];</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">				if(argument.matches(&quot;-s:[-]?[a-zA-Z]&quot;)) {</span>
+<span class="nc" id="L55">					Comparator&lt;File&gt; comparator = FileComparators.createComparator(argument);</span>
+<span class="nc" id="L56">					listOfComparators.add(comparator);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">				} else if(argument.matches(&quot;-w:[a-zA-Z]&quot;)) {</span>
+<span class="nc" id="L58">					String printSpec = PrintSpecs.createPrintSpec(argument);</span>
+<span class="nc" id="L59">					listOfPrintSpecs.add(printSpec);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">				} else if(argument.matches(&quot;-f:[-]?[a-zA-Z][0-9]*&quot;)) {</span>
+<span class="nc" id="L61">					filterSpecs = FilterSpecs.createFilterSpec(argument, filterSpecs);</span>
+				} else {
+<span class="nc" id="L63">					System.out.println(&quot;Unknown specification: &quot; + args[i]);</span>
+<span class="nc" id="L64">					System.exit(-1);</span>
+				}
+			}
+		}
+<span class="nc bnc" id="L68" title="All 2 branches missed.">		if(listOfPrintSpecs.isEmpty()) {</span>
+<span class="nc" id="L69">			listOfPrintSpecs.add(&quot;n&quot;);</span>
+		}
+<span class="nc" id="L71">		printSubfileNames(new File(args[0]), listOfComparators, listOfPrintSpecs, filterSpecs);</span>
+<span class="nc" id="L72">	}</span>
+
+	/**
+	 * Private method used to print the desired files from the given directory.
+	 * 
+	 * @param file directory
+	 * @param listOfComparators list of file parameters by which they will be ordered
+	 * @param listOfPrintSpecs list of file parameters that will be printed
+	 * @param filterSpecs list of filters the printed files must fulfill to be printed
+	 */
+	private static void printSubfileNames(File file, List&lt;Comparator&lt;File&gt;&gt; listOfComparators,
+			List&lt;String&gt; listOfPrintSpecs, Map&lt;String, Integer&gt; filterSpecs) {
+<span class="nc" id="L84">		List&lt;File&gt; listOfSubFiles = new ArrayList&lt;File&gt;();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		if(!file.isDirectory()) {</span>
+<span class="nc" id="L86">			System.out.println(&quot;File at given path is not a directory!&quot;);</span>
+		} else {
+<span class="nc" id="L88">			File[] subFiles = file.listFiles();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">			if(subFiles.length &lt; 1) {</span>
+<span class="nc" id="L90">				System.out.println(&quot;Given directory is empty.&quot;);</span>
+			} else {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">				for(File subFile: subFiles) {</span>
+<span class="nc" id="L93">					listOfSubFiles.add(subFile);</span>
+				}
+			}
+		}
+		
+<span class="nc" id="L98">		listOfSubFiles = FilterSpecs.filterSubFiles(listOfSubFiles, filterSpecs);</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">		if(listOfSubFiles.isEmpty()) {</span>
+<span class="nc" id="L100">			System.out.println(&quot;No files fit the desired filters.&quot;);</span>
+<span class="nc" id="L101">			System.exit(-1);</span>
+		}
+<span class="nc" id="L103">		Collections.sort(</span>
+				listOfSubFiles, 
+				new FileComparators.CompositeComparator(listOfComparators)
+				);
+		
+<span class="nc" id="L108">		PrintSpecs.setSizeOfPrintedSpecs(listOfSubFiles, listOfPrintSpecs);</span>
+<span class="nc" id="L109">		PrintSpecs.printBorder(listOfPrintSpecs);</span>
+<span class="nc" id="L110">		System.out.println();</span>
+<span class="nc" id="L111">		PrintSpecs.printFiles(listOfSubFiles, listOfPrintSpecs);</span>
+<span class="nc" id="L112">		PrintSpecs.printBorder(listOfPrintSpecs);</span>
+<span class="nc" id="L113">	}</span>
+
+	/**
+	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public int compare(File f1, File f2) {
+<span class="nc" id="L120">		return f1.compareTo(f2);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

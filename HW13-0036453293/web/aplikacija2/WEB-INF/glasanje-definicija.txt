@@ -1,0 +1,9 @@
+1	The Beatles	http://www.youtube.com/watch?v=nkhTA6MQ3BQ
+2	The Platters	http://www.youtube.com/watch?v=57tK6aQS_H0
+3	Simon And Garfunkel	http://www.youtube.com/watch?v=4zLfCnGVeL4
+4	The Beach Boys	http://www.youtube.com/watch?v=B0dWXyTa2Cw
+5	Bob Dylan	http://www.youtube.com/watch?v=QqvUz0HrNKY
+6	The Four Seasons	http://www.youtube.com/watch?v=40bTOCv3_ak
+7	Red Hot Chili Peppers	http://www.youtube.com/watch?v=YlUKcNNmywk
+8	Iron Maiden	http://www.youtube.com/watch?v=7mHe6FMs46o
+9	Sting	http://www.youtube.com/watch?v=s_IMFIOGCFc

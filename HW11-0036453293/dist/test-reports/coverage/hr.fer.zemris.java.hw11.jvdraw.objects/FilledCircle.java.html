@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FilledCircle.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW11</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw11.jvdraw.objects</a> &gt; <span class="el_source">FilledCircle.java</span></div><h1>FilledCircle.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw11.jvdraw.objects;
+
+import hr.fer.zemris.java.hw11.jvdraw.component.JColorArea;
+import hr.fer.zemris.java.hw11.jvdraw.model.BoundingBox;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.Point;
+
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ * Class representing a filled circle drawn using 2 colors. One for the filling and one for the outer rim.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class FilledCircle extends GeometricalObject {
+	
+	private static final long serialVersionUID = 1L;
+	private int x;
+	private int y;
+	private int r;
+	private Color innerColor;
+	private Color borderColor;
+	
+	/**
+	 * Class constructor. Constructor takes 6 arguments, name of the object, x and y coordinates of the
+	 * circle center, radius, filling color and the outer rim color.
+	 * 
+	 * @param name name of the object
+	 * @param x x coordinate of the center
+	 * @param y y coordinate of the center
+	 * @param r radius
+	 * @param color filling color
+	 * @param borderColor outer rim color
+	 */
+	public FilledCircle(String name, int x, int y, int r, Color innerColor, Color borderColor) {
+<span class="nc" id="L45">		super(name);</span>
+<span class="nc" id="L46">		this.x = x;</span>
+<span class="nc" id="L47">		this.y = y;</span>
+<span class="nc" id="L48">		this.r = r;</span>
+<span class="nc" id="L49">		this.innerColor = innerColor;</span>
+<span class="nc" id="L50">		this.borderColor = borderColor;</span>
+<span class="nc" id="L51">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#paintComponent(java.awt.Graphics)
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+<span class="nc" id="L58">		super.paint(g);</span>
+<span class="nc" id="L59">		Graphics2D g2 = (Graphics2D) g;</span>
+<span class="nc" id="L60">		Color previousColor = g2.getColor();</span>
+<span class="nc" id="L61">		g2.setColor(innerColor);</span>
+<span class="nc" id="L62">		g2.fillOval(x - r, y - r, r*2, r*2);</span>
+<span class="nc" id="L63">		g2.setColor(borderColor);</span>
+<span class="nc" id="L64">		g2.drawOval(x - r, y - r, r*2, r*2);</span>
+<span class="nc" id="L65">		g2.setColor(previousColor);</span>
+<span class="nc" id="L66">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#modifyObject(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel)
+	 */
+	@Override
+	public void modifyObject(DrawingModel model) {
+<span class="nc" id="L74">		JPanel modifyPanel = new JPanel(new GridLayout(6, 2));</span>
+<span class="nc" id="L75">		JTextField xText = new JTextField();</span>
+<span class="nc" id="L76">		JTextField yText = new JTextField();</span>
+<span class="nc" id="L77">		JTextField rText = new JTextField();</span>
+<span class="nc" id="L78">		modifyPanel.add(new JLabel(&quot;Center x coordinate&quot;));</span>
+<span class="nc" id="L79">		modifyPanel.add(xText);</span>
+<span class="nc" id="L80">		modifyPanel.add(new JLabel(&quot;Center y coordinate&quot;));</span>
+<span class="nc" id="L81">		modifyPanel.add(yText);</span>
+<span class="nc" id="L82">		modifyPanel.add(new JLabel(&quot;Radius&quot;));</span>
+<span class="nc" id="L83">		modifyPanel.add(rText);</span>
+<span class="nc" id="L84">		modifyPanel.add(new JLabel(&quot;Background color&quot;));</span>
+<span class="nc" id="L85">		JColorArea innerColor = new JColorArea(this.innerColor);</span>
+<span class="nc" id="L86">		modifyPanel.add(innerColor);</span>
+<span class="nc" id="L87">		modifyPanel.add(new JLabel(&quot;Border color&quot;));</span>
+<span class="nc" id="L88">		JColorArea outerColor = new JColorArea(this.borderColor);</span>
+<span class="nc" id="L89">		modifyPanel.add(outerColor);</span>
+<span class="nc" id="L90">		modifyPanel.add(new JLabel());</span>
+<span class="nc" id="L91">		JCheckBox deleteBox = new JCheckBox(&quot;Delete&quot;);</span>
+<span class="nc" id="L92">		modifyPanel.add(deleteBox);</span>
+<span class="nc" id="L93">		int selected = JOptionPane.showConfirmDialog(null, modifyPanel, &quot;Modify &quot;+this.getName(),</span>
+				JOptionPane.OK_CANCEL_OPTION);
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		if(selected == 2) {						// Cancel</span>
+<span class="nc" id="L96">			return;</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">		} else if(selected == 0) {								// Ok</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">			if(deleteBox.isSelected()) {</span>
+<span class="nc" id="L99">				model.remove(this);</span>
+<span class="nc" id="L100">				return;</span>
+			} else {
+<span class="nc bnc" id="L102" title="All 2 branches missed.">				int x = xText.getText().isEmpty() ? this.x : Integer.parseInt(xText.getText());</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">				int y = yText.getText().isEmpty() ? this.y : Integer.parseInt(yText.getText());</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">				int r = rText.getText().isEmpty() ? this.r : Integer.parseInt(rText.getText());</span>
+<span class="nc" id="L105">				FilledCircle newCircle = new FilledCircle(this.getName(), x, y, r, </span>
+						innerColor.getCurrentColor(), outerColor.getCurrentColor());
+<span class="nc" id="L107">				model.update(this, newCircle);</span>
+			}
+		}
+<span class="nc" id="L110">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#getBoundingBox()
+	 */
+	@Override
+	public BoundingBox getBoundingBox() {
+<span class="nc" id="L117">		BoundingBox temp = new BoundingBox(new Point(x - r, y - r), new Point(x + r, y + r));</span>
+<span class="nc" id="L118">		return temp;</span>
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#toFile()
+	 */
+	@Override
+	public String toFile() {
+<span class="nc" id="L126">		return &quot;FCIRCLE &quot; + x + &quot; &quot; + y + &quot; &quot; + r + &quot; &quot; + borderColor.getRed() + &quot; &quot; + borderColor.getGreen() +</span>
+				&quot; &quot; + borderColor.getBlue() + &quot; &quot; + innerColor.getRed() + &quot; &quot; + innerColor.getGreen() +
+				&quot; &quot; + innerColor.getBlue();
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#modifyComponent(int, int)
+	 */
+	@Override
+	public void modifyComponent(int left, int up) {
+<span class="nc" id="L136">		this.x -= left;</span>
+<span class="nc" id="L137">		this.y -= up;</span>
+<span class="nc" id="L138">	}</span>
+
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+<span class="nc" id="L145">		final int prime = 31;</span>
+<span class="nc" id="L146">		int result = super.hashCode();</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">		result = prime * result</span>
+				+ ((borderColor == null) ? 0 : borderColor.hashCode());
+<span class="nc bnc" id="L149" title="All 2 branches missed.">		result = prime * result</span>
+				+ ((innerColor == null) ? 0 : innerColor.hashCode());
+<span class="nc" id="L151">		result = prime * result + r;</span>
+<span class="nc" id="L152">		result = prime * result + x;</span>
+<span class="nc" id="L153">		result = prime * result + y;</span>
+<span class="nc" id="L154">		return result;</span>
+	}
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L162" title="All 2 branches missed.">		if (this == obj) {</span>
+<span class="nc" id="L163">			return true;</span>
+		}
+<span class="nc bnc" id="L165" title="All 2 branches missed.">		if (!super.equals(obj)) {</span>
+<span class="nc" id="L166">			return false;</span>
+		}
+<span class="nc bnc" id="L168" title="All 2 branches missed.">		if (!(obj instanceof FilledCircle)) {</span>
+<span class="nc" id="L169">			return false;</span>
+		}
+<span class="nc" id="L171">		FilledCircle other = (FilledCircle) obj;</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">		if (borderColor == null) {</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">			if (other.borderColor != null) {</span>
+<span class="nc" id="L174">				return false;</span>
+			}
+<span class="nc bnc" id="L176" title="All 2 branches missed.">		} else if (!borderColor.equals(other.borderColor)) {</span>
+<span class="nc" id="L177">			return false;</span>
+		}
+<span class="nc bnc" id="L179" title="All 2 branches missed.">		if (innerColor == null) {</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">			if (other.innerColor != null) {</span>
+<span class="nc" id="L181">				return false;</span>
+			}
+<span class="nc bnc" id="L183" title="All 2 branches missed.">		} else if (!innerColor.equals(other.innerColor)) {</span>
+<span class="nc" id="L184">			return false;</span>
+		}
+<span class="nc bnc" id="L186" title="All 2 branches missed.">		if (r != other.r) {</span>
+<span class="nc" id="L187">			return false;</span>
+		}
+<span class="nc bnc" id="L189" title="All 2 branches missed.">		if (x != other.x) {</span>
+<span class="nc" id="L190">			return false;</span>
+		}
+<span class="nc bnc" id="L192" title="All 2 branches missed.">		if (y != other.y) {</span>
+<span class="nc" id="L193">			return false;</span>
+		}
+<span class="nc" id="L195">		return true;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

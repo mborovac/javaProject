@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<title>
+        FindBugs (2.0.3)
+         Analysis for
+         HW11</title>
+<script type="text/javascript">
+         function show(foo) {
+            document.getElementById(foo).style.display="block";
+         }
+         function hide(foo) {
+            document.getElementById(foo).style.display="none";
+         }
+         function toggle(foo) {
+            if( document.getElementById(foo).style.display == "none") {
+               show(foo);
+            } else {
+               if( document.getElementById(foo).style.display == "block") {
+                  hide(foo);
+               } else {
+                  show(foo);
+               }
+            }
+         }
+
+         function showmenu(foo) {
+            if( document.getElementById(foo).style.display == "none") {
+               hide("bug-summary");
+               document.getElementById("bug-summary-tab").className="menu-tab";
+               hide("analysis-data");
+               document.getElementById("analysis-data-tab").className="menu-tab";
+               //hide("list-by-b-t");
+               //document.getElementById("list-by-b-t-tab").className="menu-tab";
+               hide("list-by-package");
+               document.getElementById("list-by-package-tab").className="menu-tab";
+               hide("list-by-category");
+               document.getElementById("list-by-category-tab").className="menu-tab";
+               document.getElementById(foo+"-tab").className="menu-tab-selected";
+               show(foo);
+
+            }
+            // else menu already selected!
+         }
+         function showbug(buguid, list) {
+            var bugplaceholder   = document.getElementById(buguid+'-ph-'+list);
+            var bug              = document.getElementById(buguid);
+
+            if ( bugplaceholder==null) {
+               alert(buguid+'-ph-'+list+' - '+buguid+' - bugplaceholder==null');
+               return;
+            }
+            if ( bug==null) {
+               alert(buguid+'-ph-'+list+' - '+buguid+' - bug==null');
+               return;
+            }
+
+            var oldBug = bugplaceholder.innerHTML;
+            var newBug = bug.innerHTML;
+            //alert(oldBug);
+            //alert(newBug);
+            toggle(buguid+'-ph-'+list);
+            bugplaceholder.innerHTML = newBug;
+         }
+      </script>
+<script type="text/javascript">
+     /*  */
+         // Extended Tooltip Javascript
+         // copyright 9th August 2002, 3rd July 2005
+         // by Stephen Chapman, Felgall Pty Ltd
+
+         // permission is granted to use this javascript provided that the below code is not altered
+         var DH = 0;var an = 0;var al = 0;var ai = 0;if (document.getElementById) {ai = 1; DH = 1;}else {if (document.all) {al = 1; DH = 1;} else { browserVersion = parseInt(navigator.appVersion); if (navigator.appName.indexOf('Netscape') != -1) if (browserVersion == 4) {an = 1; DH = 1;}}}
+         function fd(oi, wS) {if (ai) return wS ? document.getElementById(oi).style:document.getElementById(oi); if (al) return wS ? document.all[oi].style: document.all[oi]; if (an) return document.layers[oi];}
+         function pw() {return window.innerWidth != null? window.innerWidth: document.body.clientWidth != null? document.body.clientWidth:null;}
+         function mouseX(evt) {if (evt.pageX) return evt.pageX; else if (evt.clientX)return evt.clientX + (document.documentElement.scrollLeft ?  document.documentElement.scrollLeft : document.body.scrollLeft); else return null;}
+         function mouseY(evt) {if (evt.pageY) return evt.pageY; else if (evt.clientY)return evt.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop); else return null;}
+         function popUp(evt,oi) {if (DH) {var wp = pw(); ds = fd(oi,1); dm = fd(oi,0); st = ds.visibility; if (dm.offsetWidth) ew = dm.offsetWidth; else if (dm.clip.width) ew = dm.clip.width; if (st == "visible" || st == "show") { ds.visibility = "hidden"; } else {tv = mouseY(evt) + 20; lv = mouseX(evt) - (ew/4); if (lv < 2) lv = 2; else if (lv + ew > wp) lv -= ew/2; if (!an) {lv += 'px';tv += 'px';} ds.left = lv; ds.top = tv; ds.visibility = "visible";}}}
+  /*  */
+</script>
+<style type="text/css">
+         html, body {
+            background-color: #ffffff;
+         }
+         a, a:link , a:active, a:visited, a:hover {
+            text-decoration: none; color: black;
+         }
+         .b-r a {
+            text-decoration: underline; color: blue;
+         }
+         div, span {
+            vertical-align: top;
+         }
+         p {
+            margin: 0px;
+         }
+         h1 {
+            /*font-size: 14pt;*/
+            color: red;
+         }
+         #menu {
+            margin-bottom: 10px;
+         }
+         #menu ul {
+            margin-left: 0;
+            padding-left: 0;
+            display: inline;
+         }
+         #menu ul li {
+            margin-left: 0;
+            margin-bottom: 0;
+            padding: 2px 15px 5px;
+            border: 1px solid #000;
+            list-style: none;
+            display: inline;
+         }
+         #menu ul li.here {
+            border-bottom: 1px solid #ffc;
+            list-style: none;
+            display: inline;
+         }
+         .menu-tab {
+            background: white;
+         }
+         .menu-tab:hover {
+            background: grey;
+         }
+         .menu-tab-selected {
+            background: #aaaaaa;
+         }
+         #analysis-data ul {
+            margin-left: 15px;
+         }
+         #analyzed-files, #used-libraries, #analysis-error {
+           margin: 2px;
+           border: 1px black solid;
+           padding: 2px;
+           float: left;
+           overflow:auto;
+         }
+         #analyzed-files {
+           width: 25%;
+         }
+         #used-libraries {
+           width: 25%;
+         }
+         #analysis-error {
+           width: 40%;
+         }
+         div.summary {
+            width:100%;
+            text-align:left;
+         }
+         .summary table {
+            border:1px solid black;
+         }
+         .summary th {
+            background: #aaaaaa;
+            color: white;
+         }
+         .summary th, .summary td {
+            padding: 2px 4px 2px 4px;
+         }
+         .summary-name {
+            background: #eeeeee;
+            text-align:left;
+         }
+         .summary-size {
+            background: #eeeeee;
+            text-align:center;
+         }
+         .summary-ratio {
+            background: #eeeeee;
+            text-align:center;
+         }
+         .summary-priority-all {
+            background: #dddddd;
+            text-align:center;
+         }
+         .summary-priority-1 {
+            background: red;
+            text-align:center;
+         }
+         .summary-priority-2 {
+            background: orange;
+            text-align:center;
+         }
+         .summary-priority-3 {
+            background: green;
+            text-align:center;
+         }
+         .summary-priority-4 {
+            background: blue;
+            text-align:center;
+         }
+         .ob {
+            border: 1px solid black;
+            margin: 10px;
+         }
+         .ob-t {
+            border-bottom: 1px solid #000000; font-size: 12pt; font-weight: bold;
+            background: #cccccc; margin: 0; padding: 0 5px 0 5px;
+         }
+         .t-h {
+            font-weight: normal;
+         }
+         .ib-1, .ib-2 {
+            margin: 0 0 0 10px;
+         }
+         .ib-1-t, .ib-2-t {
+            border-bottom: 1px solid #000000; border-left: 1px solid #000000;
+            margin: 0; padding: 0 5px 0 5px;
+            font-size: 12pt; font-weight: bold; background: #cccccc;
+         }
+         .bb {
+            border-bottom: 1px solid #000000; border-left: 1px solid #000000;
+         }
+         .b-1 {
+            background: red; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-2 {
+            background: orange; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-3 {
+            background: green; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-4 {
+            background: blue; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-t {
+         }
+         .b-r {
+            font-size: 10pt; font-weight: bold; padding: 0 0 0 60px;
+         }
+         .b-d {
+            font-weight: normal; background: #eeeee0;
+            padding: 0 5px 0 5px; margin: 0px;
+         }
+         .bug-placeholder {
+            top:140px;
+            border:1px solid black;
+            display:none;
+         }
+         .tip {
+            border:solid 1px #666666;
+            width:600px;
+            padding:3px;
+            position:absolute;
+            z-index:100;
+            visibility:hidden;
+            color:#333333;
+            top:20px;
+            left:90px;
+            background-color:#ffffcc;
+            layer-background-color:#ffffcc;
+         }
+
+
+      </style>
+</head>
+<body>
+<div id="content">
+<h1>
+         FindBugs (2.0.3)
+         Analysis for
+         HW11</h1>
+<div id="menu">
+<ul>
+<li class="menu-tab-selected" id="bug-summary-tab" onclick="showmenu('bug-summary');return false;">
+<a onclick="return false;" href="">Bug Summary</a>
+</li>
+<li class="menu-tab" id="analysis-data-tab" onclick="showmenu('analysis-data');return false;">
+<a onclick="return false;" href="">Analysis Information</a>
+</li>
+<li class="menu-tab" id="list-by-category-tab" onclick="showmenu('list-by-category');return false;">
+<a onclick="return false;" href="">List bugs by bug category</a>
+</li>
+<li class="menu-tab" id="list-by-package-tab" onclick="showmenu('list-by-package');return false;">
+<a onclick="return false;" href="">List bugs by package</a>
+</li>
+</ul>
+</div>
+<div id="bug-summary" class="summary">
+<h2>FindBugs Analysis generated at: Sun, 25 May 2014 23:25:17 +0200</h2>
+<table>
+<tr>
+<th>Package</th>
+<th>Code Size</th>
+<th>Bugs</th>
+<th>High Prio Bugs</th>
+<th>Medium Prio Bugs</th>
+<th>Low Prio Bugs</th>
+<th>Exp. Bugs</th>
+<th>Ratio</th>
+</tr>
+<tr>
+<td class="summary-name">
+            Overall
+            (8 packages),
+            (57 classes)
+         </td>
+<td class="summary-size">1662</td>
+<td class="summary-priority-all">6</td>
+<td class="summary-priority-1" />
+<td class="summary-priority-2">6</td>
+<td class="summary-priority-3" />
+<td class="summary-priority-4" />
+<td class="summary-ratio" />
+</tr>
+<tr>
+<td class="summary-name">hr.fer.zemris.java.hw11.jvdraw</td>
+<td class="summary-size">313</td>
+<td class="summary-priority-all">3</td>
+<td class="summary-priority-1" />
+<td class="summary-priority-2">3</td>
+<td class="summary-priority-3" />
+<td class="summary-priority-4" />
+<td class="summary-ratio" />
+</tr>
+<tr>
+<td class="summary-name">hr.fer.zemris.java.hw11.jvdraw.component</td>
+<td class="summary-size">234</td>
+<td class="summary-priority-all">2</td>
+<td class="summary-priority-1" />
+<td class="summary-priority-2">2</td>
+<td class="summary-priority-3" />
+<td class="summary-priority-4" />
+<td class="summary-ratio" />
+</tr>
+<tr>
+<td class="summary-name">hr.fer.zemris.java.hw11.notepadpp</td>
+<td class="summary-size">428</td>
+<td class="summary-priority-all">1</td>
+<td class="summary-priority-1" />
+<td class="summary-priority-2">1</td>
+<td class="summary-priority-3" />
+<td class="summary-priority-4" />
+<td class="summary-ratio" />
+</tr>
+</table>
+</div>
+<div style="display:none;" id="analysis-data">
+<div id="analyzed-files">
+<h3>Analyzed Files:</h3>
+<ul>
+<li>C:\Users\Marko\javaTecaj\HW11-0036453293\build\classes</li>
+</ul>
+</div>
+<div id="used-libraries">
+<h3>Used Libraries:</h3>
+<ul>
+<li>None</li>
+</ul>
+</div>
+<div id="analysis-error">
+<h3>Analysis Errors:</h3>
+<ul>
+<li>None</li>
+</ul>
+</div>
+</div>
+<div style="display:none;" class="data-box" id="list-by-category">
+<span class="b-1">&nbsp;&nbsp;</span> High Prio
+   <span class="b-2">&nbsp;&nbsp;</span> Medium Prio
+   <span class="b-3">&nbsp;&nbsp;</span> Low Prio
+   <span class="b-4">&nbsp;&nbsp;</span> Exp.
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE');return false;">Bad practice
+            (6:
+            <span class="t-h">0/6/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-Dm');return false;">Dm: Dubious method used
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-Dm">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-Dm-and-bug-DM_EXIT');return false;" onmouseout="popUp(event,'tip-DM_EXIT');" onmouseover="popUp(event,'tip-DM_EXIT');">Method invokes System.exit(...)&nbsp;&nbsp;
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-Dm-and-bug-DM_EXIT">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-a2b435e566b52dba72f3143e83aaed34-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw$10</a>
+<div style="display:none;" id="b-uid-a2b435e566b52dba72f3143e83aaed34-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-f290133ecad498d49514042812e22ae5-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14</a>
+<div style="display:none;" id="b-uid-f290133ecad498d49514042812e22ae5-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-OS');return false;">OS: Stream not closed on all paths
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-OS">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-OS-and-bug-OS_OPEN_STREAM');return false;" onmouseout="popUp(event,'tip-OS_OPEN_STREAM');" onmouseover="popUp(event,'tip-OS_OPEN_STREAM');">Method may fail to close stream&nbsp;&nbsp;
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-OS-and-bug-OS_OPEN_STREAM">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-2ef3f86914bbf2ef3b6fda474b043b1e-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OS: </span>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw</a>
+<div style="display:none;" id="b-uid-2ef3f86914bbf2ef3b6fda474b043b1e-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-Se');return false;">Se: Incorrect definition of Serializable class
+            (3:
+            <span class="t-h">0/3/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-Se">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-Se-and-bug-SE_BAD_FIELD_STORE');return false;" onmouseout="popUp(event,'tip-SE_BAD_FIELD_STORE');" onmouseover="popUp(event,'tip-SE_BAD_FIELD_STORE');">Non-serializable value stored into instance field of a serializable class&nbsp;&nbsp;
+            (3:
+            <span class="t-h">0/3/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-Se-and-bug-SE_BAD_FIELD_STORE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3c14eb29db4cd622b8fae84121292729-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw</a>
+<div style="display:none;" id="b-uid-3c14eb29db4cd622b8fae84121292729-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-2a82c99ea6cd53b3f3ae1003f0ed3535-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas</a>
+<div style="display:none;" id="b-uid-2a82c99ea6cd53b3f3ae1003f0ed3535-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-2933bd5d011fc4cbd0ca9791ead2a031-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas</a>
+<div style="display:none;" id="b-uid-2933bd5d011fc4cbd0ca9791ead2a031-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="display:none;" class="data-box" id="list-by-package">
+<span class="b-1">&nbsp;&nbsp;</span> High Prio
+   <span class="b-2">&nbsp;&nbsp;</span> Medium Prio
+   <span class="b-3">&nbsp;&nbsp;</span> Low Prio
+   <span class="b-4">&nbsp;&nbsp;</span> Exp.
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw');return false;">hr.fer.zemris.java.hw11.jvdraw
+            (3:
+            <span class="t-h">0/3/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw');return false;">hr.fer.zemris.java.hw11.jvdraw.JVDraw  (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw-and-type-OS_OPEN_STREAM');return false;" onmouseout="popUp(event,'tip-OS_OPEN_STREAM')" onmouseover="popUp(event,'tip-OS_OPEN_STREAM')">Method may fail to close stream&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw-and-type-OS_OPEN_STREAM">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-2ef3f86914bbf2ef3b6fda474b043b1e-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OS: </span>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw</a>
+<div style="display:none;" id="b-uid-2ef3f86914bbf2ef3b6fda474b043b1e-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw-and-type-SE_BAD_FIELD_STORE');return false;" onmouseout="popUp(event,'tip-SE_BAD_FIELD_STORE')" onmouseover="popUp(event,'tip-SE_BAD_FIELD_STORE')">Non-serializable value stored into instance field of a serializable class&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw-and-type-SE_BAD_FIELD_STORE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3c14eb29db4cd622b8fae84121292729-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw</a>
+<div style="display:none;" id="b-uid-3c14eb29db4cd622b8fae84121292729-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw$10');return false;">hr.fer.zemris.java.hw11.jvdraw.JVDraw$10  (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw$10">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw$10-and-type-DM_EXIT');return false;" onmouseout="popUp(event,'tip-DM_EXIT')" onmouseover="popUp(event,'tip-DM_EXIT')">Method invokes System.exit(...)&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw-and-class-hr.fer.zemris.java.hw11.jvdraw.JVDraw$10-and-type-DM_EXIT">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-a2b435e566b52dba72f3143e83aaed34-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw$10</a>
+<div style="display:none;" id="b-uid-a2b435e566b52dba72f3143e83aaed34-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw.component');return false;">hr.fer.zemris.java.hw11.jvdraw.component
+            (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw.component">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw.component-and-class-hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas');return false;">hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas  (2:
+            <span class="t-h">0/2/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw.component-and-class-hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.jvdraw.component-and-class-hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas-and-type-SE_BAD_FIELD_STORE');return false;" onmouseout="popUp(event,'tip-SE_BAD_FIELD_STORE')" onmouseover="popUp(event,'tip-SE_BAD_FIELD_STORE')">Non-serializable value stored into instance field of a serializable class&nbsp;&nbsp;
+            (2)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.jvdraw.component-and-class-hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas-and-type-SE_BAD_FIELD_STORE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-2a82c99ea6cd53b3f3ae1003f0ed3535-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas</a>
+<div style="display:none;" id="b-uid-2a82c99ea6cd53b3f3ae1003f0ed3535-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-2933bd5d011fc4cbd0ca9791ead2a031-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Se: </span>In class hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas</a>
+<div style="display:none;" id="b-uid-2933bd5d011fc4cbd0ca9791ead2a031-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.notepadpp');return false;">hr.fer.zemris.java.hw11.notepadpp
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.notepadpp">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.notepadpp-and-class-hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14');return false;">hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14  (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.notepadpp-and-class-hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-hr.fer.zemris.java.hw11.notepadpp-and-class-hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14-and-type-DM_EXIT');return false;" onmouseout="popUp(event,'tip-DM_EXIT')" onmouseover="popUp(event,'tip-DM_EXIT')">Method invokes System.exit(...)&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-hr.fer.zemris.java.hw11.notepadpp-and-class-hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14-and-type-DM_EXIT">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-f290133ecad498d49514042812e22ae5-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">Dm: </span>In class hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14</a>
+<div style="display:none;" id="b-uid-f290133ecad498d49514042812e22ae5-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tip-DM_EXIT" class="tip">
+<b>Dm / DM_EXIT</b>
+<br />
+
+  <p> Invoking System.exit shuts down the entire Java virtual machine. This
+   should only been done when it is appropriate. Such calls make it
+   hard or impossible for your code to be invoked by other code.
+   Consider throwing a RuntimeException instead.</p>
+
+    </div>
+<div id="tip-OS_OPEN_STREAM" class="tip">
+<b>OS / OS_OPEN_STREAM</b>
+<br />
+
+<p> The method creates an IO stream object, does not assign it to any
+fields, pass it to other methods that might close it,
+or return it, and does not appear to close
+the stream on all paths out of the method.&nbsp; This may result in
+a file descriptor leak.&nbsp; It is generally a good
+idea to use a <code>finally</code> block to ensure that streams are
+closed.</p>
+
+    </div>
+<div id="tip-SE_BAD_FIELD_STORE" class="tip">
+<b>Se / SE_BAD_FIELD_STORE</b>
+<br />
+
+<p> A non-serializable value is stored into a non-transient field
+of a serializable class.</p>
+
+    </div>
+<div style="display:none;" id="b-uid-2ef3f86914bbf2ef3b6fda474b043b1e-0">
+<div class="b-r">In class hr.fer.zemris.java.hw11.jvdraw.JVDraw</div>
+<div class="b-r">In method hr.fer.zemris.java.hw11.jvdraw.JVDraw.readFile(File, BufferedReader)</div>
+<div class="b-r">Need to close java.io.Reader </div>
+<div class="b-r">At JVDraw.java:[line 364]</div>
+<div class="b-d">hr.fer.zemris.java.hw11.jvdraw.JVDraw.readFile(File, BufferedReader) may fail to close stream</div>
+</div>
+<div style="display:none;" id="b-uid-3c14eb29db4cd622b8fae84121292729-0">
+<div class="b-r">In class hr.fer.zemris.java.hw11.jvdraw.JVDraw</div>
+<div class="b-r">Field hr.fer.zemris.java.hw11.jvdraw.JVDraw.model</div>
+<div class="b-r">Actual type hr.fer.zemris.java.hw11.jvdraw.model.GeomObjDrawingModel</div>
+<div class="b-r">At JVDraw.java:[line 74]</div>
+<div class="b-d">hr.fer.zemris.java.hw11.jvdraw.model.GeomObjDrawingModel stored into non-transient field JVDraw.model</div>
+</div>
+<div style="display:none;" id="b-uid-a2b435e566b52dba72f3143e83aaed34-0">
+<div class="b-r">In class hr.fer.zemris.java.hw11.jvdraw.JVDraw$10</div>
+<div class="b-r">In method hr.fer.zemris.java.hw11.jvdraw.JVDraw$10.actionPerformed(ActionEvent)</div>
+<div class="b-r">At JVDraw.java:[line 339]</div>
+<div class="b-r">Another occurrence at JVDraw.java:[line 344]</div>
+<div class="b-r">Another occurrence at JVDraw.java:[line 349]</div>
+<div class="b-d">hr.fer.zemris.java.hw11.jvdraw.JVDraw$10.actionPerformed(ActionEvent) invokes System.exit(...), which shuts down the entire virtual machine</div>
+</div>
+<div style="display:none;" id="b-uid-2a82c99ea6cd53b3f3ae1003f0ed3535-0">
+<div class="b-r">In class hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas</div>
+<div class="b-r">Field hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas.click</div>
+<div class="b-r">Actual type hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$1</div>
+<div class="b-r">At JDrawingCanvas.java:[line 95]</div>
+<div class="b-d">hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$1 stored into non-transient field JDrawingCanvas.click</div>
+</div>
+<div style="display:none;" id="b-uid-2933bd5d011fc4cbd0ca9791ead2a031-0">
+<div class="b-r">In class hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas</div>
+<div class="b-r">Field hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas.move</div>
+<div class="b-r">Actual type hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$2</div>
+<div class="b-r">At JDrawingCanvas.java:[line 143]</div>
+<div class="b-d">hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$2 stored into non-transient field JDrawingCanvas.move</div>
+</div>
+<div style="display:none;" id="b-uid-f290133ecad498d49514042812e22ae5-0">
+<div class="b-r">In class hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14</div>
+<div class="b-r">In method hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14.actionPerformed(ActionEvent)</div>
+<div class="b-r">At NotepadPP.java:[line 597]</div>
+<div class="b-r">Another occurrence at NotepadPP.java:[line 602]</div>
+<div class="b-r">Another occurrence at NotepadPP.java:[line 607]</div>
+<div class="b-d">hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14.actionPerformed(ActionEvent) invokes System.exit(...), which shuts down the entire virtual machine</div>
+</div>
+</div>
+<div id="fixedbox">
+<div id="bug-placeholder" />
+</div>
+</body>
+</html>

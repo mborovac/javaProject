@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.3" sequence="0" timestamp="1403716022064" analysisTimestamp="1403716022104" release="">
+  <Project projectName="HW13">
+    <Jar>C:\Users\Marko\javaTecaj\HW13-0036453293\web\aplikacija2\WEB-INF\classes</Jar>
+    <SrcDir>C:\Users\Marko\javaTecaj\HW13-0036453293\src\main\java</SrcDir>
+  </Project>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE" instanceHash="d3e71b9d8fa4983f2100c3e16d06967" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Inefficient use of keySet iterator instead of entrySet iterator</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet.doGet(HttpServletRequest, HttpServletResponse) makes inefficient use of keySet iterator instead of entrySet iterator</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet" start="24" end="66" sourcefile="GlasanjeGlasajServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGlasajServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java">
+        <Message>At GlasanjeGlasajServlet.java:[lines 24-66]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet" start="39" end="66" startBytecode="0" endBytecode="767" sourcefile="GlasanjeGlasajServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGlasajServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java"/>
+      <Message>In method hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet.doGet(HttpServletRequest, HttpServletResponse)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet" primary="true" start="60" end="60" startBytecode="278" endBytecode="278" sourcefile="GlasanjeGlasajServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGlasajServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGlasajServlet.java">
+      <Message>At GlasanjeGlasajServlet.java:[line 60]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE" instanceHash="5e75de4684dbcc643c110732acb5b443" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Inefficient use of keySet iterator instead of entrySet iterator</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet.createDataset(Map) makes inefficient use of keySet iterator instead of entrySet iterator</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" start="32" end="99" sourcefile="GlasanjeGrafikaServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGrafikaServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java">
+        <Message>At GlasanjeGrafikaServlet.java:[lines 32-99]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" name="createDataset" signature="(Ljava/util/Map;)Lorg/jfree/data/general/PieDataset;" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" start="85" end="89" startBytecode="0" endBytecode="196" sourcefile="GlasanjeGrafikaServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGrafikaServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+      <Message>In method hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet.createDataset(Map)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" primary="true" start="87" end="87" startBytecode="39" endBytecode="39" sourcefile="GlasanjeGrafikaServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGrafikaServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java">
+      <Message>At GlasanjeGrafikaServlet.java:[line 87]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE" instanceHash="e97a8d442879968711354fa4b48ee388" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Inefficient use of keySet iterator instead of entrySet iterator</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet.doGet(HttpServletRequest, HttpServletResponse) makes inefficient use of keySet iterator instead of entrySet iterator</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" start="32" end="99" sourcefile="GlasanjeGrafikaServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGrafikaServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java">
+        <Message>At GlasanjeGrafikaServlet.java:[lines 32-99]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" start="46" end="82" startBytecode="0" endBytecode="784" sourcefile="GlasanjeGrafikaServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGrafikaServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java"/>
+      <Message>In method hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet.doGet(HttpServletRequest, HttpServletResponse)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" primary="true" start="73" end="73" startBytecode="246" endBytecode="246" sourcefile="GlasanjeGrafikaServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeGrafikaServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeGrafikaServlet.java">
+      <Message>At GlasanjeGrafikaServlet.java:[line 73]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE" instanceHash="3c95eb2417986c0d4a305048cc066dac" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Inefficient use of keySet iterator instead of entrySet iterator</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet.doGet(HttpServletRequest, HttpServletResponse) makes inefficient use of keySet iterator instead of entrySet iterator</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet" start="27" end="104" sourcefile="GlasanjeRezultatiServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeRezultatiServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java">
+        <Message>At GlasanjeRezultatiServlet.java:[lines 27-104]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet" start="42" end="104" startBytecode="0" endBytecode="1648" sourcefile="GlasanjeRezultatiServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeRezultatiServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java"/>
+      <Message>In method hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet.doGet(HttpServletRequest, HttpServletResponse)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet" primary="true" start="65" end="65" startBytecode="244" endBytecode="244" sourcefile="GlasanjeRezultatiServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeRezultatiServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java">
+      <Message>At GlasanjeRezultatiServlet.java:[line 65]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet" start="86" end="86" startBytecode="454" endBytecode="454" sourcefile="GlasanjeRezultatiServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeRezultatiServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeRezultatiServlet.java" role="SOURCE_LINE_ANOTHER_INSTANCE">
+      <Message>Another occurrence at GlasanjeRezultatiServlet.java:[line 86]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE" instanceHash="d1e0dae8119729f2957fbdd14cd14c08" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="18">
+    <ShortMessage>Inefficient use of keySet iterator instead of entrySet iterator</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet.doGet(HttpServletRequest, HttpServletResponse) makes inefficient use of keySet iterator instead of entrySet iterator</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet" start="27" end="92" sourcefile="GlasanjeXLSServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeXLSServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java">
+        <Message>At GlasanjeXLSServlet.java:[lines 27-92]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet" start="42" end="92" startBytecode="0" endBytecode="1134" sourcefile="GlasanjeXLSServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeXLSServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java"/>
+      <Message>In method hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet.doGet(HttpServletRequest, HttpServletResponse)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet" primary="true" start="67" end="67" startBytecode="238" endBytecode="238" sourcefile="GlasanjeXLSServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeXLSServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java">
+      <Message>At GlasanjeXLSServlet.java:[line 67]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet" start="79" end="79" startBytecode="384" endBytecode="384" sourcefile="GlasanjeXLSServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/GlasanjeXLSServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\GlasanjeXLSServlet.java" role="SOURCE_LINE_ANOTHER_INSTANCE">
+      <Message>Another occurrence at GlasanjeXLSServlet.java:[line 79]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_EXCEPTION" priority="2" abbrev="NP" category="CORRECTNESS" instanceHash="544b8668bf17798678dd983afa66db2" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="11" cweid="476">
+    <ShortMessage>Possible null pointer dereference in method on exception path</ShortMessage>
+    <LongMessage>Possible null pointer dereference of a in hr.fer.zemris.java.hw13.servlets.PowersServlet.doGet(HttpServletRequest, HttpServletResponse) on exception path</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="21" end="87" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java">
+        <Message>At PowersServlet.java:[lines 21-87]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw13.servlets.PowersServlet</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="37" end="87" startBytecode="0" endBytecode="846" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+      <Message>In method hr.fer.zemris.java.hw13.servlets.PowersServlet.doGet(HttpServletRequest, HttpServletResponse)</Message>
+    </Method>
+    <LocalVariable name="a" register="3" pc="20" role="LOCAL_VARIABLE_VALUE_OF">
+      <Message>Value loaded from a</Message>
+    </LocalVariable>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" primary="true" start="46" end="46" startBytecode="41" endBytecode="41" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_DEREF">
+      <Message>Dereferenced at PowersServlet.java:[line 46]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="37" end="37" startBytecode="0" endBytecode="0" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_NULL_VALUE">
+      <Message>Null value at PowersServlet.java:[line 37]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="43" end="43" startBytecode="23" endBytecode="23" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_KNOWN_NULL">
+      <Message>Known null at PowersServlet.java:[line 43]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="44" end="44" startBytecode="28" endBytecode="28" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_KNOWN_NULL">
+      <Message>Known null at PowersServlet.java:[line 44]</Message>
+    </SourceLine>
+    <Property name="edu.umd.cs.findbugs.detect.NullDerefProperty.ALWAYS_ON_EXCEPTION_PATH" value="true"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_EXCEPTION" priority="2" abbrev="NP" category="CORRECTNESS" instanceHash="35a6fdab6a6e5e23804b2ff16cc43477" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="11" cweid="476">
+    <ShortMessage>Possible null pointer dereference in method on exception path</ShortMessage>
+    <LongMessage>Possible null pointer dereference of b in hr.fer.zemris.java.hw13.servlets.PowersServlet.doGet(HttpServletRequest, HttpServletResponse) on exception path</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="21" end="87" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java">
+        <Message>At PowersServlet.java:[lines 21-87]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw13.servlets.PowersServlet</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="37" end="87" startBytecode="0" endBytecode="846" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+      <Message>In method hr.fer.zemris.java.hw13.servlets.PowersServlet.doGet(HttpServletRequest, HttpServletResponse)</Message>
+    </Method>
+    <LocalVariable name="b" register="4" pc="86" role="LOCAL_VARIABLE_VALUE_OF">
+      <Message>Value loaded from b</Message>
+    </LocalVariable>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" primary="true" start="55" end="55" startBytecode="108" endBytecode="108" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_DEREF">
+      <Message>Dereferenced at PowersServlet.java:[line 55]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="38" end="38" startBytecode="2" endBytecode="2" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_NULL_VALUE">
+      <Message>Null value at PowersServlet.java:[line 38]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="52" end="52" startBytecode="89" endBytecode="89" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_KNOWN_NULL">
+      <Message>Known null at PowersServlet.java:[line 52]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="53" end="53" startBytecode="94" endBytecode="94" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_KNOWN_NULL">
+      <Message>Known null at PowersServlet.java:[line 53]</Message>
+    </SourceLine>
+    <Property name="edu.umd.cs.findbugs.detect.NullDerefProperty.ALWAYS_ON_EXCEPTION_PATH" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.NullDerefProperty.LONG_RANGE_NULL_SOURCE" value="true"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_EXCEPTION" priority="2" abbrev="NP" category="CORRECTNESS" instanceHash="7d1d9367f2f30b851bba3878757dd72b" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="11" cweid="476">
+    <ShortMessage>Possible null pointer dereference in method on exception path</ShortMessage>
+    <LongMessage>Possible null pointer dereference of n in hr.fer.zemris.java.hw13.servlets.PowersServlet.doGet(HttpServletRequest, HttpServletResponse) on exception path</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="21" end="87" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java">
+        <Message>At PowersServlet.java:[lines 21-87]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw13.servlets.PowersServlet</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="37" end="87" startBytecode="0" endBytecode="846" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java"/>
+      <Message>In method hr.fer.zemris.java.hw13.servlets.PowersServlet.doGet(HttpServletRequest, HttpServletResponse)</Message>
+    </Method>
+    <LocalVariable name="n" register="5" pc="154" role="LOCAL_VARIABLE_VALUE_OF">
+      <Message>Value loaded from n</Message>
+    </LocalVariable>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" primary="true" start="64" end="64" startBytecode="176" endBytecode="176" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_DEREF">
+      <Message>Dereferenced at PowersServlet.java:[line 64]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="39" end="39" startBytecode="5" endBytecode="5" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_NULL_VALUE">
+      <Message>Null value at PowersServlet.java:[line 39]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="61" end="61" startBytecode="157" endBytecode="157" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_KNOWN_NULL">
+      <Message>Known null at PowersServlet.java:[line 61]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw13.servlets.PowersServlet" start="62" end="62" startBytecode="162" endBytecode="162" sourcefile="PowersServlet.java" sourcepath="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" relSourcepath="hr\fer\zemris\java\hw13\servlets\PowersServlet.java" role="SOURCE_LINE_KNOWN_NULL">
+      <Message>Known null at PowersServlet.java:[line 62]</Message>
+    </SourceLine>
+    <Property name="edu.umd.cs.findbugs.detect.NullDerefProperty.ALWAYS_ON_EXCEPTION_PATH" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.NullDerefProperty.LONG_RANGE_NULL_SOURCE" value="true"/>
+  </BugInstance>
+  <BugCategory category="CORRECTNESS">
+    <Description>Correctness</Description>
+  </BugCategory>
+  <BugCategory category="PERFORMANCE">
+    <Description>Performance</Description>
+  </BugCategory>
+  <BugPattern type="NP_NULL_ON_SOME_PATH_EXCEPTION" abbrev="NP" category="CORRECTNESS">
+    <ShortDescription>Possible null pointer dereference in method on exception path</ShortDescription>
+    <Details><![CDATA[
+
+<p> A reference value which is null on some exception control path is
+dereferenced here.&nbsp; This may lead to a <code>NullPointerException</code>
+when the code is executed.&nbsp;
+Note that because FindBugs currently does not prune infeasible exception paths,
+this may be a false warning.</p>
+
+<p> Also note that FindBugs considers the default case of a switch statement to
+be an exception path, since the default case is often infeasible.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="WMI_WRONG_MAP_ITERATOR" abbrev="WMI" category="PERFORMANCE">
+    <ShortDescription>Inefficient use of keySet iterator instead of entrySet iterator</ShortDescription>
+    <Details><![CDATA[
+
+<p> This method accesses the value of a Map entry, using a key that was retrieved from
+a keySet iterator. It is more efficient to use an iterator on the entrySet of the map, to avoid the
+Map.get(key) lookup.</p>
+
+        ]]></Details>
+  </BugPattern>
+  <BugCode abbrev="WMI">
+    <Description>Inefficient Map Iterator</Description>
+  </BugCode>
+  <BugCode abbrev="NP" cweid="476">
+    <Description>Null pointer dereference</Description>
+  </BugCode>
+  <Errors errors="0" missingClasses="20">
+    <MissingClass>javax.servlet.RequestDispatcher</MissingClass>
+    <MissingClass>javax.servlet.ServletContext</MissingClass>
+    <MissingClass>javax.servlet.ServletContextEvent</MissingClass>
+    <MissingClass>javax.servlet.ServletOutputStream</MissingClass>
+    <MissingClass>javax.servlet.http.HttpServlet</MissingClass>
+    <MissingClass>javax.servlet.http.HttpServletRequest</MissingClass>
+    <MissingClass>javax.servlet.http.HttpServletResponse</MissingClass>
+    <MissingClass>javax.servlet.http.HttpSession</MissingClass>
+    <MissingClass>org.apache.poi.hssf.usermodel.HSSFCell</MissingClass>
+    <MissingClass>org.apache.poi.hssf.usermodel.HSSFRow</MissingClass>
+    <MissingClass>org.apache.poi.hssf.usermodel.HSSFSheet</MissingClass>
+    <MissingClass>org.apache.poi.hssf.usermodel.HSSFWorkbook</MissingClass>
+    <MissingClass>org.jfree.chart.ChartFactory</MissingClass>
+    <MissingClass>org.jfree.chart.ChartRenderingInfo</MissingClass>
+    <MissingClass>org.jfree.chart.JFreeChart</MissingClass>
+    <MissingClass>org.jfree.chart.plot.PiePlot</MissingClass>
+    <MissingClass>org.jfree.chart.plot.PiePlot3D</MissingClass>
+    <MissingClass>org.jfree.data.general.DefaultPieDataset</MissingClass>
+    <MissingClass>org.jfree.util.Rotation</MissingClass>
+    <MissingClass>org.junit.Assert</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Wed, 25 Jun 2014 19:07:02 +0200" total_classes="12" referenced_classes="51" total_bugs="8" total_size="304" num_packages="2" vm_version="23.7-b01" cpu_seconds="24.37" clock_seconds="13.52" peak_mbytes="137.92" alloc_mbytes="682.69" gc_seconds="0.16" priority_2="8">
+    <FileStats path="hr/fer/zemris/java/hw13/listeners/ServletListener.java" bugCount="0" size="9"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/GlasanjeGlasajServlet.java" bugCount="1" size="27" bugHash="1213a97bb0878d53dd72d41ff23e6b38"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/GlasanjeGrafikaServlet.java" bugCount="2" size="42" bugHash="b85ca2f1a377c29df0fda83aa1eff53a"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/GlasanjeRezultatiServlet.java" bugCount="1" size="50" bugHash="c4ad046f6fe2eca48a28b79de8af2110"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/GlasanjeServlet.java" bugCount="0" size="16"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/GlasanjeXLSServlet.java" bugCount="1" size="43" bugHash="b521c7e50de4ec879f4cfe71c761150b"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/PieChartServlet.java" bugCount="0" size="24"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/PowersServlet.java" bugCount="3" size="39" bugHash="c72bd084b9c3c60deae35f80bf19a96b"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/RandomServletTest.java" bugCount="0" size="6"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/SetColorServlet.java" bugCount="0" size="11"/>
+    <FileStats path="hr/fer/zemris/java/hw13/servlets/SquaresServlet.java" bugCount="0" size="37"/>
+    <PackageStats package="hr.fer.zemris.java.hw13.listeners" total_bugs="0" total_types="1" total_size="9">
+      <ClassStats class="hr.fer.zemris.java.hw13.listeners.ServletListener" sourceFile="ServletListener.java" interface="false" size="9" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.hw13.servlets" total_bugs="8" total_types="11" total_size="295" priority_2="8">
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.GlasanjeGlasajServlet" sourceFile="GlasanjeGlasajServlet.java" interface="false" size="27" bugs="1" priority_2="1"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.GlasanjeGrafikaServlet" sourceFile="GlasanjeGrafikaServlet.java" interface="false" size="42" bugs="2" priority_2="2"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.GlasanjeRezultatiServlet" sourceFile="GlasanjeRezultatiServlet.java" interface="false" size="50" bugs="1" priority_2="1"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.GlasanjeServlet" sourceFile="GlasanjeServlet.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.GlasanjeXLSServlet" sourceFile="GlasanjeXLSServlet.java" interface="false" size="43" bugs="1" priority_2="1"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.PieChartServlet" sourceFile="PieChartServlet.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.PowersServlet" sourceFile="PowersServlet.java" interface="false" size="39" bugs="3" priority_2="3"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.RandomServletTest" sourceFile="RandomServletTest.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.SetColorServlet" sourceFile="SetColorServlet.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.SquaresServlet" sourceFile="SquaresServlet.java" interface="false" size="25" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw13.servlets.SquaresServlet$Pair" sourceFile="SquaresServlet.java" interface="false" size="12" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.InconsistentAnnotations" totalMilliseconds="2021" invocations="12" avgMicrosecondsPerInvocation="168432" maxMicrosecondsPerInvocation="2020652" standardDeviationMircosecondsPerInvocation="558465"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="988" invocations="518" avgMicrosecondsPerInvocation="1908" maxMicrosecondsPerInvocation="55105" standardDeviationMircosecondsPerInvocation="4881"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="887" invocations="521" avgMicrosecondsPerInvocation="1703" maxMicrosecondsPerInvocation="494938" standardDeviationMircosecondsPerInvocation="21676"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="883" invocations="168" avgMicrosecondsPerInvocation="5259" maxMicrosecondsPerInvocation="190751" standardDeviationMircosecondsPerInvocation="19261"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="704" invocations="78" avgMicrosecondsPerInvocation="9029" maxMicrosecondsPerInvocation="603114" standardDeviationMircosecondsPerInvocation="67982"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="537" invocations="30" avgMicrosecondsPerInvocation="17913" maxMicrosecondsPerInvocation="290278" standardDeviationMircosecondsPerInvocation="52383"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="447" invocations="28" avgMicrosecondsPerInvocation="15985" maxMicrosecondsPerInvocation="188205" standardDeviationMircosecondsPerInvocation="39325"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="447" invocations="51" avgMicrosecondsPerInvocation="8775" maxMicrosecondsPerInvocation="68454" standardDeviationMircosecondsPerInvocation="13860"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.StreamResourceTracker" totalMilliseconds="419" invocations="27" avgMicrosecondsPerInvocation="15539" maxMicrosecondsPerInvocation="167962" standardDeviationMircosecondsPerInvocation="31566"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="383" invocations="460" avgMicrosecondsPerInvocation="833" maxMicrosecondsPerInvocation="237842" standardDeviationMircosecondsPerInvocation="11085"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="359" invocations="30" avgMicrosecondsPerInvocation="11982" maxMicrosecondsPerInvocation="97106" standardDeviationMircosecondsPerInvocation="23404"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="316" invocations="30" avgMicrosecondsPerInvocation="10543" maxMicrosecondsPerInvocation="64833" standardDeviationMircosecondsPerInvocation="19198"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.obl.ObligationAnalysis" totalMilliseconds="297" invocations="18" avgMicrosecondsPerInvocation="16543" maxMicrosecondsPerInvocation="224400" standardDeviationMircosecondsPerInvocation="51025"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="289" invocations="51" avgMicrosecondsPerInvocation="5674" maxMicrosecondsPerInvocation="207512" standardDeviationMircosecondsPerInvocation="28768"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="285" invocations="30" avgMicrosecondsPerInvocation="9516" maxMicrosecondsPerInvocation="80662" standardDeviationMircosecondsPerInvocation="18616"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

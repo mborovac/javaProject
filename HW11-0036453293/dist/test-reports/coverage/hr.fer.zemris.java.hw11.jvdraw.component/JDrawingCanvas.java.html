@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JDrawingCanvas.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW11</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw11.jvdraw.component</a> &gt; <span class="el_source">JDrawingCanvas.java</span></div><h1>JDrawingCanvas.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw11.jvdraw.component;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
+import hr.fer.zemris.java.hw11.jvdraw.objects.Circle;
+import hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel;
+import hr.fer.zemris.java.hw11.jvdraw.objects.FilledCircle;
+import hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject;
+import hr.fer.zemris.java.hw11.jvdraw.objects.Line;
+import hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener;
+
+import javax.swing.JComponent;
+
+/**
+ * Class representing a canvas the user will draw on. 1st click of the mouse will set component's
+ * starting point. Moving the mouse shows the user the end result if he clicks the mouse buttong again.
+ * 2nd click fixates the component.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class JDrawingCanvas extends JComponent implements DrawingModelListener {
+	
+	private static final long serialVersionUID = 1L;
+	private DrawingModel drawingModel;
+	private boolean clicked;
+	private Point point;
+	private IColorProvider frontColorProvider;
+	private IColorProvider backColorProvider;
+	
+	private GeometricalObject tempLine;
+	private GeometricalObject tempCircle;
+	private GeometricalObject tempFilledCircle;
+<span class="nc" id="L42">	private boolean isLine = false;</span>
+<span class="nc" id="L43">	private boolean isCircle = false;</span>
+<span class="nc" id="L44">	private boolean isFilledCircle = false;</span>
+	
+	/**
+	 * Class constructor. Constructor takes 3 arguments, the model that is being used to store 
+	 * components and the 2 color providers, front and background ones.
+	 * 
+	 * @param drawingModel the model that is being used to store components
+	 * @param frontColorProvider front color provider
+	 * @param backColorProvider background color provider
+	 */
+	public JDrawingCanvas(DrawingModel drawingModel, IColorProvider frontColorProvider, 
+<span class="nc" id="L55">			IColorProvider backColorProvider) {</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">		if(drawingModel == null) {</span>
+<span class="nc" id="L57">			throw new IllegalArgumentException(&quot;Drawing model can not be null.&quot;);</span>
+		}
+<span class="nc" id="L59">		this.drawingModel = drawingModel;</span>
+<span class="nc" id="L60">		this.drawingModel.addDrawingModelListener(this);</span>
+<span class="nc" id="L61">		clicked = false;</span>
+<span class="nc" id="L62">		this.addMouseListener(click);</span>
+<span class="nc" id="L63">		this.addMouseMotionListener(move);</span>
+<span class="nc" id="L64">		this.frontColorProvider = frontColorProvider;</span>
+<span class="nc" id="L65">		this.backColorProvider = backColorProvider;</span>
+<span class="nc" id="L66">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsAdded(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsAdded(DrawingModel source, int index0, int index1) {
+<span class="nc" id="L74">		this.paintComponent(getGraphics());</span>
+<span class="nc" id="L75">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsRemoved(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsRemoved(DrawingModel source, int index0, int index1) {
+<span class="nc" id="L83">		this.paintComponent(getGraphics());</span>
+<span class="nc" id="L84">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsChanged(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsChanged(DrawingModel source, int index0, int index1) {
+<span class="nc" id="L92">		this.paintComponent(getGraphics());</span>
+<span class="nc" id="L93">	}</span>
+	
+<span class="nc" id="L95">	MouseListener click = new MouseAdapter() {</span>
+		
+		/**
+		 * @see java.awt.event.MouseAdapter#mouseClicked(java.awt.event.MouseEvent)
+		 * 
+		 * Method defines the way the canvas will draw the components depending on the number
+		 * of clicks. Component being drawn is defined by the selected button in the GUI.
+		 */
+		@Override
+		public void mouseClicked(MouseEvent e) {
+<span class="nc bnc" id="L105" title="All 6 branches missed.">			if(!(isLine == false &amp;&amp; isCircle == false &amp;&amp; isFilledCircle == false)) {</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">				if(e.getClickCount() == 1) {</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">					if(!clicked) {</span>
+<span class="nc" id="L108">						point = e.getPoint();</span>
+<span class="nc" id="L109">						clicked = true;</span>
+					} else {
+<span class="nc" id="L111">						Point temp = e.getPoint();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">						if(isLine) {</span>
+<span class="nc" id="L113">							drawingModel.setNumberOfLines();</span>
+<span class="nc" id="L114">							String name = &quot;Line &quot;+drawingModel.numberOfLines();</span>
+<span class="nc" id="L115">							drawingModel.add(new Line(name, point.x, point.y, temp.x, temp.y, </span>
+									backColorProvider.getCurrentColor()));
+<span class="nc" id="L117">							tempLine = null;</span>
+<span class="nc" id="L118">						} else {</span>
+<span class="nc" id="L119">							int radius = (int) Math.sqrt(Math.pow(e.getPoint().x - point.x, 2) + </span>
+									Math.pow(e.getPoint().y - point.y, 2));
+<span class="nc bnc" id="L121" title="All 2 branches missed.">							if(isCircle) {</span>
+<span class="nc" id="L122">								drawingModel.setNumberOfCircles();</span>
+<span class="nc" id="L123">								String name = &quot;Circle &quot;+drawingModel.numberOfCircles();</span>
+<span class="nc" id="L124">								drawingModel.add(new Circle(name, point.x, point.y, radius, </span>
+										backColorProvider.getCurrentColor()));
+<span class="nc" id="L126">								tempCircle = null;</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">							} else if(isFilledCircle) {</span>
+<span class="nc" id="L128">								drawingModel.setNumberOfFilledCircles();</span>
+<span class="nc" id="L129">								String name = &quot;Filled circle &quot;+drawingModel.numberOfFilledCircles();</span>
+<span class="nc" id="L130">								drawingModel.add(new FilledCircle(name, point.x, point.y, </span>
+										radius, frontColorProvider.getCurrentColor(), 
+										backColorProvider.getCurrentColor()));
+<span class="nc" id="L133">								tempFilledCircle = null;</span>
+							}
+						}
+<span class="nc" id="L136">						clicked = false;</span>
+					}
+				}
+			}
+<span class="nc" id="L140">		}</span>
+	};
+	
+<span class="nc" id="L143">	MouseMotionListener move = new MouseAdapter() {</span>
+		
+		/**
+		 * @see java.awt.event.MouseAdapter#mouseMoved(java.awt.event.MouseEvent)
+		 * 
+		 * Method draws the selected component from the 1st fixed point/center to the mouse
+		 * cursor. It gives user the preview of a resizing component as long as the component
+		 * is not fixated by the 2nd mmouse click.
+		 */
+		@Override
+		public void mouseMoved(MouseEvent e) {
+<span class="nc bnc" id="L154" title="All 2 branches missed.">			if(clicked) {</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">				if(isLine) {</span>
+<span class="nc" id="L156">					tempLine = new Line(&quot;&quot;, point.x, point.y, e.getPoint().x, e.getPoint().y, </span>
+							backColorProvider.getCurrentColor());
+<span class="nc" id="L158">					tempLine.repaint();</span>
+				} else {
+<span class="nc" id="L160">					int radius = (int) Math.sqrt(Math.pow(e.getPoint().x - point.x, 2) + </span>
+							Math.pow(e.getPoint().y - point.y, 2));
+<span class="nc bnc" id="L162" title="All 2 branches missed.">					if(isCircle) {</span>
+<span class="nc" id="L163">						tempCircle = new Circle(&quot;&quot;, point.x, point.y, radius, backColorProvider.getCurrentColor());</span>
+<span class="nc" id="L164">						tempCircle.repaint();</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">					} else if(isFilledCircle) {</span>
+<span class="nc" id="L166">						tempFilledCircle = new FilledCircle(&quot;&quot;, point.x, point.y, </span>
+								radius, frontColorProvider.getCurrentColor(), 
+								backColorProvider.getCurrentColor());
+<span class="nc" id="L169">						tempFilledCircle.repaint();</span>
+					}
+				}
+<span class="nc" id="L172">				e.getComponent().repaint();</span>
+			}
+<span class="nc" id="L174">		}</span>
+	};
+	
+	/**
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 * 
+	 * Method paints the canvas in white and paints all of the components stored in the model.
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+<span class="nc" id="L184">		Dimension dim = this.getSize();</span>
+<span class="nc" id="L185">		Insets insets = this.getInsets();</span>
+<span class="nc" id="L186">		g.setColor(Color.WHITE);</span>
+<span class="nc" id="L187">		g.fillRect(insets.left, insets.top, dim.width - insets.left - insets.right, </span>
+				dim.height - insets.top - insets.bottom);
+<span class="nc bnc" id="L189" title="All 2 branches missed.">		for(int i = 0; i &lt; drawingModel.getSize(); i++) {</span>
+<span class="nc" id="L190">			drawingModel.getObject(i).paintComponent(g);</span>
+		}
+<span class="nc bnc" id="L192" title="All 2 branches missed.">		if(tempLine != null) {</span>
+<span class="nc" id="L193">			tempLine.paintComponent(g);</span>
+		}
+<span class="nc bnc" id="L195" title="All 2 branches missed.">		if(tempCircle != null) {</span>
+<span class="nc" id="L196">			tempCircle.paintComponent(g);</span>
+		}
+<span class="nc bnc" id="L198" title="All 2 branches missed.">		if(tempFilledCircle != null) {</span>
+<span class="nc" id="L199">			tempFilledCircle.paintComponent(g);</span>
+		}
+<span class="nc" id="L201">	}</span>
+	
+	/**
+	 * Method used to let canvas know that the Line button is selected in the GUI and that 
+	 * all drawn components should be lines. 
+	 */
+	public void setIsLine() {
+<span class="nc" id="L208">		this.isLine = true;</span>
+<span class="nc" id="L209">		this.isCircle = false;</span>
+<span class="nc" id="L210">		this.isFilledCircle = false;</span>
+<span class="nc" id="L211">	}</span>
+	
+	/**
+	 * Method used to let canvas know that the Circle button is selected in the GUI and that 
+	 * all drawn components should be circles.
+	 */
+	public void setIsCircle() {
+<span class="nc" id="L218">		this.isLine = false;</span>
+<span class="nc" id="L219">		this.isCircle = true;</span>
+<span class="nc" id="L220">		this.isFilledCircle = false;</span>
+<span class="nc" id="L221">	}</span>
+	
+	/**
+	 * Method used to let canvas know that the Filled Circle button is selected in the GUI and that 
+	 * all drawn components should be filled circles.
+	 */
+	public void setIsFilledCircle() {
+<span class="nc" id="L228">		this.isLine = false;</span>
+<span class="nc" id="L229">		this.isCircle = false;</span>
+<span class="nc" id="L230">		this.isFilledCircle = true;</span>
+<span class="nc" id="L231">	}</span>
+	
+	/**
+	 * Method used to acquire the reference to the background color provider.
+	 * 
+	 * @return returns the reference to the background color provider
+	 */
+	public IColorProvider getBackColorProvider() {
+<span class="nc" id="L239">		return this.backColorProvider;</span>
+	}
+	
+	/**
+	 * Method used to acquire the reference to the front color provider.
+	 * 
+	 * @return returns the reference to the front color provider
+	 */
+	public IColorProvider getFrontColorProvider() {
+<span class="nc" id="L248">		return this.frontColorProvider;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

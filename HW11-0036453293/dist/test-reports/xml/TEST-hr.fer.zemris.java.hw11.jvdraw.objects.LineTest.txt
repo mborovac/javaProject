@@ -1,0 +1,4 @@
+Testsuite: hr.fer.zemris.java.hw11.jvdraw.objects.LineTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,364 sec
+
+Testcase: toFileTest took 0,243 sec

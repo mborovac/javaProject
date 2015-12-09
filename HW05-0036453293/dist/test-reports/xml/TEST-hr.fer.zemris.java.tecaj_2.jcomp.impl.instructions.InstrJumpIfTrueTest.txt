@@ -1,0 +1,7 @@
+Testsuite: hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrJumpIfTrueTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,059 sec
+
+Testcase: JumpIfTrueTest1 took 0,003 sec
+Testcase: JumpIfTrueTest2 took 0,042 sec
+Testcase: JumpIfTrueTestException1 took 0 sec
+Testcase: JumpIfTrueTestException2 took 0 sec

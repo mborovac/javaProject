@@ -1,0 +1,8 @@
+Testsuite: hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrTestEqualsTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,024 sec
+
+Testcase: TestEqualsTestException1 took 0,002 sec
+Testcase: TestEqualsTestException2 took 0 sec
+Testcase: TestEqualsTestException3 took 0 sec
+Testcase: TestEqualsTest1 took 0,001 sec
+Testcase: TestEqualsTest2 took 0,001 sec

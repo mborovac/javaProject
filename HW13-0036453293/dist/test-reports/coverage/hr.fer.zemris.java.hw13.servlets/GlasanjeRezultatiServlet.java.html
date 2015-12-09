@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GlasanjeRezultatiServlet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW13</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw13.servlets</a> &gt; <span class="el_source">GlasanjeRezultatiServlet.java</span></div><h1>GlasanjeRezultatiServlet.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw13.servlets;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet used to prepare the info about vote state for the jsp.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L27">public class GlasanjeRezultatiServlet extends HttpServlet {</span>
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method reads the files containing the band info and vote state and prepares all needed
+	 * info for the jsp and stores it as request attributes.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+<span class="nc" id="L42">		String fileName = req.getServletContext().getRealPath(&quot;/WEB-INF/glasanje-rezultati.txt&quot;);</span>
+<span class="nc" id="L43">		Map&lt;String, Integer&gt; bandVotes = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L44">		BufferedReader in = new BufferedReader(</span>
+<span class="nc" id="L45">				new InputStreamReader(new FileInputStream(fileName), &quot;UTF-8&quot;));</span>
+		String line;
+		
+<span class="nc bnc" id="L48" title="All 2 branches missed.">		while((line = in.readLine()) != null) {</span>
+<span class="nc" id="L49">			String[] splitLine = line.split(&quot;\t&quot;);</span>
+<span class="nc" id="L50">			bandVotes.put(splitLine[0], Integer.parseInt(splitLine[1]));</span>
+		}
+<span class="nc" id="L52">		in.close();</span>
+		
+<span class="nc" id="L54">		List&lt;Integer&gt; listOfVotes = new ArrayList&lt;&gt;(bandVotes.values());</span>
+<span class="nc" id="L55">		Collections.sort(listOfVotes);</span>
+<span class="nc" id="L56">		Collections.reverse(listOfVotes);</span>
+<span class="nc" id="L57">		Set&lt;Integer&gt; sortedVotesSet = new LinkedHashSet&lt;&gt;();</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		for(Integer votes: listOfVotes) {</span>
+<span class="nc" id="L59">			sortedVotesSet.add(votes);</span>
+		}
+		
+<span class="nc" id="L62">		List&lt;String&gt; sortedBands = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		for(Integer votes: sortedVotesSet) {</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">			for(String bandID: bandVotes.keySet()) {</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">				if(bandVotes.get(bandID).equals(votes)) {</span>
+<span class="nc" id="L66">					sortedBands.add(bandID);</span>
+				}
+			}
+		}	
+		
+<span class="nc" id="L71">		String bandInfoFile = req.getServletContext().getRealPath(&quot;/WEB-INF/glasanje-definicija.txt&quot;);</span>
+<span class="nc" id="L72">		Map&lt;String, String&gt; bandInfo = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L73">		Map&lt;String, String&gt; mapOfLinks = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L74">		in = new BufferedReader(</span>
+<span class="nc" id="L75">				new InputStreamReader(new FileInputStream(bandInfoFile), &quot;UTF-8&quot;));</span>
+		
+<span class="nc bnc" id="L77" title="All 2 branches missed.">		while((line = in.readLine()) != null) {</span>
+<span class="nc" id="L78">			String[] splitLine = line.split(&quot;\t&quot;);</span>
+<span class="nc" id="L79">			bandInfo.put(splitLine[0], splitLine[1]);</span>
+<span class="nc" id="L80">			mapOfLinks.put(splitLine[0], splitLine[2]);</span>
+		}
+<span class="nc" id="L82">		in.close();</span>
+		
+<span class="nc" id="L84">		Map&lt;String, Integer&gt; mapOfVotes = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		for(String bandID: bandInfo.keySet()) {</span>
+<span class="nc" id="L86">			mapOfVotes.put(bandInfo.get(bandID), bandVotes.get(bandID));</span>
+		}
+		
+<span class="nc" id="L89">		String highestVotedBand = sortedBands.get(0);</span>
+<span class="nc" id="L90">		int highestVotes = mapOfVotes.get(bandInfo.get(highestVotedBand));</span>
+<span class="nc" id="L91">		Map&lt;String, String&gt; topBandSong = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">		for(String band: sortedBands) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">			if(mapOfVotes.get(bandInfo.get(band)) == highestVotes) {</span>
+<span class="nc" id="L94">				topBandSong.put(bandInfo.get(band), mapOfLinks.get(band));</span>
+			}
+		}
+		
+<span class="nc" id="L98">		req.setAttribute(&quot;info&quot;, bandInfo);</span>
+<span class="nc" id="L99">		req.setAttribute(&quot;votes&quot;, bandVotes);</span>
+<span class="nc" id="L100">		req.setAttribute(&quot;sortedBands&quot;, sortedBands);</span>
+<span class="nc" id="L101">		req.setAttribute(&quot;namesAndVotes&quot;, mapOfVotes);</span>
+<span class="nc" id="L102">		req.setAttribute(&quot;links&quot;, topBandSong);</span>
+<span class="nc" id="L103">		req.getRequestDispatcher(&quot;/WEB-INF/pages/glasanjeRez.jsp&quot;).forward(req, resp);</span>
+<span class="nc" id="L104">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

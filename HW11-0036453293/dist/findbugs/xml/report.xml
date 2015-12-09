@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.3" sequence="0" timestamp="1401053117189" analysisTimestamp="1401053117230" release="">
+  <Project projectName="HW11">
+    <Jar>C:\Users\Marko\javaTecaj\HW11-0036453293\build\classes</Jar>
+    <SrcDir>C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java</SrcDir>
+  </Project>
+  <BugInstance type="OS_OPEN_STREAM" priority="2" abbrev="OS" category="BAD_PRACTICE" instanceHash="2ef3f86914bbf2ef3b6fda474b043b1e" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="16">
+    <ShortMessage>Method may fail to close stream</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw11.jvdraw.JVDraw.readFile(File, BufferedReader) may fail to close stream</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" start="64" end="479" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java">
+        <Message>At JVDraw.java:[lines 64-479]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" name="readFile" signature="(Ljava/io/File;Ljava/io/BufferedReader;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" start="364" end="428" startBytecode="0" endBytecode="336" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+      <Message>In method hr.fer.zemris.java.hw11.jvdraw.JVDraw.readFile(File, BufferedReader)</Message>
+    </Method>
+    <Type descriptor="Ljava/io/Reader;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.io.Reader" start="66" end="249" sourcefile="Reader.java" sourcepath="java/io/Reader.java">
+        <Message>At Reader.java:[lines 66-249]</Message>
+      </SourceLine>
+      <Message>Need to close java.io.Reader </Message>
+    </Type>
+    <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" primary="true" start="364" end="364" startBytecode="0" endBytecode="0" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java">
+      <Message>At JVDraw.java:[line 364]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD_STORE" priority="2" abbrev="Se" category="BAD_PRACTICE" instanceHash="3c14eb29db4cd622b8fae84121292729" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="16">
+    <ShortMessage>Non-serializable value stored into instance field of a serializable class</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw11.jvdraw.model.GeomObjDrawingModel stored into non-transient field JVDraw.model</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" start="64" end="479" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java">
+        <Message>At JVDraw.java:[lines 64-479]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw</Message>
+    </Class>
+    <Field classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" name="model" signature="Lhr/fer/zemris/java/hw11/jvdraw/objects/DrawingModel;" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java">
+        <Message>In JVDraw.java</Message>
+      </SourceLine>
+      <Message>Field hr.fer.zemris.java.hw11.jvdraw.JVDraw.model</Message>
+    </Field>
+    <Type descriptor="Lhr/fer/zemris/java/hw11/jvdraw/model/GeomObjDrawingModel;" role="TYPE_FOUND">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.model.GeomObjDrawingModel" start="30" end="218" sourcefile="GeomObjDrawingModel.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/model/GeomObjDrawingModel.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java">
+        <Message>At GeomObjDrawingModel.java:[lines 30-218]</Message>
+      </SourceLine>
+      <Message>Actual type hr.fer.zemris.java.hw11.jvdraw.model.GeomObjDrawingModel</Message>
+    </Type>
+    <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw" primary="true" start="74" end="74" startBytecode="12" endBytecode="12" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java">
+      <Message>At JVDraw.java:[line 74]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" abbrev="Dm" category="BAD_PRACTICE" instanceHash="a2b435e566b52dba72f3143e83aaed34" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="16" cweid="382">
+    <ShortMessage>Method invokes System.exit(...)</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw11.jvdraw.JVDraw$10.actionPerformed(ActionEvent) invokes System.exit(...), which shuts down the entire virtual machine</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw$10" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw$10" start="330" end="351" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java">
+        <Message>At JVDraw.java:[lines 330-351]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw11.jvdraw.JVDraw$10</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw$10" name="actionPerformed" signature="(Ljava/awt/event/ActionEvent;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw$10" start="333" end="351" startBytecode="0" endBytecode="208" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+      <Message>In method hr.fer.zemris.java.hw11.jvdraw.JVDraw$10.actionPerformed(ActionEvent)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw$10" primary="true" start="339" end="339" startBytecode="52" endBytecode="52" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java">
+      <Message>At JVDraw.java:[line 339]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw$10" start="344" end="344" startBytecode="65" endBytecode="65" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java" role="SOURCE_LINE_ANOTHER_INSTANCE">
+      <Message>Another occurrence at JVDraw.java:[line 344]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.JVDraw$10" start="349" end="349" startBytecode="76" endBytecode="76" sourcefile="JVDraw.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\JVDraw.java" role="SOURCE_LINE_ANOTHER_INSTANCE">
+      <Message>Another occurrence at JVDraw.java:[line 349]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD_STORE" priority="2" abbrev="Se" category="BAD_PRACTICE" instanceHash="2a82c99ea6cd53b3f3ae1003f0ed3535" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="16">
+    <ShortMessage>Non-serializable value stored into instance field of a serializable class</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$1 stored into non-transient field JDrawingCanvas.click</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" start="30" end="248" sourcefile="JDrawingCanvas.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java">
+        <Message>At JDrawingCanvas.java:[lines 30-248]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas</Message>
+    </Class>
+    <Field classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" name="click" signature="Ljava/awt/event/MouseListener;" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" sourcefile="JDrawingCanvas.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java">
+        <Message>In JDrawingCanvas.java</Message>
+      </SourceLine>
+      <Message>Field hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas.click</Message>
+    </Field>
+    <Type descriptor="Lhr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas$1;" role="TYPE_FOUND">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$1" start="95" end="140" sourcefile="JDrawingCanvas.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java">
+        <Message>At JDrawingCanvas.java:[lines 95-140]</Message>
+      </SourceLine>
+      <Message>Actual type hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$1</Message>
+    </Type>
+    <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" primary="true" start="95" end="95" startBytecode="28" endBytecode="28" sourcefile="JDrawingCanvas.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java">
+      <Message>At JDrawingCanvas.java:[line 95]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD_STORE" priority="2" abbrev="Se" category="BAD_PRACTICE" instanceHash="2933bd5d011fc4cbd0ca9791ead2a031" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="16">
+    <ShortMessage>Non-serializable value stored into instance field of a serializable class</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$2 stored into non-transient field JDrawingCanvas.move</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" start="30" end="248" sourcefile="JDrawingCanvas.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java">
+        <Message>At JDrawingCanvas.java:[lines 30-248]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas</Message>
+    </Class>
+    <Field classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" name="move" signature="Ljava/awt/event/MouseMotionListener;" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" sourcefile="JDrawingCanvas.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java">
+        <Message>In JDrawingCanvas.java</Message>
+      </SourceLine>
+      <Message>Field hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas.move</Message>
+    </Field>
+    <Type descriptor="Lhr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas$2;" role="TYPE_FOUND">
+      <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$2" start="143" end="174" sourcefile="JDrawingCanvas.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java">
+        <Message>At JDrawingCanvas.java:[lines 143-174]</Message>
+      </SourceLine>
+      <Message>Actual type hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$2</Message>
+    </Type>
+    <SourceLine classname="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" primary="true" start="143" end="143" startBytecode="40" endBytecode="40" sourcefile="JDrawingCanvas.java" sourcepath="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" relSourcepath="hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java">
+      <Message>At JDrawingCanvas.java:[line 143]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" abbrev="Dm" category="BAD_PRACTICE" instanceHash="f290133ecad498d49514042812e22ae5" instanceOccurrenceNum="0" instanceOccurrenceMax="0" rank="16" cweid="382">
+    <ShortMessage>Method invokes System.exit(...)</ShortMessage>
+    <LongMessage>hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14.actionPerformed(ActionEvent) invokes System.exit(...), which shuts down the entire virtual machine</LongMessage>
+    <Class classname="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14" start="585" end="608" sourcefile="NotepadPP.java" sourcepath="hr/fer/zemris/java/hw11/notepadpp/NotepadPP.java" relSourcepath="hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java">
+        <Message>At NotepadPP.java:[lines 585-608]</Message>
+      </SourceLine>
+      <Message>In class hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14</Message>
+    </Class>
+    <Method classname="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14" name="actionPerformed" signature="(Ljava/awt/event/ActionEvent;)V" isStatic="false" primary="true">
+      <SourceLine classname="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14" start="591" end="608" startBytecode="0" endBytecode="215" sourcefile="NotepadPP.java" sourcepath="hr/fer/zemris/java/hw11/notepadpp/NotepadPP.java" relSourcepath="hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+      <Message>In method hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14.actionPerformed(ActionEvent)</Message>
+    </Method>
+    <SourceLine classname="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14" primary="true" start="597" end="597" startBytecode="68" endBytecode="68" sourcefile="NotepadPP.java" sourcepath="hr/fer/zemris/java/hw11/notepadpp/NotepadPP.java" relSourcepath="hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java">
+      <Message>At NotepadPP.java:[line 597]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14" start="602" end="602" startBytecode="81" endBytecode="81" sourcefile="NotepadPP.java" sourcepath="hr/fer/zemris/java/hw11/notepadpp/NotepadPP.java" relSourcepath="hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java" role="SOURCE_LINE_ANOTHER_INSTANCE">
+      <Message>Another occurrence at NotepadPP.java:[line 602]</Message>
+    </SourceLine>
+    <SourceLine classname="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14" start="607" end="607" startBytecode="89" endBytecode="89" sourcefile="NotepadPP.java" sourcepath="hr/fer/zemris/java/hw11/notepadpp/NotepadPP.java" relSourcepath="hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java" role="SOURCE_LINE_ANOTHER_INSTANCE">
+      <Message>Another occurrence at NotepadPP.java:[line 607]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugCategory category="BAD_PRACTICE">
+    <Description>Bad practice</Description>
+  </BugCategory>
+  <BugPattern type="DM_EXIT" abbrev="Dm" category="BAD_PRACTICE" cweid="382">
+    <ShortDescription>Method invokes System.exit(...)</ShortDescription>
+    <Details><![CDATA[
+
+  <p> Invoking System.exit shuts down the entire Java virtual machine. This
+   should only been done when it is appropriate. Such calls make it
+   hard or impossible for your code to be invoked by other code.
+   Consider throwing a RuntimeException instead.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="OS_OPEN_STREAM" abbrev="OS" category="BAD_PRACTICE">
+    <ShortDescription>Method may fail to close stream</ShortDescription>
+    <Details><![CDATA[
+
+<p> The method creates an IO stream object, does not assign it to any
+fields, pass it to other methods that might close it,
+or return it, and does not appear to close
+the stream on all paths out of the method.&nbsp; This may result in
+a file descriptor leak.&nbsp; It is generally a good
+idea to use a <code>finally</code> block to ensure that streams are
+closed.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="SE_BAD_FIELD_STORE" abbrev="Se" category="BAD_PRACTICE">
+    <ShortDescription>Non-serializable value stored into instance field of a serializable class</ShortDescription>
+    <Details><![CDATA[
+
+<p> A non-serializable value is stored into a non-transient field
+of a serializable class.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugCode abbrev="Se">
+    <Description>Incorrect definition of Serializable class</Description>
+  </BugCode>
+  <BugCode abbrev="Dm">
+    <Description>Dubious method used</Description>
+  </BugCode>
+  <BugCode abbrev="OS">
+    <Description>Stream not closed on all paths</Description>
+  </BugCode>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Sun, 25 May 2014 23:25:17 +0200" total_classes="57" referenced_classes="470" total_bugs="6" total_size="1662" num_packages="8" vm_version="23.7-b01" cpu_seconds="58.20" clock_seconds="36.23" peak_mbytes="223.49" alloc_mbytes="682.69" gc_seconds="1.57" priority_2="6">
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/JVDraw.java" bugCount="3" size="313" bugHash="c15376c9b8ad5a4812df59c06e916ce6"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/component/IColorProvider.java" bugCount="0" size="2"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/component/JColorArea.java" bugCount="0" size="57"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/component/JDrawingCanvas.java" bugCount="2" size="139" bugHash="6a99e8153eacee378dd725164d73338d"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/component/SelectedColorLabel.java" bugCount="0" size="36"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/model/BoundingBox.java" bugCount="0" size="18"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/model/DrawingObjectListModel.java" bugCount="0" size="39"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/model/GeomObjDrawingModel.java" bugCount="0" size="98"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/objects/Circle.java" bugCount="0" size="88"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/objects/DrawingModel.java" bugCount="0" size="18"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/objects/FilledCircle.java" bugCount="0" size="101"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/objects/GeometricalObject.java" bugCount="0" size="35"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/objects/Line.java" bugCount="0" size="111"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/observers/ColorChangeListener.java" bugCount="0" size="2"/>
+    <FileStats path="hr/fer/zemris/java/hw11/jvdraw/observers/DrawingModelListener.java" bugCount="0" size="4"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/NotepadPP.java" bugCount="1" size="428" bugHash="9444edfa6ad21816816d475fb04727cc"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/AbstractLocalizationProvider.java" bugCount="0" size="21"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/ILocalizationListener.java" bugCount="0" size="2"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/ILocalizationProvider.java" bugCount="0" size="4"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/LocalizationProvider.java" bugCount="0" size="23"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/LocalizationProviderBridge.java" bugCount="0" size="37"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/swing/FormLocalizationProvider.java" bugCount="0" size="21"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/swing/LJMenu.java" bugCount="0" size="21"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/swing/LJToolBar.java" bugCount="0" size="21"/>
+    <FileStats path="hr/fer/zemris/java/hw11/notepadpp/local/swing/LocalizableAction.java" bugCount="0" size="23"/>
+    <PackageStats package="hr.fer.zemris.java.hw11.jvdraw" total_bugs="3" total_types="11" total_size="313" priority_2="3">
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw" sourceFile="JVDraw.java" interface="false" size="165" bugs="2" priority_2="2"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$1" sourceFile="JVDraw.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$10" sourceFile="JVDraw.java" interface="false" size="19" bugs="1" priority_2="1"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$2" sourceFile="JVDraw.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$3" sourceFile="JVDraw.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$4" sourceFile="JVDraw.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$5" sourceFile="JVDraw.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$6" sourceFile="JVDraw.java" interface="false" size="21" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$7" sourceFile="JVDraw.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$8" sourceFile="JVDraw.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.JVDraw$9" sourceFile="JVDraw.java" interface="false" size="24" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.hw11.jvdraw.component" total_bugs="2" total_types="7" total_size="234" priority_2="2">
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.component.IColorProvider" sourceFile="IColorProvider.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.component.JColorArea" sourceFile="JColorArea.java" interface="false" size="43" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.component.JColorArea$1" sourceFile="JColorArea.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas" sourceFile="JDrawingCanvas.java" interface="false" size="91" bugs="2" priority_2="2"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$1" sourceFile="JDrawingCanvas.java" interface="false" size="30" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas$2" sourceFile="JDrawingCanvas.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.component.SelectedColorLabel" sourceFile="SelectedColorLabel.java" interface="false" size="36" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.hw11.jvdraw.model" total_bugs="0" total_types="3" total_size="155">
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.model.BoundingBox" sourceFile="BoundingBox.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.model.DrawingObjectListModel" sourceFile="DrawingObjectListModel.java" interface="false" size="39" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.model.GeomObjDrawingModel" sourceFile="GeomObjDrawingModel.java" interface="false" size="98" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.hw11.jvdraw.objects" total_bugs="0" total_types="5" total_size="353">
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.objects.Circle" sourceFile="Circle.java" interface="false" size="88" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel" sourceFile="DrawingModel.java" interface="true" size="18" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.objects.FilledCircle" sourceFile="FilledCircle.java" interface="false" size="101" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject" sourceFile="GeometricalObject.java" interface="false" size="35" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.objects.Line" sourceFile="Line.java" interface="false" size="111" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.hw11.jvdraw.observers" total_bugs="0" total_types="2" total_size="6">
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.observers.ColorChangeListener" sourceFile="ColorChangeListener.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener" sourceFile="DrawingModelListener.java" interface="true" size="4" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.hw11.notepadpp" total_bugs="1" total_types="16" total_size="428" priority_2="1">
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP" sourceFile="NotepadPP.java" interface="false" size="159" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$1" sourceFile="NotepadPP.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$10" sourceFile="NotepadPP.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$11" sourceFile="NotepadPP.java" interface="false" size="29" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$12" sourceFile="NotepadPP.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$13" sourceFile="NotepadPP.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$14" sourceFile="NotepadPP.java" interface="false" size="18" bugs="1" priority_2="1"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$15" sourceFile="NotepadPP.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$2" sourceFile="NotepadPP.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$3" sourceFile="NotepadPP.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$4" sourceFile="NotepadPP.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$5" sourceFile="NotepadPP.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$6" sourceFile="NotepadPP.java" interface="false" size="21" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$7" sourceFile="NotepadPP.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$8" sourceFile="NotepadPP.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.NotepadPP$9" sourceFile="NotepadPP.java" interface="false" size="19" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.hw11.notepadpp.local" total_bugs="0" total_types="6" total_size="87">
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.AbstractLocalizationProvider" sourceFile="AbstractLocalizationProvider.java" interface="false" size="21" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationListener" sourceFile="ILocalizationListener.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationProvider" sourceFile="ILocalizationProvider.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.LocalizationProvider" sourceFile="LocalizationProvider.java" interface="false" size="23" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.LocalizationProviderBridge" sourceFile="LocalizationProviderBridge.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.LocalizationProviderBridge$1" sourceFile="LocalizationProviderBridge.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="hr.fer.zemris.java.hw11.notepadpp.local.swing" total_bugs="0" total_types="7" total_size="86">
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.swing.FormLocalizationProvider" sourceFile="FormLocalizationProvider.java" interface="false" size="21" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.swing.LJMenu" sourceFile="LJMenu.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.swing.LJMenu$1" sourceFile="LJMenu.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.swing.LJToolBar" sourceFile="LJToolBar.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.swing.LJToolBar$1" sourceFile="LJToolBar.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.swing.LocalizableAction" sourceFile="LocalizableAction.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="hr.fer.zemris.java.hw11.notepadpp.local.swing.LocalizableAction$1" sourceFile="LocalizableAction.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="4521" invocations="470" avgMicrosecondsPerInvocation="9620" maxMicrosecondsPerInvocation="1029364" standardDeviationMircosecondsPerInvocation="64531"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="4450" invocations="1742" avgMicrosecondsPerInvocation="2554" maxMicrosecondsPerInvocation="980581" standardDeviationMircosecondsPerInvocation="27014"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="3556" invocations="1045" avgMicrosecondsPerInvocation="3402" maxMicrosecondsPerInvocation="896738" standardDeviationMircosecondsPerInvocation="38967"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="2116" invocations="534" avgMicrosecondsPerInvocation="3963" maxMicrosecondsPerInvocation="1128274" standardDeviationMircosecondsPerInvocation="51978"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="1387" invocations="1746" avgMicrosecondsPerInvocation="794" maxMicrosecondsPerInvocation="85852" standardDeviationMircosecondsPerInvocation="3061"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="1228" invocations="230" avgMicrosecondsPerInvocation="5342" maxMicrosecondsPerInvocation="266533" standardDeviationMircosecondsPerInvocation="23121"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="1211" invocations="241" avgMicrosecondsPerInvocation="5028" maxMicrosecondsPerInvocation="331590" standardDeviationMircosecondsPerInvocation="26196"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="1205" invocations="231" avgMicrosecondsPerInvocation="5219" maxMicrosecondsPerInvocation="237389" standardDeviationMircosecondsPerInvocation="22318"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="1108" invocations="470" avgMicrosecondsPerInvocation="2359" maxMicrosecondsPerInvocation="570394" standardDeviationMircosecondsPerInvocation="30078"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="1057" invocations="231" avgMicrosecondsPerInvocation="4576" maxMicrosecondsPerInvocation="445987" standardDeviationMircosecondsPerInvocation="30554"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="947" invocations="158" avgMicrosecondsPerInvocation="5995" maxMicrosecondsPerInvocation="543016" standardDeviationMircosecondsPerInvocation="44326"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="933" invocations="230" avgMicrosecondsPerInvocation="4058" maxMicrosecondsPerInvocation="138386" standardDeviationMircosecondsPerInvocation="13590"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="822" invocations="1695" avgMicrosecondsPerInvocation="485" maxMicrosecondsPerInvocation="539853" standardDeviationMircosecondsPerInvocation="13120"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="717" invocations="245" avgMicrosecondsPerInvocation="2930" maxMicrosecondsPerInvocation="97609" standardDeviationMircosecondsPerInvocation="9747"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="715" invocations="470" avgMicrosecondsPerInvocation="1521" maxMicrosecondsPerInvocation="168576" standardDeviationMircosecondsPerInvocation="10098"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

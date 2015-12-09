@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FilterSpecs.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw5</a> &gt; <span class="el_source">FilterSpecs.java</span></div><h1>FilterSpecs.java</h1><pre class="source lang-java linenums">/**
+ * Package holding all the classes needed to implement the operation dir for Java 4th homework
+ */
+package hr.fer.zemris.java.tecaj.hw5;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+/**
+ * Class used to support the printing of the files that fulfill only the given filters. Class also supports negative
+ * specifications.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L20">public class FilterSpecs {</span>
+	
+	/**
+	 * List of supported filter specifications that must be followed by numbers.
+	 * s - size, only files with size lower or equal to the number following this specification fulfill it
+	 * l - name length, only files with name length lower or equal to the number following this specification 
+	 * 		fulfill it
+	 */
+<span class="nc" id="L28">	private static List&lt;String&gt; listOfAcceptedFiltersWithNumbers = Arrays.asList(new String[]{</span>
+											&quot;s&quot;, 
+											&quot;l&quot;
+											});
+	
+	/**
+	 * List of supported filter specifications that must stand alone.
+	 * f - file type, only files fulfill it, directories don't
+	 * e - extension, only files with extension fulfill it, directories don't by default
+	 */
+<span class="nc" id="L38">	private static List&lt;String&gt; listOfAcceptedFiltersWithoutNumbers = Arrays.asList(new String[]{</span>
+											&quot;f&quot;,
+											&quot;e&quot;
+											});
+	
+	/**
+	 * Method used to determine which filter was requested by the user.
+	 * 
+	 * @param argument string representing the requested filter
+	 * @param filterSpecs map of all of the filter specifications processed until now
+	 * @return returns the same given map of the processed filter specifications with the new one added
+	 */
+	public static Map&lt;String, Integer&gt; createFilterSpec(String argument, Map&lt;String, Integer&gt; filterSpecs) {
+<span class="nc" id="L51">		String filter = argument.split(&quot;:&quot;)[1];</span>
+<span class="nc" id="L52">		boolean negative = false;</span>
+<span class="nc" id="L53">		String shortFilter = new String(filter);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		if(filter.matches(&quot;-[a-zA-Z]+[0-9]*&quot;)) {</span>
+<span class="nc" id="L55">			negative = true;</span>
+<span class="nc" id="L56">			shortFilter = filter.substring(1);</span>
+		}
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		if(shortFilter.matches(&quot;[a-zA-Z]&quot;)) {</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">			if(!listOfAcceptedFiltersWithoutNumbers.contains(shortFilter)) {</span>
+<span class="nc" id="L60">				System.out.println(&quot;Unsupported specification: -f:&quot; + filter);</span>
+<span class="nc" id="L61">				System.exit(-1);</span>
+			} else {
+<span class="nc bnc" id="L63" title="All 2 branches missed.">				if(negative) {</span>
+<span class="nc" id="L64">					filterSpecs.put(&quot;-&quot;+shortFilter, 0);</span>
+				} else {
+<span class="nc" id="L66">					filterSpecs.put(shortFilter, 0);</span>
+				}
+			}
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		} else if(shortFilter.matches(&quot;[a-zA-Z][0-9]+&quot;)) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">			if(!listOfAcceptedFiltersWithNumbers.contains(shortFilter.substring(0, 1))) {</span>
+<span class="nc" id="L71">				System.out.println(&quot;Unsupported specification: -f:&quot; + filter);</span>
+<span class="nc" id="L72">				System.exit(-1);</span>
+			} else {
+<span class="nc bnc" id="L74" title="All 2 branches missed.">				if(negative) {</span>
+<span class="nc" id="L75">					filterSpecs.put(&quot;-&quot;+shortFilter.substring(0, 1), </span>
+							Integer.parseInt(shortFilter.substring(1)));
+				} else {
+<span class="nc" id="L78">					filterSpecs.put(shortFilter.substring(0, 1), </span>
+						Integer.parseInt(shortFilter.substring(1)));
+				}
+			}
+		}
+<span class="nc" id="L83">		return filterSpecs;</span>
+	}
+	
+	/**
+	 * Method used to filter the subfiles of the given directory.
+	 * 
+	 * @param listOfSubFiles the list of subfiles to be filtered
+	 * @param listOfFilterSpecs list of user-given filter specifications
+	 * @return returns the filtered list of subfiles
+	 */
+	public static List&lt;File&gt; filterSubFiles(List&lt;File&gt; listOfSubFiles, Map&lt;String, Integer&gt; listOfFilterSpecs) {
+<span class="nc" id="L94">		List&lt;File&gt; listOfAcceptedFiles = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		for(File subFile: listOfSubFiles) {</span>
+<span class="nc" id="L96">			boolean fulfilsAll = true;</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">			for(Entry&lt;String, Integer&gt; filterSpec: listOfFilterSpecs.entrySet()) {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">				if(!fileFulfilsFilterSpec(subFile, filterSpec)) {</span>
+<span class="nc" id="L99">					fulfilsAll = false;</span>
+				}
+<span class="nc" id="L101">			}</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">			if(fulfilsAll) {</span>
+<span class="nc" id="L103">				listOfAcceptedFiles.add(subFile);</span>
+			}
+<span class="nc" id="L105">		}</span>
+<span class="nc" id="L106">		return listOfAcceptedFiles;</span>
+	}
+	
+	/**
+	 * Method used to check whether the given file fulfills the given filter specification.
+	 * 
+	 * @param file the file to be checked
+	 * @param filterSpec the filter specification the file needs to fulfill
+	 * @return returns true if the file fulfills it, false otherwise
+	 */
+	private static boolean fileFulfilsFilterSpec(File file, Entry&lt;String, Integer&gt; filterSpec) {
+<span class="nc" id="L117">		boolean negative = false;</span>
+<span class="nc" id="L118">		String filter = filterSpec.getKey();</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">		if(filterSpec.getKey().startsWith(&quot;-&quot;)) {</span>
+<span class="nc" id="L120">			negative = true;</span>
+<span class="nc" id="L121">			filter = filterSpec.getKey().substring(1);</span>
+		}
+<span class="nc" id="L123">		boolean returnValue = false;</span>
+<span class="nc bnc" id="L124" title="All 18 branches missed.">		switch(filter) {</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">				case &quot;s&quot;:	if(file.length() &lt;= filterSpec.getValue()) {</span>
+<span class="nc" id="L126">								returnValue = true;</span>
+							} else {
+<span class="nc" id="L128">								returnValue = false;</span>
+							}
+<span class="nc" id="L130">							break;</span>
+					
+<span class="nc bnc" id="L132" title="All 2 branches missed.">				case &quot;f&quot;:	if(file.isFile()) {</span>
+<span class="nc" id="L133">								returnValue = true;</span>
+							} else {
+<span class="nc" id="L135">								returnValue = false;</span>
+							}
+<span class="nc" id="L137">							break;</span>
+					
+<span class="nc bnc" id="L139" title="All 2 branches missed.">				case &quot;l&quot;:	if(file.getName().length() &lt;= filterSpec.getValue()) {</span>
+<span class="nc" id="L140">								returnValue = true;</span>
+							} else {
+<span class="nc" id="L142">								returnValue = false;</span>
+							}
+<span class="nc" id="L144">							break;</span>
+					
+<span class="nc bnc" id="L146" title="All 4 branches missed.">				case &quot;e&quot;:	if(file.isFile() &amp;&amp; file.getName().contains(&quot;.&quot;)) {</span>
+<span class="nc" id="L147">								returnValue = true;</span>
+							} else {
+<span class="nc" id="L149">								returnValue = false;</span>
+							}
+							break;
+		}
+<span class="nc bnc" id="L153" title="All 2 branches missed.">		if(negative) {</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">			return !returnValue;</span>
+		}
+<span class="nc" id="L156">		return returnValue;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

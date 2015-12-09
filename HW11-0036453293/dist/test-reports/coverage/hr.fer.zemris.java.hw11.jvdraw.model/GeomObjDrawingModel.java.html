@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GeomObjDrawingModel.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW11</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw11.jvdraw.model</a> &gt; <span class="el_source">GeomObjDrawingModel.java</span></div><h1>GeomObjDrawingModel.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw11.jvdraw.model;
+
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
+import hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel;
+import hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject;
+import hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener;
+
+/**
+ * Class used to hold all the components that the user has drawn. It provides the methods to update and remove
+ * the components and each time some change happens all the registered listeners are informed about it.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class GeomObjDrawingModel implements DrawingModel {
+	
+	private List&lt;GeometricalObject&gt; listOfObjects;
+	private List&lt;DrawingModelListener&gt; listeners;
+	private int numberOfLines;
+	private int numberOfCircles;
+	private int numberOfFilledCircles;
+	private boolean modified;
+	
+	/**
+	 * Class constructor. Constructor takes no arguments.
+	 */
+<span class="nc" id="L30">	public GeomObjDrawingModel() {</span>
+<span class="nc" id="L31">		this.listOfObjects = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L32">		this.listeners = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L33">		this.numberOfLines = 0;</span>
+<span class="nc" id="L34">		this.numberOfCircles = 0;</span>
+<span class="nc" id="L35">		this.numberOfFilledCircles = 0;</span>
+<span class="nc" id="L36">		this.modified = false;</span>
+<span class="nc" id="L37">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#getSize()
+	 */
+	@Override
+	public int getSize() {
+<span class="nc" id="L44">		return this.listOfObjects.size();</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#getObject(int)
+	 */
+	@Override
+	public GeometricalObject getObject(int index) {
+<span class="nc" id="L52">		return this.listOfObjects.get(index);</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#add(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject)
+	 */
+	@Override
+	public void add(GeometricalObject object) {
+<span class="nc" id="L61">		this.listOfObjects.add(object);</span>
+<span class="nc" id="L62">		this.modified = true;</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		for(DrawingModelListener listener: listeners) {</span>
+<span class="nc" id="L64">			listener.objectsAdded(this, listOfObjects.size() - 1, listOfObjects.size() - 1);</span>
+<span class="nc" id="L65">		}</span>
+<span class="nc" id="L66">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#remove(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject)
+	 */
+	@Override
+	public void remove(GeometricalObject object) {
+<span class="nc" id="L74">		this.listOfObjects.remove(object);</span>
+<span class="nc" id="L75">		this.modified = true;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">		for(DrawingModelListener listener: listeners) {</span>
+<span class="nc" id="L77">			listener.objectsRemoved(this, listOfObjects.size(), listOfObjects.size());</span>
+<span class="nc" id="L78">		}</span>
+<span class="nc" id="L79">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#update(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject, hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject)
+	 */
+	@Override
+	public void update(GeometricalObject oldObj, GeometricalObject newObj) {
+		int index;
+<span class="nc bnc" id="L88" title="All 2 branches missed.">		if(oldObj.equals(newObj)) {</span>
+<span class="nc" id="L89">			return;</span>
+		}
+<span class="nc bnc" id="L91" title="All 2 branches missed.">		if(this.listOfObjects.contains(oldObj)) {</span>
+<span class="nc" id="L92">			index = listOfObjects.indexOf(oldObj);</span>
+<span class="nc" id="L93">			listOfObjects.remove(index);</span>
+<span class="nc" id="L94">			listOfObjects.add(index, newObj);</span>
+<span class="nc" id="L95">			this.modified = true;</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">			for(DrawingModelListener listener: listeners) {</span>
+<span class="nc" id="L97">				listener.objectsChanged(this, index, index);</span>
+<span class="nc" id="L98">			}</span>
+		}
+<span class="nc" id="L100">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#minBoundingBox()
+	 */
+	public BoundingBox minBoundingBox() {
+<span class="nc" id="L106">		BoundingBox boundingBox = null;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">		for(GeometricalObject object: listOfObjects) {</span>
+<span class="nc" id="L108">			BoundingBox temp = object.getBoundingBox();</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">			if(boundingBox == null) {</span>
+<span class="nc" id="L110">				boundingBox = temp;</span>
+			} else {
+<span class="nc bnc" id="L112" title="All 2 branches missed.">				int x1 = boundingBox.getX1() &lt; temp.getX1() ? boundingBox.getX1() : temp.getX1();</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">				int y1 = boundingBox.getY1() &lt; temp.getY1() ? boundingBox.getY1() : temp.getY1();</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">				int x2 = boundingBox.getX2() &gt; temp.getX2() ? boundingBox.getX2() : temp.getX2();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">				int y2 = boundingBox.getY2() &gt; temp.getY2() ? boundingBox.getY2() : temp.getY2();</span>
+<span class="nc" id="L116">				boundingBox = new BoundingBox(new Point(x1, y1), new Point(x2, y2));</span>
+			}
+<span class="nc" id="L118">		}</span>
+<span class="nc" id="L119">		return boundingBox;</span>
+	}
+	
+	/**)
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#clear()
+	 */
+	@Override
+	public void clear() {
+<span class="nc" id="L127">		this.listOfObjects = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L128">		this.numberOfLines = 0;</span>
+<span class="nc" id="L129">		this.numberOfCircles = 0;</span>
+<span class="nc" id="L130">		this.numberOfFilledCircles = 0;</span>
+<span class="nc" id="L131">		this.modified = true;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">		for(DrawingModelListener listener: listeners) {</span>
+<span class="nc" id="L133">			listener.objectsRemoved(this, listOfObjects.size(), listOfObjects.size());</span>
+<span class="nc" id="L134">		}</span>
+<span class="nc" id="L135">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#getModified()
+	 */
+	@Override
+	public boolean getModified() {
+<span class="nc" id="L142">		return this.modified;</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#setModified(boolean)
+	 */
+	@Override
+	public void setModified(boolean value) {
+<span class="nc" id="L150">		this.modified = value;</span>
+<span class="nc" id="L151">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#addDrawingModelListener(
+	 * hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener)
+	 */
+	@Override
+	public void addDrawingModelListener(DrawingModelListener l) {
+<span class="nc bnc" id="L159" title="All 2 branches missed.">		if(!listeners.contains(l)) {</span>
+<span class="nc" id="L160">			listeners = new ArrayList&lt;&gt;(listeners);</span>
+<span class="nc" id="L161">			listeners.add(l);</span>
+		}
+<span class="nc" id="L163">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#removeDrawingModelListener(
+	 * hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener)
+	 */
+	@Override
+	public void removeDrawingModelListener(DrawingModelListener l) {
+<span class="nc" id="L171">		listeners = new ArrayList&lt;&gt;(listeners);</span>
+<span class="nc" id="L172">		listeners.remove(l);</span>
+<span class="nc" id="L173">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#numberOfLines()
+	 */
+	@Override
+	public int numberOfLines() {
+<span class="nc" id="L180">		return this.numberOfLines;</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#numberOfCircles()
+	 */
+	@Override
+	public int numberOfCircles() {
+<span class="nc" id="L188">		return this.numberOfCircles;</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#numberOfFilledCircles()
+	 */
+	@Override
+	public int numberOfFilledCircles() {
+<span class="nc" id="L196">		return this.numberOfFilledCircles;</span>
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#setNumberOfLines()
+	 */
+	public void setNumberOfLines() {
+<span class="nc" id="L203">		this.numberOfLines++;</span>
+<span class="nc" id="L204">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#setNumberOfCircles()
+	 */
+	public void setNumberOfCircles() {
+<span class="nc" id="L210">		this.numberOfCircles++;</span>
+<span class="nc" id="L211">	}</span>
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#setNumberOfFilledCircles()
+	 */
+	public void setNumberOfFilledCircles() {
+<span class="nc" id="L217">		this.numberOfFilledCircles++;</span>
+<span class="nc" id="L218">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

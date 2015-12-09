@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GlasanjeXLSServlet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW13</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw13.servlets</a> &gt; <span class="el_source">GlasanjeXLSServlet.java</span></div><h1>GlasanjeXLSServlet.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw13.servlets;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+/**
+ * Servlet used to create a Microsoft excel file with voting results.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L27">public class GlasanjeXLSServlet extends HttpServlet {</span>
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method reads the files containing the voting results and band information and creates a Microsoft
+	 * excel file.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+<span class="nc" id="L42">		String fileName = req.getServletContext().getRealPath(&quot;/WEB-INF/glasanje-rezultati.txt&quot;);</span>
+<span class="nc" id="L43">		Map&lt;String, Integer&gt; bandVotes = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L44">		BufferedReader in = new BufferedReader(</span>
+<span class="nc" id="L45">				new InputStreamReader(new FileInputStream(fileName), &quot;UTF-8&quot;));</span>
+		String line;
+		
+<span class="nc bnc" id="L48" title="All 2 branches missed.">		while((line = in.readLine()) != null) {</span>
+<span class="nc" id="L49">			String[] splitLine = line.split(&quot;\t&quot;);</span>
+<span class="nc" id="L50">			bandVotes.put(splitLine[0], Integer.parseInt(splitLine[1]));</span>
+		}
+<span class="nc" id="L52">		in.close();</span>
+		
+<span class="nc" id="L54">		String bandInfoFile = req.getServletContext().getRealPath(&quot;/WEB-INF/glasanje-definicija.txt&quot;);</span>
+<span class="nc" id="L55">		Map&lt;String, String&gt; bandInfo = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L56">		in = new BufferedReader(</span>
+<span class="nc" id="L57">				new InputStreamReader(new FileInputStream(bandInfoFile), &quot;UTF-8&quot;));</span>
+		
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		while((line = in.readLine()) != null) {</span>
+<span class="nc" id="L60">			String[] splitLine = line.split(&quot;\t&quot;);</span>
+<span class="nc" id="L61">			bandInfo.put(splitLine[0], splitLine[1]);</span>
+		}
+<span class="nc" id="L63">		in.close();</span>
+		
+<span class="nc" id="L65">		Map&lt;String, Integer&gt; mapOfVotes = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">		for(String bandID: bandInfo.keySet()) {</span>
+<span class="nc" id="L67">			mapOfVotes.put(bandInfo.get(bandID), bandVotes.get(bandID));</span>
+		}
+		
+<span class="nc" id="L70">		HSSFWorkbook hwb = new HSSFWorkbook();</span>
+<span class="nc" id="L71">		HSSFSheet sheet =  hwb.createSheet(&quot;Band votes&quot;);</span>
+<span class="nc" id="L72">		HSSFRow rowhead = sheet.createRow(0);</span>
+<span class="nc" id="L73">		rowhead.createCell(0).setCellValue(&quot;Band name&quot;);</span>
+<span class="nc" id="L74">		rowhead.createCell(1).setCellValue(&quot;Number of votes&quot;);</span>
+<span class="nc" id="L75">		int i = 1;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">		for(String band: mapOfVotes.keySet()) {</span>
+<span class="nc" id="L77">			HSSFRow row = sheet.createRow(i);</span>
+<span class="nc" id="L78">			row.createCell(0).setCellValue(band);</span>
+<span class="nc" id="L79">			row.createCell(1).setCellValue(mapOfVotes.get(band));</span>
+<span class="nc" id="L80">			i++;</span>
+		}
+<span class="nc bnc" id="L82" title="All 2 branches missed.">		for(int j = 0; j &lt; i; j++) {</span>
+<span class="nc" id="L83">			sheet.autoSizeColumn(j);</span>
+		}
+		
+<span class="nc" id="L86">		resp.setContentType(&quot;application/vnd.ms-excel; charset=UTF-8&quot;);</span>
+<span class="nc" id="L87">		resp.setHeader(&quot;Content-Disposition&quot;, &quot;inline&quot;);</span>
+		
+<span class="nc" id="L89">		ServletOutputStream fileOut =  resp.getOutputStream();</span>
+<span class="nc" id="L90">		hwb.write(fileOut);</span>
+<span class="nc" id="L91">		fileOut.close();</span>
+<span class="nc" id="L92">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

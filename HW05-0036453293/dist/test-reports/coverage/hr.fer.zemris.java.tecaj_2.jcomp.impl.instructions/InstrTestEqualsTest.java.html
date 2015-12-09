@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>InstrTestEqualsTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions</a> &gt; <span class="el_source">InstrTestEqualsTest.java</span></div><h1>InstrTestEqualsTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.Computer;
+import hr.fer.zemris.java.tecaj_2.jcomp.InstructionArgument;
+import hr.fer.zemris.java.tecaj_2.jcomp.Memory;
+import hr.fer.zemris.java.tecaj_2.jcomp.Registers;
+import hr.fer.zemris.java.tecaj_2.jcomp.impl.InstructionArgumentImpl;
+
+import org.junit.Test;
+import org.mockito.Mockito;
+
+<span class="fc" id="L15">public class InstrTestEqualsTest {</span>
+	
+<span class="fc" id="L17">	Computer c = Mockito.mock(Computer.class); </span>
+<span class="fc" id="L18">	Registers r = Mockito.mock(Registers.class);</span>
+<span class="fc" id="L19">	Memory m = Mockito.mock(Memory.class);</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void TestEqualsTestException1() {
+<span class="nc" id="L23">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L24">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="nc" id="L25">		arguments.add(new InstructionArgumentImpl(1, true));</span>
+<span class="nc" id="L26">		arguments.add(new InstructionArgumentImpl(2, true));</span>
+<span class="nc" id="L27">		new InstrTestEquals(arguments).execute(c);</span>
+<span class="nc" id="L28">	}</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void TestEqualsTestException2() {
+<span class="nc" id="L32">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L33">		arguments.add(new InstructionArgumentImpl(0, false));</span>
+<span class="nc" id="L34">		arguments.add(new InstructionArgumentImpl(1, true));</span>
+<span class="nc" id="L35">		new InstrTestEquals(arguments).execute(c);</span>
+<span class="nc" id="L36">	}</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void TestEqualsTestException3() {
+<span class="nc" id="L40">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L41">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="nc" id="L42">		arguments.add(new InstructionArgumentImpl(1, false));</span>
+<span class="nc" id="L43">		new InstrTestEquals(arguments).execute(c);</span>
+<span class="nc" id="L44">	}</span>
+	
+	@Test
+	public void TestEqualsTest1() {
+<span class="fc" id="L48">		Mockito.when(c.getRegisters()).thenReturn(r);</span>
+<span class="fc" id="L49">		Mockito.when(r.getRegisterValue(0)).thenReturn(0);</span>
+<span class="fc" id="L50">		Mockito.when(r.getRegisterValue(1)).thenReturn(0);</span>
+<span class="fc" id="L51">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L52">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="fc" id="L53">		arguments.add(new InstructionArgumentImpl(1, true));</span>
+<span class="fc" id="L54">		new InstrTestEquals(arguments).execute(c);</span>
+<span class="fc" id="L55">		Mockito.verify(r).setFlag(true);</span>
+<span class="fc" id="L56">	}</span>
+	
+	@Test
+	public void TestEqualsTest2() {
+<span class="fc" id="L60">		Mockito.when(c.getRegisters()).thenReturn(r);</span>
+<span class="fc" id="L61">		Mockito.when(r.getRegisterValue(0)).thenReturn(0);</span>
+<span class="fc" id="L62">		Mockito.when(r.getRegisterValue(1)).thenReturn(5);</span>
+<span class="fc" id="L63">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L64">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="fc" id="L65">		arguments.add(new InstructionArgumentImpl(1, true));</span>
+<span class="fc" id="L66">		new InstrTestEquals(arguments).execute(c);</span>
+<span class="fc" id="L67">		Mockito.verify(r).setFlag(false);</span>
+<span class="fc" id="L68">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

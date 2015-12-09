@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PieChartServlet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW13</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw13.servlets</a> &gt; <span class="el_source">PieChartServlet.java</span></div><h1>PieChartServlet.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw13.servlets;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartRenderingInfo;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+import org.jfree.util.Rotation;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet used to create a demonstration Pie Chart for Java 13th homework.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L26">public class PieChartServlet extends HttpServlet {</span>
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see javax.servlet.http.HttpServlet#doGet(
+	 * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * 
+	 * Method creates a pie chart of OS usage and returns it as a response.
+	 */
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+<span class="nc" id="L40">		resp.setContentType(&quot;image/png&quot;);</span>
+		
+		// This will create the dataset 
+<span class="nc" id="L43">        PieDataset dataset = createDataset();</span>
+        // based on the dataset we create the chart
+<span class="nc" id="L45">        JFreeChart chart = createChart(dataset, &quot;&quot;);</span>
+<span class="nc" id="L46">        BufferedImage image = chart.createBufferedImage(500, 270, new ChartRenderingInfo());</span>
+<span class="nc" id="L47">        ImageIO.write(image, &quot;png&quot;, resp.getOutputStream());</span>
+<span class="nc" id="L48">	}</span>
+	
+	private  PieDataset createDataset() {
+<span class="nc" id="L51">		DefaultPieDataset result = new DefaultPieDataset();</span>
+<span class="nc" id="L52">		result.setValue(&quot;Linux&quot;, 29);</span>
+<span class="nc" id="L53">		result.setValue(&quot;Mac&quot;, 20);</span>
+<span class="nc" id="L54">		result.setValue(&quot;Windows&quot;, 51);</span>
+<span class="nc" id="L55">		return result;</span>
+		}
+	
+	private JFreeChart createChart(PieDataset dataset, String title) {
+<span class="nc" id="L59">		JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);</span>
+		
+<span class="nc" id="L61">		PiePlot3D plot = (PiePlot3D) chart.getPlot();</span>
+<span class="nc" id="L62">		plot.setStartAngle(290);</span>
+<span class="nc" id="L63">		plot.setDirection(Rotation.CLOCKWISE);</span>
+<span class="nc" id="L64">		plot.setForegroundAlpha(0.5f);</span>
+<span class="nc" id="L65">		return chart;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

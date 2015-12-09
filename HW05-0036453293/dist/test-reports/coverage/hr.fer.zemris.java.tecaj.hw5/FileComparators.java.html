@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FileComparators.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw5</a> &gt; <span class="el_source">FileComparators.java</span></div><h1>FileComparators.java</h1><pre class="source lang-java linenums">/**
+ * Package holding all the classes needed to implement the operation dir for Java 4th homework
+ */
+package hr.fer.zemris.java.tecaj.hw5;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+/**
+ * Class used to support the ordering of the files that are to be printed. Class also supports negative
+ * specifications.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L20">public class FileComparators {</span>
+	
+	private static final int POSITIVE_CONSTANT = 10;
+	private static final int NEGATIVE_CONSTANT = -10;
+	
+	/**
+	 * List of supported ordering specifications.
+	 * s - size, smaller ones 1st
+	 * n - name, lexicographically lower ones 1st
+	 * m - time of last modification, earlier 1st
+	 * t - type of file, directories 1st
+	 * l - name length, shorter 1st
+	 * e - can/can't be executed, the ones that can be executed are printed 1st
+	 */
+<span class="nc" id="L34">	private static List&lt;String&gt; listOfAcceptedSpecs = Arrays.asList(new String[]{</span>
+											&quot;s&quot;, 
+											&quot;n&quot;,
+											&quot;m&quot;,
+											&quot;t&quot;, 
+											&quot;l&quot;, 
+											&quot;e&quot;
+											});
+	
+	
+	/**
+	 * Comparator used to compare by size, specification &quot;s&quot;.
+	 */
+<span class="nc" id="L47">	public static final Comparator&lt;File&gt; BY_SIZE = new Comparator&lt;File&gt;() {</span>
+		
+		@Override
+		public int compare(File f1, File f2) {
+<span class="nc" id="L51">			return Long.compare(f1.length(), f2.length());</span>
+		}
+	};
+	
+	/**
+	 * Comparator used to compare by name, specification &quot;n&quot;.
+	 */
+<span class="nc" id="L58">	public static final Comparator&lt;File&gt; BY_NAME = new Comparator&lt;File&gt;() {</span>
+		
+		@Override
+		public int compare(File f1, File f2) {
+<span class="nc" id="L62">			return f1.getName().compareTo(f2.getName());</span>
+		}
+	};
+	
+	/**
+	 * Comparator used to compare by last modification, specification &quot;m&quot;.
+	 */
+<span class="nc" id="L69">	public static final Comparator&lt;File&gt; BY_LAST_MODIFIED = new Comparator&lt;File&gt;() {</span>
+		
+		@Override
+		public int compare(File f1, File f2) {
+<span class="nc" id="L73">			return ((Long)f1.lastModified()).compareTo((Long)f2.lastModified());</span>
+		}
+	};
+	
+	/**
+	 * Comparator used to compare by file type, specification &quot;t&quot;.
+	 */
+<span class="nc" id="L80">	public static final Comparator&lt;File&gt; BY_TYPE = new Comparator&lt;File&gt;() {</span>
+		
+		@Override
+		public int compare(File f1, File f2) {
+<span class="nc bnc" id="L84" title="All 4 branches missed.">			if(f1.isDirectory() &amp;&amp; f2.isFile()) {</span>
+<span class="nc" id="L85">				return NEGATIVE_CONSTANT;</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">			} else if(f1.isFile() &amp;&amp; f2.isDirectory()) {</span>
+<span class="nc" id="L87">				return POSITIVE_CONSTANT;</span>
+			} else {
+<span class="nc" id="L89">				return 0;</span>
+			}
+		}
+	};
+	
+	/**
+	 * Comparator used to compare by name length, specification &quot;l&quot;.
+	 */
+<span class="nc" id="L97">	public static final Comparator&lt;File&gt; BY_NAME_LENGTH = new Comparator&lt;File&gt;() {</span>
+		
+		@Override
+		public int compare(File f1, File f2) {
+<span class="nc bnc" id="L101" title="All 2 branches missed.">			if(f1.getName().length() &lt; f2.getName().length()) {</span>
+<span class="nc" id="L102">				return NEGATIVE_CONSTANT;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">			} else if(f1.getName().length() &gt; f2.getName().length()) {</span>
+<span class="nc" id="L104">				return POSITIVE_CONSTANT;</span>
+			} else {
+<span class="nc" id="L106">				return 0;</span>
+			}
+		}
+	};
+	
+	/**
+	 * Comparator used to compare by executability, specification &quot;e&quot;.
+	 */
+<span class="nc" id="L114">	public static final Comparator&lt;File&gt; BY_EXE = new Comparator&lt;File&gt;() {</span>
+		
+		@Override
+		public int compare(File f1, File f2) {
+<span class="nc bnc" id="L118" title="All 4 branches missed.">			if(f1.canExecute() &amp;&amp; !f2.canExecute()) {</span>
+<span class="nc" id="L119">				return NEGATIVE_CONSTANT;</span>
+<span class="nc bnc" id="L120" title="All 4 branches missed.">			} else if(!f1.canExecute() &amp;&amp; f2.canExecute()) {</span>
+<span class="nc" id="L121">				return POSITIVE_CONSTANT;</span>
+			} else {
+<span class="nc" id="L123">				return 0;</span>
+			}
+		}
+	};
+
+	/**
+	 * Class used to define a composite comparator. This type of comparator takes a list of comparators
+	 * and compares the elements using all of them in the order they were given. If objects match using all
+	 * comparators, they are equal.
+	 * 
+	 * @author MarkoB
+	 * @version 1.0
+	 */
+<span class="nc" id="L136">	public static class CompositeComparator implements Comparator&lt;File&gt; {</span>
+		
+		private List&lt;Comparator&lt;File&gt;&gt; comparators;
+
+		public CompositeComparator(List&lt;Comparator&lt;File&gt;&gt; comparators) {
+<span class="nc" id="L141">			super();</span>
+<span class="nc" id="L142">			this.comparators = new ArrayList&lt;&gt;(comparators);</span>
+<span class="nc" id="L143">		}</span>
+		
+		/**
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 * 
+		 * Compares the objects using all the given comparators.
+		 */
+		@Override
+		public int compare(File f1, File f2) {
+<span class="nc bnc" id="L152" title="All 2 branches missed.">			for(Comparator&lt;File&gt; c: comparators) {</span>
+<span class="nc" id="L153">				int r = c.compare(f1, f2);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">				if(r != 0) {</span>
+<span class="nc" id="L155">					return r;</span>
+				}
+<span class="nc" id="L157">			}</span>
+<span class="nc" id="L158">			return 0;</span>
+		}
+	}
+	
+	/**
+	 * Method used to determine which comparator was requested by the user.
+	 * 
+	 * @param argument the requested specification string
+	 * @return the requested comparator created based on the specification string
+	 */
+	public static Comparator&lt;File&gt; createComparator(String argument) {
+<span class="nc" id="L169">		String spec = argument.split(&quot;:&quot;)[1];		// extracts the part after the &quot;:&quot;</span>
+<span class="nc" id="L170">		boolean negative = false;</span>
+<span class="nc" id="L171">		String shortSpec = new String(spec);</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">		if(spec.matches(&quot;-[a-zA-Z]+&quot;)) {</span>
+<span class="nc" id="L173">			negative = true;</span>
+<span class="nc" id="L174">			shortSpec = spec.substring(1);</span>
+		}
+<span class="nc bnc" id="L176" title="All 2 branches missed.">		if(!listOfAcceptedSpecs.contains(shortSpec)) {</span>
+<span class="nc" id="L177">			System.out.println(&quot;Unsupported specification: -s:&quot; + spec);</span>
+<span class="nc" id="L178">			System.exit(-1);</span>
+		}
+<span class="nc bnc" id="L180" title="All 26 branches missed.">		switch(shortSpec) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">				case &quot;s&quot;: if(negative) {</span>
+<span class="nc" id="L182">								return Collections.reverseOrder(FileComparators.BY_SIZE);</span>
+							} else {
+<span class="nc" id="L184">								return FileComparators.BY_SIZE;</span>
+							}
+<span class="nc bnc" id="L186" title="All 2 branches missed.">				case &quot;n&quot;: if(negative) {</span>
+<span class="nc" id="L187">								return Collections.reverseOrder(FileComparators.BY_NAME);</span>
+							} else {
+<span class="nc" id="L189">								return FileComparators.BY_NAME;</span>
+							}
+<span class="nc bnc" id="L191" title="All 2 branches missed.">				case &quot;m&quot;: if(negative) {</span>
+<span class="nc" id="L192">								return Collections.reverseOrder(FileComparators.BY_LAST_MODIFIED);</span>
+							} else {
+<span class="nc" id="L194">								return FileComparators.BY_LAST_MODIFIED;</span>
+							}
+<span class="nc bnc" id="L196" title="All 2 branches missed.">				case &quot;t&quot;: if(negative) {</span>
+<span class="nc" id="L197">								return Collections.reverseOrder(FileComparators.BY_TYPE);</span>
+							} else {
+<span class="nc" id="L199">								return FileComparators.BY_TYPE;</span>
+							}
+<span class="nc bnc" id="L201" title="All 2 branches missed.">				case &quot;l&quot;: if(negative) {</span>
+<span class="nc" id="L202">								return Collections.reverseOrder(FileComparators.BY_NAME_LENGTH);</span>
+							} else {
+<span class="nc" id="L204">								return FileComparators.BY_NAME_LENGTH;</span>
+							}
+<span class="nc bnc" id="L206" title="All 2 branches missed.">				case &quot;e&quot;: if(negative) {</span>
+<span class="nc" id="L207">								return Collections.reverseOrder(FileComparators.BY_EXE);</span>
+							} else {
+<span class="nc" id="L209">								return FileComparators.BY_EXE;</span>
+							}
+		}
+<span class="nc" id="L212">		return null;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

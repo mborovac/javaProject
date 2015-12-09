@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ComputerImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp.impl</a> &gt; <span class="el_source">ComputerImpl.java</span></div><h1>ComputerImpl.java</h1><pre class="source lang-java linenums">/**
+ * Package holding all the implementation classes for java 4th homework
+ */
+package hr.fer.zemris.java.tecaj_2.jcomp.impl;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.Computer;
+import hr.fer.zemris.java.tecaj_2.jcomp.Memory;
+import hr.fer.zemris.java.tecaj_2.jcomp.Registers;
+
+/**
+ * Class used to create and use a simple computer with some memory and registers. Class implements Computer interface.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class ComputerImpl implements Computer{
+	
+	private Memory memory;
+	private Registers registers;
+	
+	/**
+	 * Class constructor. Constructor takes 2 integers representing the size of the memory and the number
+	 * of the registers.
+	 * 
+	 * @param memoryLocations size of the memory, an integer not lower than 1
+	 * @param registers number of the registers, an integer not lower than 1
+	 */
+<span class="nc" id="L28">	public ComputerImpl(int memoryLocations, int registers) {</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">		if(memoryLocations &lt; 1) {</span>
+<span class="nc" id="L30">			throw new IllegalArgumentException(&quot;A computer can not have memory with less than 1 location!&quot;);</span>
+		}
+<span class="nc bnc" id="L32" title="All 2 branches missed.">		if(registers &lt; 1) {</span>
+<span class="nc" id="L33">			throw new IllegalArgumentException(&quot;A computer can not have less than 1 register!&quot;);</span>
+		}
+		
+<span class="nc" id="L36">		this.memory = new MemoryImpl(memoryLocations);</span>
+<span class="nc" id="L37">		this.registers = new RegistersImpl(registers);</span>
+<span class="nc" id="L38">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Computer#getRegisters()
+	 * 
+	 * Method returns the registers of the computer.
+	 */
+	@Override
+	public Registers getRegisters() {
+<span class="nc" id="L47">		return this.registers;</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Computer#getMemory()
+	 * 
+	 * Method returns the memory of the computer.
+	 */
+	@Override
+	public Memory getMemory() {
+<span class="nc" id="L57">		return this.memory;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

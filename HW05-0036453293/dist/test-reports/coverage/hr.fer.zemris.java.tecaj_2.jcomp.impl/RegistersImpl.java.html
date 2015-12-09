@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>RegistersImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp.impl</a> &gt; <span class="el_source">RegistersImpl.java</span></div><h1>RegistersImpl.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj_2.jcomp.impl;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.Registers;
+
+/**
+ * Class used to create and use the registers of a microprocessor. Class implements interface Registers.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class RegistersImpl implements Registers {
+	
+	private Object[] registers;
+	private int programCounter;
+	private boolean flag;
+	
+	/**
+	 * Class constructor. Constructor takes a single integer value representing the number of the registers.
+	 * 
+	 * @param regsLen the number of the registers, an integer not lower than 1
+	 */
+<span class="nc" id="L22">	public RegistersImpl(int regsLen) {</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">		if(regsLen &lt; 1) {</span>
+<span class="nc" id="L24">			throw new IllegalArgumentException(&quot;A microprocessor can not have less than 1 register&quot;);</span>
+		}
+<span class="nc" id="L26">		this.registers = new Object[regsLen];</span>
+<span class="nc" id="L27">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Registers#getRegisterValue(int)
+	 * 
+	 * Method used to retrieve the information from a specific computer register. Parameter index defines
+	 * which register that is.
+	 */
+	@Override
+	public Object getRegisterValue(int index) {
+<span class="nc bnc" id="L37" title="All 4 branches missed.">		if(index &lt; 0 || index &gt;= registers.length) {</span>
+<span class="nc" id="L38">			throw new IllegalArgumentException(&quot;Invalid index!&quot;);</span>
+		}
+<span class="nc" id="L40">		return registers[index];</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Registers#setRegisterValue(int, java.lang.Object)
+	 * 
+	 * Method used to set the information in a specific computer register. Parameter index defines
+	 * which register that is.
+	 */
+	@Override
+	public void setRegisterValue(int index, Object value) {
+<span class="nc bnc" id="L51" title="All 4 branches missed.">		if(index &lt; 0 || index &gt;= registers.length) {</span>
+<span class="nc" id="L52">			throw new IllegalArgumentException(&quot;Invalid index!&quot;);</span>
+		}
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		if(value == null) {</span>
+<span class="nc" id="L55">			throw new IllegalArgumentException(&quot;Can not put null elements in to registers!&quot;);</span>
+		}
+<span class="nc" id="L57">		registers[index] = value;</span>
+<span class="nc" id="L58">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Registers#getProgramCounter()
+	 * 
+	 * Method used to retrieve the information from the program counter register.
+	 */
+	@Override
+	public int getProgramCounter() {
+<span class="nc" id="L67">		return this.programCounter;</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Registers#setProgramCounter(int)
+	 * 
+	 * Method used to set the value in program counter register.
+	 */
+	@Override
+	public void setProgramCounter(int value) {
+<span class="nc bnc" id="L77" title="All 2 branches missed.">		if(value &lt; 0) {</span>
+<span class="nc" id="L78">			throw new IllegalArgumentException(&quot;Can not set program counter to value lower than 0!&quot;);</span>
+		}
+<span class="nc" id="L80">		this.programCounter = value;</span>
+<span class="nc" id="L81">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Registers#incrementProgramCounter()
+	 * 
+	 * Method used to increase the value of the program counter by 1.
+	 */
+	@Override
+	public void incrementProgramCounter() {
+<span class="nc" id="L90">		this.programCounter++;</span>
+<span class="nc" id="L91">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Registers#getFlag()
+	 * 
+	 * Method used to retrieve the value of the flag register.
+	 */
+	@Override
+	public boolean getFlag() {
+<span class="nc" id="L100">		return this.flag;</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.tecaj_2.jcomp.Registers#setFlag(boolean)
+	 * 
+	 * Method used to set the value of the flag register.
+	 */
+	@Override
+	public void setFlag(boolean value) {
+<span class="nc" id="L110">		this.flag = value;</span>
+<span class="nc" id="L111">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

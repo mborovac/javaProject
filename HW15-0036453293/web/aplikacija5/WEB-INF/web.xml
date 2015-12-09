@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="false">
+  
+  <display-name>15. Java zadaca</display-name>
+  <description>
+     15. Java zadaca
+  </description>
+  
+  <listener>
+	<listener-class>hr.fer.zemris.web.voting.Inicijalizacija</listener-class>
+  </listener>
+  
+  <servlet>
+  	<servlet-name>s1</servlet-name>
+  	<servlet-class>hr.fer.zemris.web.servlets.InitServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>s1</servlet-name>
+  	<url-pattern>/servleti/init</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>s2</servlet-name>
+  	<servlet-class>hr.fer.zemris.web.servlets.PollPickingServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>s2</servlet-name>
+  	<url-pattern>/servleti/index.html</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>s3</servlet-name>
+  	<servlet-class>hr.fer.zemris.web.servlets.GlasanjeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>s3</servlet-name>
+  	<url-pattern>/servleti/glasanje</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>s4</servlet-name>
+  	<servlet-class>hr.fer.zemris.web.servlets.GlasanjeGlasajServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>s4</servlet-name>
+  	<url-pattern>/servleti/glasanje-glasaj</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>s5</servlet-name>
+  	<servlet-class>hr.fer.zemris.web.servlets.GlasanjeRezultatiServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>s5</servlet-name>
+  	<url-pattern>/servleti/glasanje-rezultati</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>s6</servlet-name>
+  	<servlet-class>hr.fer.zemris.web.servlets.GlasanjeGrafikaServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>s6</servlet-name>
+  	<url-pattern>/servleti/glasanje-grafika</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>s7</servlet-name>
+  	<servlet-class>hr.fer.zemris.web.servlets.GlasanjeXLSServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>s7</servlet-name>
+  	<url-pattern>/servleti/glasanje-xls</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

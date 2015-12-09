@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PrintSpecs.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj.hw5</a> &gt; <span class="el_source">PrintSpecs.java</span></div><h1>PrintSpecs.java</h1><pre class="source lang-java linenums">/**
+ * Package holding all the classes needed to implement the operation dir for Java 4th homework
+ */
+package hr.fer.zemris.java.tecaj.hw5;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Class used to support the printing of different file parameters.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+<span class="nc" id="L19">public class PrintSpecs {</span>
+	
+	private static final int SIZE_OF_TIME_FORMAT = 19;
+	
+	/**
+	 * List of supported file parameter specifications.
+	 * n - name
+	 * t - type
+	 * s - size in bytes
+	 * m - time of last modification
+	 * h - hidden
+	 */
+<span class="nc" id="L31">	private static List&lt;String&gt; listOfAcceptedSpecs = Arrays.asList(new String[]{</span>
+											&quot;n&quot;, 
+											&quot;t&quot;,
+											&quot;s&quot;,
+											&quot;m&quot;, 
+											&quot;h&quot;
+											});
+<span class="nc" id="L38">	private static List&lt;Integer&gt; sizeOfPrintedSpecs = new ArrayList&lt;&gt;();</span>
+	
+	/**
+	 * Method used to set the elements of the private list sizeOfPrintedSpecs to the biggest needed value.
+	 * This method is needed so the printed field would be aligned.
+	 * 
+	 * @param files list of files that will be printed
+	 * @param listOfPrintSpecs list of user-required printing specifications
+	 */
+	public static void setSizeOfPrintedSpecs(List&lt;File&gt; files, List&lt;String&gt; listOfPrintSpecs) {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">		for(int i = 0; i &lt; listOfAcceptedSpecs.size(); i++) {</span>
+<span class="nc" id="L49">			sizeOfPrintedSpecs.add(null);</span>
+		}
+<span class="nc bnc" id="L51" title="All 2 branches missed.">		for(int i = 0; i &lt; listOfAcceptedSpecs.size(); i++) {</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">			if(!listOfPrintSpecs.contains(listOfAcceptedSpecs.get(i))) {</span>
+<span class="nc" id="L53">				sizeOfPrintedSpecs.set(i, 0);</span>
+			} else {
+<span class="nc bnc" id="L55" title="All 22 branches missed.">				switch (listOfPrintSpecs.get(i)) {</span>
+<span class="nc" id="L56">						case &quot;n&quot;:	int fileNameLength = 0;</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">									for(int f = 0; f &lt; files.size(); f++) {</span>
+<span class="nc" id="L58">										int currFileNameLength = files.get(f).getName().length();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">										if(currFileNameLength &gt; fileNameLength) {</span>
+<span class="nc" id="L60">											fileNameLength = currFileNameLength;</span>
+										}
+									}
+<span class="nc" id="L63">									sizeOfPrintedSpecs.set(0, fileNameLength);</span>
+<span class="nc" id="L64">									break;</span>
+							
+<span class="nc" id="L66">						case &quot;t&quot;: 	sizeOfPrintedSpecs.set(1, 1);</span>
+							
+<span class="nc" id="L68">						case &quot;s&quot;:	int fileSizeLength = 0;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">									for(int f = 0; f &lt; files.size(); f++) {</span>
+<span class="nc" id="L70">										int currFileSizeLength = Long.toString(files.get(f).length()).length();</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">										if(currFileSizeLength &gt; fileSizeLength) {</span>
+<span class="nc" id="L72">											fileSizeLength = currFileSizeLength;</span>
+										}
+									}
+<span class="nc" id="L75">									sizeOfPrintedSpecs.set(2, fileSizeLength);</span>
+<span class="nc" id="L76">									break;</span>
+							
+<span class="nc" id="L78">						case &quot;m&quot;:	sizeOfPrintedSpecs.set(3, SIZE_OF_TIME_FORMAT);</span>
+<span class="nc" id="L79">									break;</span>
+							
+<span class="nc" id="L81">						case &quot;h&quot;:	sizeOfPrintedSpecs.set(4, 1);</span>
+									break;
+				}
+			}
+		}
+<span class="nc" id="L86">	}</span>
+	
+	/**
+	 * Method used to print the required file parameter.
+	 * 
+	 * @param file the file whose parameter should be printed
+	 * @param spec the string representation of the specification
+	 */
+	private static void printFileSpec(File file, String spec) {
+<span class="nc bnc" id="L95" title="All 22 branches missed.">		switch(spec) {</span>
+<span class="nc" id="L96">		case &quot;n&quot;: 	System.out.print(String.format(&quot;%-&quot; + sizeOfPrintedSpecs.get(0) +&quot;s&quot;, file.getName()));</span>
+<span class="nc" id="L97">					break;</span>
+					
+<span class="nc bnc" id="L99" title="All 2 branches missed.">		case &quot;t&quot;: 	if(file.isFile()) {</span>
+<span class="nc" id="L100">						System.out.print(&quot;f&quot;);</span>
+					}
+<span class="nc bnc" id="L102" title="All 2 branches missed.">					if(file.isDirectory()) {</span>
+<span class="nc" id="L103">						System.out.print(&quot;d&quot;);</span>
+					}
+					break;
+		
+<span class="nc" id="L107">		case &quot;s&quot;: 	System.out.print(String.format(&quot;%&quot; + sizeOfPrintedSpecs.get(2) +&quot;s&quot;, file.length()));</span>
+<span class="nc" id="L108">					break;</span>
+		
+<span class="nc" id="L110">		case &quot;m&quot;: 	Date date = new Date(file.lastModified());</span>
+<span class="nc" id="L111">					SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span>
+<span class="nc" id="L112">					System.out.print(sdf.format(date));</span>
+<span class="nc" id="L113">					break;</span>
+		
+<span class="nc bnc" id="L115" title="All 2 branches missed.">		case &quot;h&quot;: 	if(file.isHidden()) {</span>
+<span class="nc" id="L116">						System.out.print(&quot;h&quot;);</span>
+					} else {
+<span class="nc" id="L118">						System.out.print(&quot; &quot;);</span>
+					}
+					break;
+		}
+<span class="nc" id="L122">	}</span>
+	
+	/**
+	 * Method used to print the required files and all of their parameters
+	 *  
+	 * @param listOfSubFiles list of files to be printed
+	 * @param listOfPrintSpecs list of parameters that need to be printed for each file
+	 */
+	public static void printFiles(List&lt;File&gt; listOfSubFiles, List&lt;String&gt; listOfPrintSpecs) {
+<span class="nc bnc" id="L131" title="All 2 branches missed.">		for(File fileFromList: listOfSubFiles) {</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">			for(String spec: listOfPrintSpecs) {</span>
+<span class="nc" id="L133">				System.out.print(&quot;| &quot;);</span>
+<span class="nc" id="L134">				PrintSpecs.printFileSpec(fileFromList, spec);</span>
+<span class="nc" id="L135">				System.out.print(&quot; &quot;);</span>
+<span class="nc" id="L136">			}</span>
+<span class="nc" id="L137">			System.out.print(&quot; |&quot;);</span>
+<span class="nc" id="L138">			System.out.println();</span>
+<span class="nc" id="L139">		}</span>
+<span class="nc" id="L140">	}</span>
+	
+	/**
+	 * Method used to print the border of the printed field.
+	 * 
+	 * @param listOfPrintSpecs list of the user-required file parameters that need to be printed
+	 */
+	public static void printBorder(List&lt;String&gt; listOfPrintSpecs) {
+<span class="nc bnc" id="L148" title="All 2 branches missed.">		for(String spec: listOfPrintSpecs) {</span>
+<span class="nc" id="L149">			int printSpecIndex = 0;</span>
+<span class="nc bnc" id="L150" title="All 22 branches missed.">			switch(spec) {</span>
+<span class="nc" id="L151">					case &quot;n&quot;: 	printSpecIndex = 0;</span>
+<span class="nc" id="L152">								break;</span>
+					
+<span class="nc" id="L154">					case &quot;t&quot;: 	printSpecIndex = 1;</span>
+<span class="nc" id="L155">								break;</span>
+					
+<span class="nc" id="L157">					case &quot;s&quot;: 	printSpecIndex = 2;</span>
+<span class="nc" id="L158">								break;</span>
+					
+<span class="nc" id="L160">					case &quot;m&quot;: 	printSpecIndex = 3;</span>
+<span class="nc" id="L161">								break;</span>
+					
+<span class="nc" id="L163">					case &quot;h&quot;: 	printSpecIndex = 4;</span>
+								break;
+			}
+<span class="nc bnc" id="L166" title="All 2 branches missed.">			if(sizeOfPrintedSpecs.get(printSpecIndex) == 0) {</span>
+<span class="nc" id="L167">				continue;</span>
+			} else {
+<span class="nc" id="L169">				System.out.print(&quot;+-&quot;);</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">				for(int i = 0; i &lt; sizeOfPrintedSpecs.get(printSpecIndex); i++) {</span>
+<span class="nc" id="L171">					System.out.print(&quot;-&quot;);</span>
+				}
+			}
+<span class="nc" id="L174">			System.out.print(&quot;-&quot;);</span>
+<span class="nc" id="L175">		}</span>
+<span class="nc" id="L176">		System.out.print(&quot;-+&quot;);</span>
+<span class="nc" id="L177">	}</span>
+	
+	/**
+	 * Method used to determine which specification was requested by the user.
+	 * 
+	 * @param argument string representation of the specification
+	 * @return returns the requested specification
+	 */
+	public static String createPrintSpec(String argument) {
+<span class="nc" id="L186">		String spec = argument.split(&quot;:&quot;)[1];		// extracts the part after the &quot;:&quot;</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">		if(!listOfAcceptedSpecs.contains(spec)) {</span>
+<span class="nc" id="L188">			System.out.println(&quot;Unsupported specification: -w:&quot; + spec);</span>
+<span class="nc" id="L189">			System.exit(-1);</span>
+		}
+<span class="nc" id="L191">		return spec;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

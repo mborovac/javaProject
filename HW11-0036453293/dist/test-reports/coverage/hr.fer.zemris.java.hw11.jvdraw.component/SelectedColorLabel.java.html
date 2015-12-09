@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SelectedColorLabel.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW11</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw11.jvdraw.component</a> &gt; <span class="el_source">SelectedColorLabel.java</span></div><h1>SelectedColorLabel.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw11.jvdraw.component;
+
+import java.awt.Color;
+
+import javax.swing.JLabel;
+
+import hr.fer.zemris.java.hw11.jvdraw.observers.ColorChangeListener;
+
+/**
+ * Class used to show the RBG components of Color Providers.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class SelectedColorLabel extends JLabel implements ColorChangeListener {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private IColorProvider frontColorProvider;
+	private IColorProvider backColorProvider;
+	private Color currentForegroundColor;
+	private Color currentBackgroundColor;
+	
+	/**
+	 * Class constructor. Constructor takes 2 arguments, the Color Providers whose RBG components
+	 * it will show.
+	 * 
+	 * @param frontColorProvider Color Provider whose RBG components the label will show
+	 * @param backColorProvider Color Provider whose RBG components the label will show
+	 */
+<span class="nc" id="L31">	public SelectedColorLabel(IColorProvider frontColorProvider, IColorProvider backColorProvider) {</span>
+<span class="nc" id="L32">		this.frontColorProvider = frontColorProvider;</span>
+<span class="nc" id="L33">		this.backColorProvider = backColorProvider;</span>
+<span class="nc" id="L34">		this.currentForegroundColor = frontColorProvider.getCurrentColor();</span>
+<span class="nc" id="L35">		this.currentBackgroundColor = backColorProvider.getCurrentColor();</span>
+<span class="nc" id="L36">		this.changeText();</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">		if(frontColorProvider instanceof JColorArea) {</span>
+<span class="nc" id="L38">			((JColorArea) frontColorProvider).addColorChangeListener(this);</span>
+		}
+<span class="nc bnc" id="L40" title="All 2 branches missed.">		if(backColorProvider instanceof JColorArea) {</span>
+<span class="nc" id="L41">			((JColorArea) backColorProvider).addColorChangeListener(this);</span>
+		}
+<span class="nc" id="L43">	}</span>
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.ColorChangeListener#newColorSelected(
+	 * hr.fer.zemris.java.hw11.jvdraw.component.IColorProvider, java.awt.Color, java.awt.Color)
+	 */
+	@Override
+	public void newColorSelected(IColorProvider source, Color oldColor,
+			Color newColor) {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">		if(source == null) {</span>
+<span class="nc" id="L53">			throw new IllegalArgumentException(&quot;Source can not be null.&quot;);</span>
+		}
+<span class="nc bnc" id="L55" title="All 4 branches missed.">		if(oldColor == null || newColor == null) {</span>
+<span class="nc" id="L56">			throw new IllegalArgumentException(&quot;Old or new color can not be null.&quot;);</span>
+		}
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		if(!(source instanceof JColorArea)) {</span>
+<span class="nc" id="L59">			throw new IllegalArgumentException(&quot;Source must be an instance of JColorArea.&quot;);</span>
+		}
+<span class="nc" id="L61">		JColorArea castSource = (JColorArea) source;</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">		if(castSource.equals(frontColorProvider)) {</span>
+<span class="nc" id="L63">			currentForegroundColor = newColor;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">		} else if(castSource.equals(backColorProvider)){</span>
+<span class="nc" id="L65">			currentBackgroundColor = newColor;</span>
+		} else {
+<span class="nc" id="L67">			throw new IllegalArgumentException(&quot;Unknown source.&quot;);</span>
+		}
+<span class="nc" id="L69">		this.changeText();</span>
+<span class="nc" id="L70">	}</span>
+	
+	/**
+	 * Method used to update the label text.
+	 */
+	private void changeText() {
+<span class="nc" id="L76">		this.setText(&quot;Foreground color: (&quot;+</span>
+				currentForegroundColor.getRed() +&quot;,&quot;+
+				currentForegroundColor.getGreen() +&quot;,&quot;+
+				currentForegroundColor.getBlue() +
+				&quot;), background color: (&quot;+
+				currentBackgroundColor.getRed() +&quot;,&quot;+
+				currentBackgroundColor.getGreen() +&quot;,&quot;+
+				currentBackgroundColor.getBlue() +
+				&quot;).&quot;);
+<span class="nc" id="L85">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

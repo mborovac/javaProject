@@ -1,0 +1,7 @@
+Testsuite: hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions.InstrLoadTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,021 sec
+
+Testcase: LoadTestException1 took 0,008 sec
+Testcase: LoadTestException2 took 0 sec
+Testcase: LoadTestException3 took 0 sec
+Testcase: LoadTest took 0,002 sec

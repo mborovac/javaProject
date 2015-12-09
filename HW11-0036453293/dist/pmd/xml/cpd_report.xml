@@ -1,0 +1,2047 @@
+<?xml version="1.0" encoding="WINDOWS-1250" standalone="no"?>
+<pmd-cpd>
+<duplication lines="16" tokens="164">
+<file line="81" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="89" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[		modifyPanel.add(circleColor);
+		modifyPanel.add(new JLabel());
+		JCheckBox deleteBox = new JCheckBox("Delete");
+		modifyPanel.add(deleteBox);
+		int selected = JOptionPane.showConfirmDialog(null, modifyPanel, "Modify "+this.getName(),
+				JOptionPane.OK_CANCEL_OPTION);
+		if(selected == 2) {						// Cancel
+			return;
+		} else if(selected == 0) {				// Ok
+			if(deleteBox.isSelected()) {
+				model.remove(this);
+				return;
+			} else {
+				int x = xText.getText().isEmpty() ? this.x : Integer.parseInt(xText.getText());
+				int y = yText.getText().isEmpty() ? this.y : Integer.parseInt(yText.getText());
+				int r = rText.getText().isEmpty() ? this.r : Integer.parseInt(rText.getText());]]></codefragment>
+</duplication>
+<duplication lines="26" tokens="116">
+<file line="340" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="382" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			byte[] podatci = editor.getText().getBytes(StandardCharsets.UTF_8);
+			try {
+				Files.write(openedFilePath, podatci);
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(
+						NotepadPP.this, 
+						flp.getString("saveError") + " " + openedFilePath.toFile().getAbsolutePath() +
+						".\n" + flp.getString("saveErrorWarning"), 
+						flp.getString("error"), 
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			JOptionPane.showMessageDialog(
+					NotepadPP.this, 
+					flp.getString("saved"), 
+					flp.getString("info"), 
+					JOptionPane.INFORMATION_MESSAGE);
+			modified = false;
+		}
+	};
+	
+	/**
+	 * Method used to define the action for the "Save As" menu option.
+	 * It lets the user save the current file to the desired location and with desired name.
+	 */
+	private Action saveAsDocumentAction = new LocalizableAction("saveAs", flp) {]]></codefragment>
+</duplication>
+<duplication lines="14" tokens="104">
+<file line="407" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="432" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action cutSelectedPartAction = new LocalizableAction("cut", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Document doc = editor.getDocument();
+			int len = Math.abs(editor.getCaret().getDot() - editor.getCaret().getMark());
+			if(len == 0) {
+				return;
+			}
+			int offset = Math.min(editor.getCaret().getDot(), editor.getCaret().getMark());
+			try {
+				copiedText = doc.getText(offset, len);]]></codefragment>
+</duplication>
+<duplication lines="13" tokens="94">
+<file line="407" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="432" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="485" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action cutSelectedPartAction = new LocalizableAction("cut", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Document doc = editor.getDocument();
+			int len = Math.abs(editor.getCaret().getDot() - editor.getCaret().getMark());
+			if(len == 0) {
+				return;
+			}
+			int offset = Math.min(editor.getCaret().getDot(), editor.getCaret().getMark());
+			try {]]></codefragment>
+</duplication>
+<duplication lines="14" tokens="84">
+<file line="81" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="89" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="92" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		modifyPanel.add(circleColor);
+		modifyPanel.add(new JLabel());
+		JCheckBox deleteBox = new JCheckBox("Delete");
+		modifyPanel.add(deleteBox);
+		int selected = JOptionPane.showConfirmDialog(null, modifyPanel, "Modify "+this.getName(),
+				JOptionPane.OK_CANCEL_OPTION);
+		if(selected == 2) {						// Cancel
+			return;
+		} else if(selected == 0) {				// Ok
+			if(deleteBox.isSelected()) {
+				model.remove(this);
+				return;
+			} else {
+				int x = xText.getText().isEmpty() ? this.x : Integer.parseInt(xText.getText());]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="80">
+<file line="69" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="74" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[		JPanel modifyPanel = new JPanel(new GridLayout(5, 2));
+		JTextField xText = new JTextField();
+		JTextField yText = new JTextField();
+		JTextField rText = new JTextField();
+		modifyPanel.add(new JLabel("Center x coordinate"));
+		modifyPanel.add(xText);
+		modifyPanel.add(new JLabel("Center y coordinate"));
+		modifyPanel.add(yText);
+		modifyPanel.add(new JLabel("Radius"));
+		modifyPanel.add(rText);
+		modifyPanel.add(new JLabel("Circle color"));]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="72">
+<file line="226" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="585" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action newDocumentAction = new LocalizableAction("new", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(modified) {
+				int selected = JOptionPane.showConfirmDialog(null, flp.getString("changedFile"), 
+						flp.getString("save"), JOptionPane.YES_NO_CANCEL_OPTION);
+				if(selected == 0) {
+					saveDocumentAction.actionPerformed(e);
+					if(!modified) {]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="70">
+<file line="327" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="370" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			if(openedFilePath == null) {
+				JFileChooser jfc = new JFileChooser();
+				jfc.setDialogTitle("Save document");
+				if(jfc.showSaveDialog(NotepadPP.this) != JFileChooser.APPROVE_OPTION) {
+					JOptionPane.showMessageDialog(
+							NotepadPP.this, 
+							flp.getString("notSaved"), 
+							flp.getString("warning"), 
+							JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				openedFilePath = jfc.getSelectedFile().toPath();]]></codefragment>
+</duplication>
+<duplication lines="19" tokens="69">
+<file line="137" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="150" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + r;
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (!(obj instanceof Circle)) {]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="68">
+<file line="226" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="265" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="585" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action newDocumentAction = new LocalizableAction("new", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(modified) {
+				int selected = JOptionPane.showConfirmDialog(null, flp.getString("changedFile"), 
+						flp.getString("save"), JOptionPane.YES_NO_CANCEL_OPTION);
+				if(selected == 0) {
+					saveDocumentAction.actionPerformed(e);
+					if(!modified) {]]></codefragment>
+</duplication>
+<duplication lines="21" tokens="66">
+<file line="97" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="106" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[				Circle newCircle = new Circle(this.getName(), x, y, r, circleColor.getCurrentColor());
+				model.update(this, newCircle);
+			}
+		}
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#getBoundingBox()
+	 */
+	@Override
+	public BoundingBox getBoundingBox() {
+		BoundingBox temp = new BoundingBox(new Point(x - r, y - r), new Point(x + r, y + r));
+		return temp;
+	}
+	
+	/* (non-Javadoc)
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#toFile()
+	 */
+	@Override
+	public String toFile() {
+		return "CIRCLE " + x + " " + y + " " + r + " " + color.getRed() + " " + color.getGreen() +]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="59">
+<file line="457" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="510" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action pasteSelectedPartAction = new LocalizableAction("paste", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Document doc = editor.getDocument();
+			int len = Math.abs(editor.getCaret().getDot() - editor.getCaret().getMark());
+			int offset = Math.min(editor.getCaret().getDot(), editor.getCaret().getMark());]]></codefragment>
+</duplication>
+<duplication lines="20" tokens="58">
+<file line="118" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="128" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[				" " + color.getBlue();
+	}
+	
+	/* (non-Javadoc)
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#modifyComponent(int, int)
+	 */
+	@Override
+	public void modifyComponent(int left, int up) {
+		this.x -= left;
+		this.y -= up;
+	}
+	
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((color == null) ? 0 : color.hashCode());]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="56">
+<file line="118" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="159" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[						} else {
+							int radius = (int) Math.sqrt(Math.pow(e.getPoint().x - point.x, 2) + 
+									Math.pow(e.getPoint().y - point.y, 2));
+							if(isCircle) {]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="56">
+<file line="407" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="432" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="457" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="485" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="510" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action cutSelectedPartAction = new LocalizableAction("cut", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Document doc = editor.getDocument();
+			int len = Math.abs(editor.getCaret().getDot() - editor.getCaret().getMark());]]></codefragment>
+</duplication>
+<duplication lines="24" tokens="52">
+<file line="31" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="31" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<codefragment><![CDATA[		setText(this.provider.getString(key));
+		provider.addLocalizationListener(new ILocalizationListener() {
+			@Override
+			public void localizationChanged() {
+			}
+		});
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationListener#localizationChanged()
+	 */
+	@Override
+	public void localizationChanged() {
+	}
+	
+	/**
+	 * Method used to acquire the current instance's key.
+	 * 
+	 * @return the key of the current instance
+	 */
+	public String getKey() {
+		return this.key;
+	}
+}]]></codefragment>
+</duplication>
+<duplication lines="15" tokens="46">
+<file line="163" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="183" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[		} else if (!color.equals(other.color)) {
+			return false;
+		}
+		if (r != other.r) {
+			return false;
+		}
+		if (x != other.x) {
+			return false;
+		}
+		if (y != other.y) {
+			return false;
+		}
+		return true;
+	}
+}]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="43">
+<file line="213" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="262" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		open.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setFileFilter(new FileNameExtensionFilter("*.jvd", "jvd"));
+				fileChooser.setAcceptAllFileFilterUsed(false);]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="43">
+<file line="47" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="54" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		this.color = color;
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#paintComponent(java.awt.Graphics)
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paint(g);
+		Graphics2D g2 = (Graphics2D) g;
+		Color previousColor = g2.getColor();
+		g2.setColor(color);]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="41">
+<file line="271" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="309" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[				if (chosen == JFileChooser.APPROVE_OPTION) {
+					file = fileChooser.getSelectedFile();
+					if(!filter.accept(file)) {
+						JOptionPane.showMessageDialog(null, "File " + file.getName() + " can not be saved," +]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="41">
+<file line="158" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="186" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		Circle other = (Circle) obj;
+		if (color == null) {
+			if (other.color != null) {
+				return false;
+			}
+		} else if (!color.equals(other.color)) {
+			return false;
+		}
+		if (r != other.r) {]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="40">
+<file line="117" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="145" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		return "CIRCLE " + x + " " + y + " " + r + " " + color.getRed() + " " + color.getGreen() +
+				" " + color.getBlue();
+	}
+	
+	/* (non-Javadoc)
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#modifyComponent(int, int)
+	 */
+	@Override
+	public void modifyComponent(int left, int up) {
+		this.x -= left;]]></codefragment>
+</duplication>
+<duplication lines="15" tokens="39">
+<file line="91" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\GeometricalObject.java"/>
+<file line="169" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		return result;
+	}
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof GeometricalObject)) {]]></codefragment>
+</duplication>
+<duplication lines="13" tokens="39">
+<file line="22" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\AbstractLocalizationProvider.java"/>
+<file line="70" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationProvider#addLocalizationListener(
+	 * hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationListener)
+	 */
+	@Override
+	public void addLocalizationListener(ILocalizationListener l) {
+		if(!listeners.contains(l)) {
+			listeners = new ArrayList<>(listeners);
+			listeners.add(l);
+		}
+	}]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="36">
+<file line="75" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="131" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[		this.modified = true;
+		for(DrawingModelListener listener: listeners) {
+			listener.objectsRemoved(this, listOfObjects.size(), listOfObjects.size());
+		}
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel#update(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject, hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject)
+	 */
+	@Override
+	public void update(GeometricalObject oldObj, GeometricalObject newObj) {]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="36">
+<file line="48" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="51" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="55" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#paintComponent(java.awt.Graphics)
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paint(g);
+		Graphics2D g2 = (Graphics2D) g;
+		Color previousColor = g2.getColor();
+		g2.setColor(color);]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="35">
+<file line="58" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="158" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="29" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\AbstractLocalizationProvider.java"/>
+<codefragment><![CDATA[	public void addListDataListener(ListDataListener l) {
+		if(!listeners.contains(l)) {
+			listeners = new ArrayList<>(listeners);
+			listeners.add(l);
+		}
+	}
+
+	/**
+	 * @see javax.swing.ListModel#removeListDataListener(javax.swing.event.ListDataListener)
+	 */
+	@Override
+	public void removeListDataListener(ListDataListener l) {]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="34">
+<file line="338" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="596" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[						if(!model.getModified()) {
+							System.exit(0);
+						} else {
+							return;
+						}
+					} else if(selected == 1) {
+						System.exit(0);
+					} else {
+						return;
+					}
+				} else {]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="33">
+<file line="64" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="67" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		g2.drawOval(x - r, y - r, r*2, r*2);
+		g2.setColor(previousColor);
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#modifyObject(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel)
+	 */
+	@Override
+	public void modifyObject(DrawingModel model) {
+		JPanel modifyPanel = new JPanel(new GridLayout(6, 2));
+		JTextField xText = new JTextField();]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="31">
+<file line="231" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="285" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[					model.setModified(false);
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "Can not read file " + file.getName() + "!", "Error", 
+							JOptionPane.ERROR_MESSAGE);
+				}]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="31">
+<file line="135" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="58" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="158" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="29" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\AbstractLocalizationProvider.java"/>
+<file line="77" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<codefragment><![CDATA[	public void addColorChangeListener(ColorChangeListener l) {
+		if(!listeners.contains(l)) {
+			listeners = new ArrayList<>(listeners);
+			listeners.add(l);
+		}
+	}]]></codefragment>
+</duplication>
+<duplication lines="13" tokens="30">
+<file line="77" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="609" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * Method main used to start the program. Method takes no arguments.
+	 * 
+	 * @param args program arguments, all passed arguments will be ignored
+	 */
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				new JVDraw().setVisible(true);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="30">
+<file line="460" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="475" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		for(int i = 0; i < model.getSize(); i++) {
+			GeometricalObject object = model.getObject(i);
+			object.modifyComponent(boundingBox.getX1(), boundingBox.getY1());]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="29">
+<file line="418" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="443" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="465" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="496" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			int offset = Math.min(editor.getCaret().getDot(), editor.getCaret().getMark());
+			try {]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="29">
+<file line="558" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="571" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action englishLanguageAction = new LocalizableAction("en", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			LocalizationProvider.getInstance().setLanguage("en");]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="28">
+<file line="142" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="145" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(foregroundColor)
+				.addComponent(backgroundColor).addComponent(lineButton).addComponent(circleButton)
+				.addComponent(filledCircleButton));]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="27">
+<file line="213" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="262" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="298" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		open.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setFileFilter(new FileNameExtensionFilter("*.jvd", "jvd"));]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="27">
+<file line="371" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="388" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[				case "LINE":	if(lineElements.length != 8) {
+									JOptionPane.showMessageDialog(null, "File " + file.getName() + " is illformed.", 
+											"Error", 
+											JOptionPane.ERROR_MESSAGE);
+									return;
+								}
+								int x1 = (int) Double.parseDouble(lineElements[1]);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="27">
+<file line="439" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="459" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
+		for(int i = 0; i < model.getSize(); i++) {
+			GeometricalObject object = model.getObject(i);]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="27">
+<file line="59" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="64" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="67" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		g2.drawOval(x - r, y - r, 2*r, 2*r);
+		g2.setColor(previousColor);
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#modifyObject(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel)
+	 */
+	@Override
+	public void modifyObject(DrawingModel model) {
+		JPanel modifyPanel = new JPanel(new GridLayout(5, 2));]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="27">
+<file line="137" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="164" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + r;]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="27">
+<file line="469" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="520" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[					offset = Math.min(editor.getCaret().getDot(), editor.getCaret().getMark());
+				}]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="26">
+<file line="371" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="388" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="404" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[				case "LINE":	if(lineElements.length != 8) {
+									JOptionPane.showMessageDialog(null, "File " + file.getName() + " is illformed.", 
+											"Error", 
+											JOptionPane.ERROR_MESSAGE);
+									return;
+								}]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="26">
+<file line="440" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="475" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		for(int i = 0; i < model.getSize(); i++) {
+			GeometricalObject object = model.getObject(i);]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="26">
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="127" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[		this.listeners = new ArrayList<>();
+		this.numberOfLines = 0;
+		this.numberOfCircles = 0;
+		this.numberOfFilledCircles = 0;
+		this.modified = false;]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="26">
+<file line="81" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\GeometricalObject.java"/>
+<file line="155" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[	}
+
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="26">
+<file line="418" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="443" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="465" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="469" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="496" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="520" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			int offset = Math.min(editor.getCaret().getDot(), editor.getCaret().getMark());]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="25">
+<file line="141" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="154" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="91" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\GeometricalObject.java"/>
+<file line="169" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		return result;
+	}
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="25">
+<file line="421" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="498" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[				doc.remove(offset, len);
+			} catch (BadLocationException e1) {
+				e1.printStackTrace();
+			}
+		}
+	};
+	
+	/**
+	 * Method used to define the action for the "Copy" menu option.
+	 * It lets the user copy a part of the text.
+	 */
+	private Action copySelectedPartAction = new LocalizableAction("copy", flp) {]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="24">
+<file line="73" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="82" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[	public void objectsAdded(DrawingModel source, int index0, int index1) {
+		this.paintComponent(getGraphics());
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsRemoved(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsRemoved(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="24">
+<file line="47" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<codefragment><![CDATA[		provider.addLocalizationListener(new ILocalizationListener() {
+			@Override
+			public void localizationChanged() {
+			}
+		});
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.notepadpp.local.AbstractLocalizationProvider#getString(java.lang.String)
+	 */
+	@Override
+	public String getString(String key) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="23">
+<file line="130" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="166" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[								drawingModel.add(new FilledCircle(name, point.x, point.y, 
+										radius, frontColorProvider.getCurrentColor(), 
+										backColorProvider.getCurrentColor()));]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="23">
+<file line="42" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="44" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[	public Circle(String name, int x, int y, int r, Color color) {
+		super(name);
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.color = color;]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="23">
+<file line="226" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="265" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="321" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="585" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action newDocumentAction = new LocalizableAction("new", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(modified) {]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="23">
+<file line="293" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="304" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[						flp.getString("nofile") + ": " + fileName.getAbsolutePath(),
+						flp.getString("error"), 
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="22">
+<file line="250" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="287" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[						JOptionPane.showMessageDialog(null, "Can not read file " + currentFile.getName() + "!",
+								"Error", JOptionPane.ERROR_MESSAGE);
+					}
+					JOptionPane.showMessageDialog(null, "File " + currentFile.getName() + " saved.", ]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="22">
+<file line="69" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="170" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[	public void removeListDataListener(ListDataListener l) {
+		listeners = new ArrayList<>(listeners);
+		listeners.remove(l);
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsAdded(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsAdded(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="22">
+<file line="421" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="445" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="498" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[				doc.remove(offset, len);
+			} catch (BadLocationException e1) {
+				e1.printStackTrace();
+			}
+		}
+	};
+	
+	/**
+	 * Method used to define the action for the "Copy" menu option.
+	 * It lets the user copy a part of the text.
+	 */
+	private Action copySelectedPartAction = new LocalizableAction("copy", flp) {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="21">
+<file line="219" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="269" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[				int chosen = fileChooser.showOpenDialog(null);
+				File file;
+				if (chosen == JFileChooser.APPROVE_OPTION) {
+					file = fileChooser.getSelectedFile();]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="21">
+<file line="253" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="290" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[					JOptionPane.showMessageDialog(null, "File " + currentFile.getName() + " saved.", 
+							"Save.", 
+							JOptionPane.INFORMATION_MESSAGE);
+					model.setModified(false);
+				}
+			}]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="21">
+<file line="79" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="90" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="101" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<codefragment><![CDATA[	public void objectsAdded(DrawingModel source, int index0, int index1) {
+		for(ListDataListener listener: listeners) {
+			listener.intervalAdded(new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, index0, index1));]]></codefragment>
+</duplication>
+<duplication lines="7" tokens="21">
+<file line="24" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="24" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[public class Circle extends GeometricalObject {
+	
+	private static final long serialVersionUID = 1L;
+	private int x;
+	private int y;
+	private int r;
+	private Color color;]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="21">
+<file line="62" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="64" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[		g2.fillOval(x - r, y - r, r*2, r*2);
+		g2.setColor(borderColor);]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="21">
+<file line="226" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="265" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="321" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="365" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="407" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="432" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="457" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="485" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="510" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="558" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="571" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="585" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[	private Action newDocumentAction = new LocalizableAction("new", flp) {
+		
+		private static final long serialVersionUID = 1L;
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="21">
+<file line="237" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="245" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[					if(!modified) {
+						editor.setText("");
+						openedFilePath = null;
+						modified = false;
+						return;
+					} else {
+						return;
+					}
+				} else if(selected == 1) {]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="21">
+<file line="49" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\AbstractLocalizationProvider.java"/>
+<file line="66" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<codefragment><![CDATA[	public void fire() {
+		for(ILocalizationListener listener: listeners) {
+			listener.localizationChanged();
+		}
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationProvider#getString(java.lang.String)
+	 */
+	@Override
+	public abstract String getString(String key);]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="20">
+<file line="189" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="197" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="205" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		lineButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				canvas.setIsLine();]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="20">
+<file line="240" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="330" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		save.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(currentFile == null) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="20">
+<file line="73" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="82" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="91" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[	public void objectsAdded(DrawingModel source, int index0, int index1) {
+		this.paintComponent(getGraphics());
+	}]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="20">
+<file line="116" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="137" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[				boundingBox = new BoundingBox(new Point(x1, y1), new Point(x2, y2));
+			}]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="20">
+<file line="128" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="146" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[				" " + innerColor.getBlue();
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#modifyComponent(int, int)
+	 */
+	@Override
+	public void modifyComponent(int left, int up) {
+		this.x -= left;]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="20">
+<file line="47" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<file line="33" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LocalizableAction.java"/>
+<codefragment><![CDATA[		provider.addLocalizationListener(new ILocalizationListener() {
+			@Override
+			public void localizationChanged() {
+			}
+		});]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="20">
+<file line="28" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="28" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<file line="30" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LocalizableAction.java"/>
+<codefragment><![CDATA[	public LJMenu(final String key, final ILocalizationProvider provider) {
+		this.key = key;
+		this.provider = provider;]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="19">
+<file line="147" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="69" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="170" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="41" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\AbstractLocalizationProvider.java"/>
+<codefragment><![CDATA[	public void removeColorChangeListener(ColorChangeListener l) {
+		listeners = new ArrayList<>(listeners);
+		listeners.remove(l);
+	}]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="19">
+<file line="127" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="137" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="154" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		this.y -= up;
+	}
+	
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="19">
+<file line="26" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProvider.java"/>
+<file line="48" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProvider.java"/>
+<codefragment><![CDATA[		Locale locale = Locale.forLanguageTag(language);
+		bundle = ResourceBundle.getBundle("hr.fer.zemris.java.hw11.notepadpp.local.prijevodi", locale);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="18">
+<file line="189" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="197" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="205" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="213" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="240" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="262" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="298" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="330" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[		lineButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="18">
+<file line="248" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="285" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[						writeToFile(currentFile, bw);
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(null, "Can not read file " + currentFile.getName() + "!",]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="18">
+<file line="77" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="86" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<codefragment><![CDATA[	public Dimension getPreferredSize() {
+		return new Dimension(15, 15);
+	}
+	
+	/**
+	 * @see javax.swing.JComponent#getMaximumSize()
+	 */
+	@Override
+	@Transient
+	public Dimension getMaximumSize() {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="18">
+<file line="61" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="74" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[		this.listOfObjects.add(object);
+		this.modified = true;
+		for(DrawingModelListener listener: listeners) {
+			listener.objectsAdded(this, listOfObjects.size() - 1, listOfObjects.size() - 1);]]></codefragment>
+</duplication>
+<duplication lines="12" tokens="18">
+<file line="421" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="445" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="474" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="498" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[				doc.remove(offset, len);
+			} catch (BadLocationException e1) {
+				e1.printStackTrace();
+			}
+		}
+	};
+	
+	/**
+	 * Method used to define the action for the "Copy" menu option.
+	 * It lets the user copy a part of the text.
+	 */
+	private Action copySelectedPartAction = new LocalizableAction("copy", flp) {]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="17">
+<file line="66" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="72" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsAdded(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsAdded(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="17">
+<file line="75" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="83" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsRemoved(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsRemoved(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="17">
+<file line="84" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="94" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsChanged(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsChanged(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="17">
+<file line="124" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="163" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[								drawingModel.add(new Circle(name, point.x, point.y, radius, 
+										backColorProvider.getCurrentColor()));]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="17">
+<file line="128" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="138" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="81" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\GeometricalObject.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();]]></codefragment>
+</duplication>
+<duplication lines="14" tokens="17">
+<file line="15" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="15" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<file line="17" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LocalizableAction.java"/>
+<codefragment><![CDATA[public class LJMenu extends JMenu implements ILocalizationListener {
+	
+	private static final long serialVersionUID = 1L;
+	private String key;
+	private ILocalizationProvider provider;
+	
+	/**
+	 * Class constructor. Constructor takes 2 arguments, key based on which it will get the 
+	 * adequate String from the localization provider and the reference to the localization provider.
+	 * 
+	 * @param key key based on which the LJMenu will get the adequate String from the localization provider
+	 * @param provider the reference to the localization provider
+	 */
+	public LJMenu(final String key, final ILocalizationProvider provider) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="16">
+<file line="168" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="46" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="95" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[		MouseListener doubleClick = new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="16">
+<file line="221" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="309" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[				if (chosen == JFileChooser.APPROVE_OPTION) {
+					file = fileChooser.getSelectedFile();]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="16">
+<file line="231" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="248" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[					model.setModified(false);
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "Can not read file " + file.getName() + "!", "Error", ]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="16">
+<file line="273" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="311" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="371" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="388" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="404" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[					if(!filter.accept(file)) {
+						JOptionPane.showMessageDialog(null, "File " + file.getName() + " can not be saved," +]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="16">
+<file line="274" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="312" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[						JOptionPane.showMessageDialog(null, "File " + file.getName() + " can not be saved," +
+								"unsupported file type.", 
+								"Error", 
+								JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+				} else {
+					return;
+				}]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="16">
+<file line="61" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="74" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="94" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[		this.listOfObjects.add(object);
+		this.modified = true;
+		for(DrawingModelListener listener: listeners) {
+			listener.objectsAdded(this, listOfObjects.size() - 1, listOfObjects.size() - 1);]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="16">
+<file line="71" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="47" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<file line="33" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LocalizableAction.java"/>
+<codefragment><![CDATA[		flp.addLocalizationListener(new ILocalizationListener() {
+			@Override
+			public void localizationChanged() {]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="15">
+<file line="338" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="343" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="596" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[						if(!model.getModified()) {
+							System.exit(0);
+						} else {
+							return;
+						}
+					} else if(selected == 1) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="15">
+<file line="30" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="126" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[	public GeomObjDrawingModel() {
+		this.listOfObjects = new ArrayList<>();
+		this.listeners = new ArrayList<>();]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="15">
+<file line="62" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="95" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="131" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[		this.modified = true;
+		for(DrawingModelListener listener: listeners) {
+			listener.objectsAdded(this, listOfObjects.size() - 1, listOfObjects.size() - 1);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="15">
+<file line="75" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="79" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[					button.setText(LocalizationProvider.getInstance().getString(
+							((LocalizableAction) button.getAction()).getKey()));]]></codefragment>
+</duplication>
+<duplication lines="5" tokens="15">
+<file line="293" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="304" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="347" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="389" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[						flp.getString("nofile") + ": " + fileName.getAbsolutePath(),
+						flp.getString("error"), 
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="14">
+<file line="154" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="164" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="109" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<codefragment><![CDATA[		canvas.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="14">
+<file line="233" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="250" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[					JOptionPane.showMessageDialog(null, "Can not read file " + file.getName() + "!", "Error", 
+							JOptionPane.ERROR_MESSAGE);
+				}]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="14">
+<file line="274" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="290" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="312" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="323" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="372" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="389" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="405" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[						JOptionPane.showMessageDialog(null, "File " + file.getName() + " can not be saved," +]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="14">
+<file line="338" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="596" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="601" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[						if(!model.getModified()) {
+							System.exit(0);
+						} else {
+							return;
+						}
+					} else if(selected == 1) {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="14">
+<file line="340" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="242" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="598" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[						} else {
+							return;
+						}
+					} else if(selected == 1) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="14">
+<file line="377" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="394" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int x1 = (int) Double.parseDouble(lineElements[1]);
+								int y1 = (int) Double.parseDouble(lineElements[2]);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="14">
+<file line="378" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="395" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int y1 = (int) Double.parseDouble(lineElements[2]);
+								int x2 = (int) Double.parseDouble(lineElements[3]);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="14">
+<file line="379" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="412" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int x2 = (int) Double.parseDouble(lineElements[3]);
+								int y2 = (int) Double.parseDouble(lineElements[4]);]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="14">
+<file line="385" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="401" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								model.add(new Line("Line " + model.numberOfLines(), x1, y1, x2, y2, 
+										new Color(r, g, b)));
+								break;
+				case "CIRCLE":	if(lineElements.length != 7) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="14">
+<file line="394" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="410" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int x = (int) Double.parseDouble(lineElements[1]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="14">
+<file line="395" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="411" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int y = (int) Double.parseDouble(lineElements[2]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="14">
+<file line="396" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="412" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int radius = (int) Double.parseDouble(lineElements[3]);]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="14">
+<file line="77" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="86" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="95" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<codefragment><![CDATA[	public Dimension getPreferredSize() {
+		return new Dimension(15, 15);
+	}
+	
+	/**
+	 * @see javax.swing.JComponent#getMaximumSize()
+	 */
+	@Override]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="14">
+<file line="42" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="44" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[	public Circle(String name, int x, int y, int r, Color color) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="14">
+<file line="76" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="80" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[							((LocalizableAction) button.getAction()).getKey()));
+				}
+				for(JMenuItem menuItem: menuItemList) {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="14">
+<file line="290" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="301" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="330" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="343" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="373" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="385" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			if(!Files.isReadable(filePath)) {
+				JOptionPane.showMessageDialog(
+						NotepadPP.this, 
+						flp.getString("nofile") + ": " + fileName.getAbsolutePath(),]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="13">
+<file line="217" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="304" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[				fileChooser.setFileFilter(new FileNameExtensionFilter("*.jvd", "jvd"));
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				int chosen = fileChooser.showOpenDialog(null);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="377" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="410" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int x1 = (int) Double.parseDouble(lineElements[1]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="378" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="411" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int y1 = (int) Double.parseDouble(lineElements[2]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="379" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="396" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int x2 = (int) Double.parseDouble(lineElements[3]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="57" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<codefragment><![CDATA[				Color oldColor = ((JColorArea) e.getSource()).selectedColor;]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="13">
+<file line="136" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="147" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="59" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="69" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="159" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="170" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<file line="30" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\AbstractLocalizationProvider.java"/>
+<file line="41" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\AbstractLocalizationProvider.java"/>
+<file line="78" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<codefragment><![CDATA[		if(!listeners.contains(l)) {
+			listeners = new ArrayList<>(listeners);
+			listeners.add(l);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="124" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="130" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[								drawingModel.add(new Circle(name, point.x, point.y, radius, ]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="163" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="166" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[						tempCircle = new Circle("", point.x, point.y, radius, backColorProvider.getCurrentColor());]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="13">
+<file line="58" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="63" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[		g2.setColor(color);
+		g2.drawOval(x - r, y - r, 2*r, 2*r);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="97" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="105" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[				Circle newCircle = new Circle(this.getName(), x, y, r, circleColor.getCurrentColor());]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="13">
+<file line="117" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="126" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<codefragment><![CDATA[		return "CIRCLE " + x + " " + y + " " + r + " " + color.getRed() + " " + color.getGreen() +]]></codefragment>
+</duplication>
+<duplication lines="6" tokens="13">
+<file line="96" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="101" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			public void removeUpdate(DocumentEvent e) {
+				modified = true;
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="13">
+<file line="44" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="44" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<file line="53" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LocalizableAction.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * Method used to acquire the current instance's key.
+	 * 
+	 * @return the key of the current instance
+	 */
+	public String getKey() {
+		return this.key;
+	}
+}]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="12">
+<file line="231" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="248" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="285" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="342" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="384" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[					model.setModified(false);
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "Can not read file " + file.getName() + "!", "Error", ]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="12">
+<file line="241" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="331" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="230" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="269" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="325" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="589" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(currentFile == null) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="335" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="234" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="273" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="593" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[							"Save", JOptionPane.YES_NO_CANCEL_OPTION);
+					if(selected == 0) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="401" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="420" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								model.add(new Circle("Circle " + model.numberOfCircles(), x, y, radius, 
+										new Color(r, g, b)));]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="12">
+<file line="57" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="58" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<codefragment><![CDATA[				Color oldColor = ((JColorArea) e.getSource()).selectedColor;]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="12">
+<file line="73" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="79" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="21" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\DrawingModelListener.java"/>
+<codefragment><![CDATA[	public void objectsAdded(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="12">
+<file line="82" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="90" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="31" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\DrawingModelListener.java"/>
+<codefragment><![CDATA[	public void objectsRemoved(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="12">
+<file line="91" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="101" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="40" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\DrawingModelListener.java"/>
+<codefragment><![CDATA[	public void objectsChanged(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="12">
+<file line="217" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="227" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[	public void setIsCircle() {
+		this.isLine = false;
+		this.isCircle = true;]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="50" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\SelectedColorLabel.java"/>
+<file line="22" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\ColorChangeListener.java"/>
+<codefragment><![CDATA[	public void newColorSelected(IColorProvider source, Color oldColor,
+			Color newColor) {]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="12">
+<file line="36" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="37" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[	}
+	
+	/**
+	 * @see javax.swing.ListModel#getSize()
+	 */
+	@Override
+	public int getSize() {
+		return this.model.getSize();]]></codefragment>
+</duplication>
+<duplication lines="10" tokens="12">
+<file line="81" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="92" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<codefragment><![CDATA[			listener.intervalAdded(new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, index0, index1));
+		}
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.observers.DrawingModelListener#objectsRemoved(
+	 * hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel, int, int)
+	 */
+	@Override
+	public void objectsRemoved(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="12">
+<file line="24" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="24" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="25" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[public class Circle extends GeometricalObject {
+	
+	private static final long serialVersionUID = 1L;
+	private int x;]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="72" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="77" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="81" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		JTextField rText = new JTextField();
+		modifyPanel.add(new JLabel("Center x coordinate"));]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="80" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="91" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		JColorArea circleColor = new JColorArea(this.color);
+		modifyPanel.add(circleColor);]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="12">
+<file line="160" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="173" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="180" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="110" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\GeometricalObject.java"/>
+<file line="188" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[			if (other.color != null) {
+				return false;
+			}
+		} else if (!color.equals(other.color)) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="12">
+<file line="238" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="246" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="254" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[						editor.setText("");
+						openedFilePath = null;
+						modified = false;]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="12">
+<file line="291" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="302" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="331" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="344" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="352" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="374" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="386" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="394" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[				JOptionPane.showMessageDialog(
+						NotepadPP.this, 
+						flp.getString("nofile") + ": " + fileName.getAbsolutePath(),]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="545" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="547" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[				if(Character.isLowerCase(c)) {
+					znakovi[i] = Character.toUpperCase(c);]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="12">
+<file line="50" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProvider.java"/>
+<file line="51" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<codefragment><![CDATA[		fire();
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.notepadpp.local.AbstractLocalizationProvider#getString(java.lang.String)
+	 */
+	@Override
+	public String getString(String key) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="12">
+<file line="38" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LocalizableAction.java"/>
+<file line="52" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LocalizableAction.java"/>
+<codefragment><![CDATA[		putValue(NAME, provider.getString(key));
+	}]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="11">
+<file line="64" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="42" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[public class JVDraw extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+	private DrawingModel model;]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="11">
+<file line="89" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="621" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[				new JVDraw().setVisible(true);
+			}
+		});
+	}]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="104" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="119" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[		getContentPane().setLayout(new BorderLayout());]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="214" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="263" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="299" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="369" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="333" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="232" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="271" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="591" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[				if(model.getModified()) {
+					int selected = JOptionPane.showConfirmDialog(null, "File was changed, do you wish to save?", ]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="381" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="414" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int r = Integer.parseInt(lineElements[5]);
+								int g = Integer.parseInt(lineElements[6]);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="382" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="415" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int g = Integer.parseInt(lineElements[6]);
+								int b = Integer.parseInt(lineElements[7]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="385" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="109" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[								model.add(new Line("Line " + model.numberOfLines(), x1, y1, x2, y2, ]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="57" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="58" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="60" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<codefragment><![CDATA[				Color oldColor = ((JColorArea) e.getSource()).selectedColor;]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="73" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="90" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="101" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<codefragment><![CDATA[	public void objectsAdded(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="82" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="91" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="79" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<codefragment><![CDATA[	public void objectsRemoved(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="115" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="124" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="130" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[							drawingModel.add(new Line(name, point.x, point.y, temp.x, temp.y, ]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="124" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="166" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[								drawingModel.add(new Circle(name, point.x, point.y, radius, ]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="130" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="163" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[								drawingModel.add(new FilledCircle(name, point.x, point.y, 
+										radius, frontColorProvider.getCurrentColor(), ]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="156" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="163" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="166" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[					tempLine = new Line("", point.x, point.y, e.getPoint().x, e.getPoint().y, ]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="11">
+<file line="175" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="48" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="51" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="55" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[	};
+	
+	/**
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 * 
+	 * Method paints the canvas in white and paints all of the components stored in the model.
+	 */
+	@Override
+	public void paintComponent(Graphics g) {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="11">
+<file line="42" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="45" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[	public Circle(String name, int x, int y, int r, Color color) {
+		super(name);
+		this.x = x;]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="94" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="95" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="96" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="102" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="103" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="104" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="105" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<file line="106" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<file line="107" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<file line="108" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[				int x = xText.getText().isEmpty() ? this.x : Integer.parseInt(xText.getText());]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="97" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="106" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="109" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[				Circle newCircle = new Circle(this.getName(), x, y, r, circleColor.getCurrentColor());
+				model.update(this, newCircle);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="11">
+<file line="137" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="148" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="150" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="164" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + r;]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="11">
+<file line="152" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="165" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="102" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\GeometricalObject.java"/>
+<file line="180" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[		if (!super.equals(obj)) {
+			return false;
+		}
+		if (!(obj instanceof Circle)) {]]></codefragment>
+</duplication>
+<duplication lines="11" tokens="11">
+<file line="21" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\DrawingModelListener.java"/>
+<file line="31" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\DrawingModelListener.java"/>
+<codefragment><![CDATA[	void objectsAdded(DrawingModel source, int index0, int index1);
+	
+	/**
+	 * Method called by the subject on all the registered listeners when some objects are removed
+	 * from it.
+	 * 
+	 * @param source the subject
+	 * @param index0 starting index of the removed objects
+	 * @param index1 ending index of the removed objects
+	 */
+	void objectsRemoved(DrawingModel source, int index0, int index1);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="75" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="79" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="83" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[					button.setText(LocalizationProvider.getInstance().getString(]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="11">
+<file line="285" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="330" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="373" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			if(fc.showOpenDialog(NotepadPP.this) != JFileChooser.APPROVE_OPTION) {]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="10">
+<file line="64" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="30" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[public class JVDraw extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+	private DrawingModel model;]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="10">
+<file line="90" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="108" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			}
+		});
+	}
+	
+	/**
+	 * Method used to create the GUI. It is a huge method covering the creation and addition of all
+	 * of the components and creation of all of their listeners.
+	 */
+	private void initGUI() {]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="168" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="46" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="95" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="143" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[		MouseListener doubleClick = new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="190" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="198" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="206" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="214" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="241" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="263" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="299" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="331" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="230" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="269" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="325" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="369" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="411" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="436" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="461" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="489" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="514" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="562" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="575" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="589" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			@Override
+			public void actionPerformed(ActionEvent e) {]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="268" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="305" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[				FileFilter filter = fileChooser.getFileFilter();
+				int chosen = fileChooser.showSaveDialog(null);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="377" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="378" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="379" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="380" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="394" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="395" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="396" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="410" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="411" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="412" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int x1 = (int) Double.parseDouble(lineElements[1]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="381" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="398" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="414" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int r = Integer.parseInt(lineElements[5]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="382" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="399" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="415" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int g = Integer.parseInt(lineElements[6]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="383" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="416" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								int b = Integer.parseInt(lineElements[7]);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="397" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<file line="413" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\JVDraw.java"/>
+<codefragment><![CDATA[								r = Integer.parseInt(lineElements[4]);]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="43" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\GeomObjDrawingModel.java"/>
+<codefragment><![CDATA[		listeners = new ArrayList<>();
+		this.setOpaque(true);]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="57" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="58" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="60" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="61" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<file line="64" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JColorArea.java"/>
+<codefragment><![CDATA[				Color oldColor = ((JColorArea) e.getSource()).selectedColor;]]></codefragment>
+</duplication>
+<duplication lines="2" tokens="10">
+<file line="64" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="32" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\SelectedColorLabel.java"/>
+<codefragment><![CDATA[		this.frontColorProvider = frontColorProvider;
+		this.backColorProvider = backColorProvider;]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="73" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="79" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="31" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\DrawingModelListener.java"/>
+<file line="40" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\DrawingModelListener.java"/>
+<codefragment><![CDATA[	public void objectsAdded(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="82" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="91" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="90" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="101" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\model\DrawingObjectListModel.java"/>
+<file line="21" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\observers\DrawingModelListener.java"/>
+<codefragment><![CDATA[	public void objectsRemoved(DrawingModel source, int index0, int index1) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="119" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="120" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="160" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<file line="161" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\component\JDrawingCanvas.java"/>
+<codefragment><![CDATA[							int radius = (int) Math.sqrt(Math.pow(e.getPoint().x - point.x, 2) + ]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="10">
+<file line="110" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Circle.java"/>
+<file line="119" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\FilledCircle.java"/>
+<file line="138" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\Line.java"/>
+<codefragment><![CDATA[	}
+	
+	/* (non-Javadoc)
+	 * @see hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject#toFile()
+	 */
+	@Override
+	public String toFile() {
+		return "CIRCLE " + x + " " + y + " " + r + " " + color.getRed() + " " + color.getGreen() +]]></codefragment>
+</duplication>
+<duplication lines="4" tokens="10">
+<file line="15" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\jvdraw\objects\GeometricalObject.java"/>
+<file line="15" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="15" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<file line="17" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LocalizableAction.java"/>
+<codefragment><![CDATA[public abstract class GeometricalObject extends JComponent {
+	
+	private static final long serialVersionUID = 1L;
+	private String name;]]></codefragment>
+</duplication>
+<duplication lines="3" tokens="10">
+<file line="72" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="65" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<codefragment><![CDATA[			@Override
+			public void localizationChanged() {
+				for(JButton button: buttonList) {]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="414" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="418" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="439" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="443" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="464" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="465" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="469" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="492" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="496" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="517" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="520" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			int len = Math.abs(editor.getCaret().getDot() - editor.getCaret().getMark());]]></codefragment>
+</duplication>
+<duplication lines="1" tokens="10">
+<file line="414" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="418" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="439" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="443" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="464" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="465" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="469" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="492" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="496" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="517" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<file line="520" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\NotepadPP.java"/>
+<codefragment><![CDATA[			int len = Math.abs(editor.getCaret().getDot() - editor.getCaret().getMark());]]></codefragment>
+</duplication>
+<duplication lines="8" tokens="10">
+<file line="59" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\LocalizationProviderBridge.java"/>
+<file line="36" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJMenu.java"/>
+<file line="36" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\LJToolBar.java"/>
+<codefragment><![CDATA[		return this.provider.getString(key);
+	}
+	
+	/**
+	 * @see hr.fer.zemris.java.hw11.notepadpp.local.ILocalizationListener#localizationChanged()
+	 */
+	@Override
+	public void localizationChanged() {]]></codefragment>
+</duplication>
+<duplication lines="9" tokens="10">
+<file line="44" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\FormLocalizationProvider.java"/>
+<file line="60" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\FormLocalizationProvider.java"/>
+<file line="68" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\FormLocalizationProvider.java"/>
+<file line="76" path="C:\Users\Marko\javaTecaj\HW11-0036453293\src\main\java\hr\fer\zemris\java\hw11\notepadpp\local\swing\FormLocalizationProvider.java"/>
+<codefragment><![CDATA[	public void windowClosing(WindowEvent e) {
+		// Do nothing
+	}
+	
+	/**
+	 * @see java.awt.event.WindowListener#windowClosed(java.awt.event.WindowEvent)
+	 */
+	@Override
+	public void windowClosed(WindowEvent e) {]]></codefragment>
+</duplication>
+</pmd-cpd>

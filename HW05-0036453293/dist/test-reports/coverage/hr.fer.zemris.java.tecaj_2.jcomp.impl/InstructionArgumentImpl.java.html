@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>InstructionArgumentImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp.impl</a> &gt; <span class="el_source">InstructionArgumentImpl.java</span></div><h1>InstructionArgumentImpl.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj_2.jcomp.impl;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.InstructionArgument;
+
+public class InstructionArgumentImpl implements InstructionArgument {
+	
+	private Object value;
+	private boolean isRegister;
+	
+<span class="fc" id="L10">	public InstructionArgumentImpl(Object value, boolean isRegister) {</span>
+		
+<span class="fc" id="L12">		this.value = value;</span>
+<span class="fc" id="L13">		this.isRegister = isRegister;</span>
+<span class="fc" id="L14">	}</span>
+
+	@Override
+	public boolean isRegister() {
+<span class="fc" id="L18">		return this.isRegister;</span>
+	}
+
+	@Override
+	public boolean isString() {
+<span class="fc" id="L23">		return value instanceof String;</span>
+	}
+
+	@Override
+	public boolean isNumber() {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">		if(!isRegister) {</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">			if(!isString()) {</span>
+<span class="fc" id="L30">				return true;</span>
+			}
+		}
+<span class="fc" id="L33">		return false;</span>
+	}
+
+	@Override
+	public Object getValue() {
+<span class="fc" id="L38">		return value;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

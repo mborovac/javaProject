@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>InstrIncrementTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions</a> &gt; <span class="el_source">InstrIncrementTest.java</span></div><h1>InstrIncrementTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.Computer;
+import hr.fer.zemris.java.tecaj_2.jcomp.InstructionArgument;
+import hr.fer.zemris.java.tecaj_2.jcomp.Registers;
+import hr.fer.zemris.java.tecaj_2.jcomp.impl.InstructionArgumentImpl;
+
+<span class="fc" id="L14">public class InstrIncrementTest {</span>
+	
+<span class="fc" id="L16">	Computer c = Mockito.mock(Computer.class); </span>
+<span class="fc" id="L17">	Registers r = Mockito.mock(Registers.class);</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void IncrementTestException1() {
+<span class="nc" id="L21">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L22">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="nc" id="L23">		arguments.add(new InstructionArgumentImpl(1, true));</span>
+<span class="nc" id="L24">		new InstrIncrement(arguments).execute(c);</span>
+<span class="nc" id="L25">	}</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void IncrementTestException2() {
+<span class="nc" id="L29">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L30">		arguments.add(new InstructionArgumentImpl(0, false));</span>
+<span class="nc" id="L31">		new InstrIncrement(arguments).execute(c);</span>
+<span class="nc" id="L32">	}</span>
+	
+	@Test
+	public void IncrementTest() {
+<span class="fc" id="L36">		Mockito.when(c.getRegisters()).thenReturn(r);</span>
+<span class="fc" id="L37">		Mockito.when(r.getRegisterValue(0)).thenReturn(5);</span>
+<span class="fc" id="L38">		r.setRegisterValue(0, 5);</span>
+<span class="fc" id="L39">		Mockito.verify(r).setRegisterValue(0, 5);</span>
+<span class="fc" id="L40">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L41">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="fc" id="L42">		new InstrIncrement(arguments).execute(c);</span>
+<span class="fc" id="L43">		Mockito.verify(r).setRegisterValue(0, 6);</span>
+<span class="fc" id="L44">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

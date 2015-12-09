@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JVDraw.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW11</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw11.jvdraw</a> &gt; <span class="el_source">JVDraw.java</span></div><h1>JVDraw.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw11.jvdraw;
+
+import hr.fer.zemris.java.hw11.jvdraw.component.JColorArea;
+import hr.fer.zemris.java.hw11.jvdraw.component.JDrawingCanvas;
+import hr.fer.zemris.java.hw11.jvdraw.component.SelectedColorLabel;
+import hr.fer.zemris.java.hw11.jvdraw.model.BoundingBox;
+import hr.fer.zemris.java.hw11.jvdraw.model.DrawingObjectListModel;
+import hr.fer.zemris.java.hw11.jvdraw.model.GeomObjDrawingModel;
+import hr.fer.zemris.java.hw11.jvdraw.objects.Circle;
+import hr.fer.zemris.java.hw11.jvdraw.objects.DrawingModel;
+import hr.fer.zemris.java.hw11.jvdraw.objects.FilledCircle;
+import hr.fer.zemris.java.hw11.jvdraw.objects.GeometricalObject;
+import hr.fer.zemris.java.hw11.jvdraw.objects.Line;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JToggleButton;
+import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+/**
+ * CLass used to create a GUI giving the user options to draw lines, circles or filled circles. User is
+ * allowed to change the color of the line, rim color of the circle and rim and filling of the filled
+ * circle. User is also allowed to open an old &lt;code&gt;jvd&lt;/code&gt; file, save the current file in a 
+ * &lt;code&gt;jvd&lt;/code&gt; format or export the current image to &lt;code&gt;jpg&lt;/code&gt;, &lt;code&gt;gif&lt;/code&gt; or 
+ * &lt;code&gt;png&lt;/code&gt; format.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class JVDraw extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+	private DrawingModel model;
+	private File currentFile;
+	
+	/**
+	 * Class constructor. Constructor initiates the GUI.
+	 */
+<span class="nc" id="L73">	public JVDraw() {</span>
+<span class="nc" id="L74">		model = new GeomObjDrawingModel();</span>
+<span class="nc" id="L75">		currentFile = null;</span>
+<span class="nc" id="L76">		initGUI();</span>
+<span class="nc" id="L77">	}</span>
+	
+	/**
+	 * Method main used to start the program. Method takes no arguments.
+	 * 
+	 * @param args program arguments, all passed arguments will be ignored
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L85">		SwingUtilities.invokeLater(new Runnable() {</span>
+			
+			@Override
+			public void run() {
+<span class="nc" id="L89">				new JVDraw().setVisible(true);</span>
+<span class="nc" id="L90">			}</span>
+		});
+<span class="nc" id="L92">	}</span>
+	
+	/**
+	 * Method used to create the GUI. It is a huge method covering the creation and addition of all
+	 * of the components and creation of all of their listeners.
+	 */
+	private void initGUI() {
+<span class="nc" id="L99">		setLocation(200, 100);</span>
+<span class="nc" id="L100">		setPreferredSize(new Dimension(800, 600));</span>
+<span class="nc" id="L101">		setMinimumSize(new Dimension(800, 600));</span>
+<span class="nc" id="L102">		setTitle(&quot;JVDraw&quot;);</span>
+<span class="nc" id="L103">		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L104">		getContentPane().setLayout(new BorderLayout());</span>
+		// Menu
+<span class="nc" id="L106">		JMenuBar menuBar = new JMenuBar();</span>
+<span class="nc" id="L107">		JMenu file = new JMenu(&quot;File&quot;);</span>
+<span class="nc" id="L108">		file.setToolTipText(&quot;Exit application&quot;);</span>
+<span class="nc" id="L109">		JMenuItem open = new JMenuItem(&quot;Open&quot;);</span>
+<span class="nc" id="L110">		open.setToolTipText(&quot;Open file.&quot;);</span>
+<span class="nc" id="L111">		final JMenuItem save = new JMenuItem(&quot;Save&quot;);</span>
+<span class="nc" id="L112">		save.setToolTipText(&quot;Save file.&quot;);</span>
+<span class="nc" id="L113">		final JMenuItem saveAs = new JMenuItem(&quot;Save As&quot;);</span>
+<span class="nc" id="L114">		saveAs.setToolTipText(&quot;Save file.&quot;);</span>
+<span class="nc" id="L115">		JMenuItem export = new JMenuItem(&quot;Export&quot;);</span>
+<span class="nc" id="L116">		export.setToolTipText(&quot;Export current file.&quot;);</span>
+<span class="nc" id="L117">		JMenuItem exit = new JMenuItem(&quot;Exit&quot;);</span>
+<span class="nc" id="L118">		exit.setToolTipText(&quot;Exit current file.&quot;);</span>
+<span class="nc" id="L119">		file.add(open);</span>
+<span class="nc" id="L120">		file.add(save);</span>
+<span class="nc" id="L121">		file.add(saveAs);</span>
+<span class="nc" id="L122">		file.add(export);</span>
+<span class="nc" id="L123">		file.add(exit);</span>
+<span class="nc" id="L124">		menuBar.add(file);</span>
+<span class="nc" id="L125">		this.setJMenuBar(menuBar);</span>
+		// Toolbar
+<span class="nc" id="L127">		JToolBar toolbar = new JToolBar();</span>
+<span class="nc" id="L128">		GroupLayout layout = new GroupLayout(toolbar);</span>
+<span class="nc" id="L129">		toolbar.setLayout(layout);</span>
+<span class="nc" id="L130">		layout.setAutoCreateGaps(true);</span>
+<span class="nc" id="L131">		layout.setAutoCreateContainerGaps(true);</span>
+<span class="nc" id="L132">		JColorArea foregroundColor = new JColorArea(Color.RED);</span>
+<span class="nc" id="L133">		JColorArea backgroundColor = new JColorArea(Color.BLUE);</span>
+<span class="nc" id="L134">		JToggleButton lineButton = new JToggleButton(&quot;Line&quot;);</span>
+<span class="nc" id="L135">		JToggleButton circleButton = new JToggleButton(&quot;Circle&quot;);</span>
+<span class="nc" id="L136">		JToggleButton filledCircleButton = new JToggleButton(&quot;Filled circle&quot;);</span>
+<span class="nc" id="L137">		ButtonGroup buttonGroup = new ButtonGroup();</span>
+<span class="nc" id="L138">		buttonGroup.getSelection();</span>
+<span class="nc" id="L139">		buttonGroup.add(lineButton);</span>
+<span class="nc" id="L140">		buttonGroup.add(circleButton);</span>
+<span class="nc" id="L141">		buttonGroup.add(filledCircleButton);</span>
+<span class="nc" id="L142">		layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(foregroundColor)</span>
+				.addComponent(backgroundColor).addComponent(lineButton).addComponent(circleButton)
+				.addComponent(filledCircleButton));
+<span class="nc" id="L145">		layout.setVerticalGroup(layout.createParallelGroup().addComponent(foregroundColor)</span>
+				.addComponent(backgroundColor).addComponent(lineButton).addComponent(circleButton)
+				.addComponent(filledCircleButton));
+<span class="nc" id="L148">		add(toolbar, BorderLayout.NORTH);</span>
+		// Bottom component showing current selected colors as RGB components
+<span class="nc" id="L150">		SelectedColorLabel botLabel = new SelectedColorLabel(foregroundColor, backgroundColor);</span>
+<span class="nc" id="L151">		getContentPane().add(botLabel, BorderLayout.SOUTH);</span>
+		// Canvas
+<span class="nc" id="L153">		final JDrawingCanvas canvas = new JDrawingCanvas(model, foregroundColor, backgroundColor);</span>
+<span class="nc" id="L154">		canvas.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));</span>
+<span class="nc" id="L155">		canvas.setMinimumSize(new Dimension(200, 200));</span>
+<span class="nc" id="L156">		getContentPane().add(canvas, BorderLayout.CENTER);</span>
+		// Model containing all the drawn components
+<span class="nc" id="L158">		DrawingObjectListModel listModel = new DrawingObjectListModel(model);</span>
+		// Left content panel
+<span class="nc" id="L160">		JList&lt;GeometricalObject&gt; listOfObjects = new JList&lt;&gt;(listModel);</span>
+<span class="nc" id="L161">		listOfObjects.setVisible(true);</span>
+<span class="nc" id="L162">		JScrollPane scrollPane = new JScrollPane(listOfObjects);</span>
+<span class="nc" id="L163">		scrollPane.setPreferredSize(new Dimension(100, 600));</span>
+<span class="nc" id="L164">		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));</span>
+<span class="nc" id="L165">		getContentPane().add(scrollPane, BorderLayout.EAST);</span>
+		
+		// Mouse adapter, responds to double click
+<span class="nc" id="L168">		MouseListener doubleClick = new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				@SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L173">				JList&lt;GeometricalObject&gt; lista = (JList&lt;GeometricalObject&gt;) e.getSource();</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">				if(e.getClickCount() != 2) {</span>
+<span class="nc" id="L175">					return;</span>
+				}
+<span class="nc" id="L177">				int index = lista.getSelectedIndex();</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">				if(index == -1) {</span>
+<span class="nc" id="L179">					return;</span>
+				}
+<span class="nc" id="L181">				GeometricalObject selectedObject = model.getObject(index);</span>
+<span class="nc" id="L182">				selectedObject.modifyObject(model);</span>
+<span class="nc" id="L183">			}</span>
+		};
+<span class="nc" id="L185">		listOfObjects.addMouseListener(doubleClick);</span>
+		
+		// Button listeners
+		// Line button listener
+<span class="nc" id="L189">		lineButton.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L192">				canvas.setIsLine();</span>
+<span class="nc" id="L193">			}</span>
+		});
+		
+		// Circle button listener
+<span class="nc" id="L197">		circleButton.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L200">				canvas.setIsCircle();</span>
+<span class="nc" id="L201">			}</span>
+		});
+		
+		// Filled circle button listener
+<span class="nc" id="L205">		filledCircleButton.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L208">				canvas.setIsFilledCircle();</span>
+<span class="nc" id="L209">			}</span>
+		});
+		
+		// Open button listener
+<span class="nc" id="L213">		open.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L216">				JFileChooser fileChooser = new JFileChooser();</span>
+<span class="nc" id="L217">				fileChooser.setFileFilter(new FileNameExtensionFilter(&quot;*.jvd&quot;, &quot;jvd&quot;));</span>
+<span class="nc" id="L218">				fileChooser.setAcceptAllFileFilterUsed(false);</span>
+<span class="nc" id="L219">				int chosen = fileChooser.showOpenDialog(null);</span>
+				File file;
+<span class="nc bnc" id="L221" title="All 2 branches missed.">				if (chosen == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L222">					file = fileChooser.getSelectedFile();</span>
+				} else {
+<span class="nc" id="L224">					return;</span>
+				}
+<span class="nc" id="L226">				BufferedReader br = null;</span>
+				try {
+<span class="nc" id="L228">					model.clear();</span>
+<span class="nc" id="L229">					readFile(file, br);</span>
+<span class="nc" id="L230">					currentFile = file;</span>
+<span class="nc" id="L231">					model.setModified(false);</span>
+<span class="nc" id="L232">				} catch (IOException e1) {</span>
+<span class="nc" id="L233">					JOptionPane.showMessageDialog(null, &quot;Can not read file &quot; + file.getName() + &quot;!&quot;, &quot;Error&quot;, </span>
+							JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L235">				}</span>
+<span class="nc" id="L236">			}</span>
+		});
+		
+		// Save button listener
+<span class="nc" id="L240">		save.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L243" title="All 2 branches missed.">				if(currentFile == null) {</span>
+<span class="nc" id="L244">					saveAs.doClick();</span>
+				} else {
+<span class="nc" id="L246">					BufferedWriter bw = null;</span>
+					try {
+<span class="nc" id="L248">						writeToFile(currentFile, bw);</span>
+<span class="nc" id="L249">					} catch (IOException e1) {</span>
+<span class="nc" id="L250">						JOptionPane.showMessageDialog(null, &quot;Can not read file &quot; + currentFile.getName() + &quot;!&quot;,</span>
+								&quot;Error&quot;, JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L252">					}</span>
+<span class="nc" id="L253">					JOptionPane.showMessageDialog(null, &quot;File &quot; + currentFile.getName() + &quot; saved.&quot;, </span>
+							&quot;Save.&quot;, 
+							JOptionPane.INFORMATION_MESSAGE);
+<span class="nc" id="L256">					model.setModified(false);</span>
+				}
+<span class="nc" id="L258">			}</span>
+		});
+		
+		// Save As button listener
+<span class="nc" id="L262">		saveAs.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L265">				JFileChooser fileChooser = new JFileChooser();</span>
+<span class="nc" id="L266">				fileChooser.setFileFilter(new FileNameExtensionFilter(&quot;*.jvd&quot;, &quot;jvd&quot;));</span>
+<span class="nc" id="L267">				fileChooser.setAcceptAllFileFilterUsed(false);</span>
+<span class="nc" id="L268">				FileFilter filter = fileChooser.getFileFilter();</span>
+<span class="nc" id="L269">				int chosen = fileChooser.showSaveDialog(null);</span>
+				File file;
+<span class="nc bnc" id="L271" title="All 2 branches missed.">				if (chosen == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L272">					file = fileChooser.getSelectedFile();</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">					if(!filter.accept(file)) {</span>
+<span class="nc" id="L274">						JOptionPane.showMessageDialog(null, &quot;File &quot; + file.getName() + &quot; can not be saved,&quot; +</span>
+								&quot;unsupported file type.&quot;, 
+								&quot;Error&quot;, 
+								JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L278">						return;</span>
+					}
+				} else {
+<span class="nc" id="L281">					return;</span>
+				}
+<span class="nc" id="L283">				BufferedWriter bw = null;</span>
+				try {
+<span class="nc" id="L285">					writeToFile(file, bw);</span>
+<span class="nc" id="L286">				} catch (IOException e1) {</span>
+<span class="nc" id="L287">					JOptionPane.showMessageDialog(null, &quot;Can not read file &quot; + file.getName() + &quot;!&quot;, &quot;Error&quot;, </span>
+							JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L289">				}</span>
+<span class="nc" id="L290">				JOptionPane.showMessageDialog(null, &quot;File &quot; + file.getName() + &quot; saved.&quot;, </span>
+						&quot;Save.&quot;, 
+						JOptionPane.INFORMATION_MESSAGE);
+<span class="nc" id="L293">				model.setModified(false);</span>
+<span class="nc" id="L294">			}</span>
+		});
+		
+		// Export button listener
+<span class="nc" id="L298">		export.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L301">				JFileChooser fileChooser = new JFileChooser();</span>
+<span class="nc" id="L302">				fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(&quot;*.png&quot;, &quot;png&quot;));</span>
+<span class="nc" id="L303">				fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(&quot;*.gif&quot;, &quot;gif&quot;));</span>
+<span class="nc" id="L304">				fileChooser.setFileFilter(new FileNameExtensionFilter(&quot;*.jpg&quot;, &quot;jpg&quot;));</span>
+<span class="nc" id="L305">				fileChooser.setAcceptAllFileFilterUsed(false);</span>
+<span class="nc" id="L306">				int chosen = fileChooser.showSaveDialog(null);</span>
+<span class="nc" id="L307">				FileFilter filter = fileChooser.getFileFilter();</span>
+<span class="nc" id="L308">				File file = null;</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">				if (chosen == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L310">					file = fileChooser.getSelectedFile();</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">					if(!filter.accept(file)) {</span>
+<span class="nc" id="L312">						JOptionPane.showMessageDialog(null, &quot;File &quot; + file.getName() + &quot; can not be exported,&quot; +</span>
+								&quot;unsupported file type.&quot;, 
+								&quot;Error&quot;, 
+								JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L316">						return;</span>
+					}
+				} else {
+<span class="nc" id="L319">					return;</span>
+				}
+<span class="nc" id="L321">				BufferedImage image = null;</span>
+<span class="nc" id="L322">				exportImage(file, image, canvas);</span>
+<span class="nc" id="L323">				JOptionPane.showMessageDialog(null, &quot;File &quot; + file.getName() + &quot; exported.&quot;, </span>
+						&quot;Export.&quot;, 
+						JOptionPane.INFORMATION_MESSAGE);
+<span class="nc" id="L326">			}</span>
+		});
+		
+		// Exit button listener
+<span class="nc" id="L330">		exit.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L333" title="All 2 branches missed.">				if(model.getModified()) {</span>
+<span class="nc" id="L334">					int selected = JOptionPane.showConfirmDialog(null, &quot;File was changed, do you wish to save?&quot;, </span>
+							&quot;Save&quot;, JOptionPane.YES_NO_CANCEL_OPTION);
+<span class="nc bnc" id="L336" title="All 2 branches missed.">					if(selected == 0) {</span>
+<span class="nc" id="L337">						saveAs.doClick();</span>
+<span class="nc bnc" id="L338" title="All 2 branches missed.">						if(!model.getModified()) {</span>
+<span class="nc" id="L339">							System.exit(0);</span>
+						} else {
+<span class="nc" id="L341">							return;</span>
+						}
+<span class="nc bnc" id="L343" title="All 2 branches missed.">					} else if(selected == 1) {</span>
+<span class="nc" id="L344">						System.exit(0);</span>
+					} else {
+<span class="nc" id="L346">						return;</span>
+					}
+<span class="nc" id="L348">				} else {</span>
+<span class="nc" id="L349">					System.exit(0);</span>
+				}
+<span class="nc" id="L351">			}</span>
+		});
+<span class="nc" id="L353">	}</span>
+	
+	/**
+	 * Method used to read the contents of a &lt;code&gt;jvd&lt;/code&gt; file and add the specified components
+	 * to the model.
+	 * 
+	 * @param file file to read
+	 * @param br buffered reader that will be used to read the file
+	 * @throws IOException if file can not be read
+	 */
+	private void readFile(File file, BufferedReader br) throws IOException {
+<span class="nc" id="L364">		br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));</span>
+<span class="nc" id="L365">		String line = br.readLine();</span>
+<span class="nc bnc" id="L366" title="All 4 branches missed.">		while(line != null &amp;&amp; !line.isEmpty()) {</span>
+<span class="nc" id="L367">			String[] lineElements = line.split(&quot; &quot;);</span>
+<span class="nc" id="L368">			line = br.readLine();</span>
+			// Create a new element based on the 1st word in the line
+<span class="nc bnc" id="L370" title="All 14 branches missed.">			switch (lineElements[0]) {</span>
+<span class="nc bnc" id="L371" title="All 2 branches missed.">				case &quot;LINE&quot;:	if(lineElements.length != 8) {</span>
+<span class="nc" id="L372">									JOptionPane.showMessageDialog(null, &quot;File &quot; + file.getName() + &quot; is illformed.&quot;, </span>
+											&quot;Error&quot;, 
+											JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L375">									return;</span>
+								}
+<span class="nc" id="L377">								int x1 = (int) Double.parseDouble(lineElements[1]);</span>
+<span class="nc" id="L378">								int y1 = (int) Double.parseDouble(lineElements[2]);</span>
+<span class="nc" id="L379">								int x2 = (int) Double.parseDouble(lineElements[3]);</span>
+<span class="nc" id="L380">								int y2 = (int) Double.parseDouble(lineElements[4]);</span>
+<span class="nc" id="L381">								int r = Integer.parseInt(lineElements[5]);</span>
+<span class="nc" id="L382">								int g = Integer.parseInt(lineElements[6]);</span>
+<span class="nc" id="L383">								int b = Integer.parseInt(lineElements[7]);</span>
+<span class="nc" id="L384">								model.setNumberOfLines();</span>
+<span class="nc" id="L385">								model.add(new Line(&quot;Line &quot; + model.numberOfLines(), x1, y1, x2, y2, </span>
+										new Color(r, g, b)));
+<span class="nc" id="L387">								break;</span>
+<span class="nc bnc" id="L388" title="All 2 branches missed.">				case &quot;CIRCLE&quot;:	if(lineElements.length != 7) {</span>
+<span class="nc" id="L389">									JOptionPane.showMessageDialog(null, &quot;File &quot; + file.getName() + &quot; is illformed.&quot;, </span>
+											&quot;Error&quot;, 
+											JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L392">									return;</span>
+								}
+<span class="nc" id="L394">								int x = (int) Double.parseDouble(lineElements[1]);</span>
+<span class="nc" id="L395">								int y = (int) Double.parseDouble(lineElements[2]);</span>
+<span class="nc" id="L396">								int radius = (int) Double.parseDouble(lineElements[3]);</span>
+<span class="nc" id="L397">								r = Integer.parseInt(lineElements[4]);</span>
+<span class="nc" id="L398">								g = Integer.parseInt(lineElements[5]);</span>
+<span class="nc" id="L399">								b = Integer.parseInt(lineElements[6]);</span>
+<span class="nc" id="L400">								model.setNumberOfCircles();</span>
+<span class="nc" id="L401">								model.add(new Circle(&quot;Circle &quot; + model.numberOfCircles(), x, y, radius, </span>
+										new Color(r, g, b)));
+<span class="nc" id="L403">								break;</span>
+<span class="nc bnc" id="L404" title="All 2 branches missed.">				case &quot;FCIRCLE&quot;:	if(lineElements.length != 10) {</span>
+<span class="nc" id="L405">									JOptionPane.showMessageDialog(null, &quot;File &quot; + file.getName() + &quot; is illformed.&quot;, </span>
+											&quot;Error&quot;, 
+											JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L408">									return;</span>
+								}
+<span class="nc" id="L410">								x = (int) Double.parseDouble(lineElements[1]);</span>
+<span class="nc" id="L411">								y = (int) Double.parseDouble(lineElements[2]);</span>
+<span class="nc" id="L412">								radius = (int) Double.parseDouble(lineElements[3]);</span>
+<span class="nc" id="L413">								int r1 = Integer.parseInt(lineElements[4]);</span>
+<span class="nc" id="L414">								int g1 = Integer.parseInt(lineElements[5]);</span>
+<span class="nc" id="L415">								int b1 = Integer.parseInt(lineElements[6]);</span>
+<span class="nc" id="L416">								int r2 = Integer.parseInt(lineElements[7]);</span>
+<span class="nc" id="L417">								int g2 = Integer.parseInt(lineElements[8]);</span>
+<span class="nc" id="L418">								int b2 = Integer.parseInt(lineElements[9]);</span>
+<span class="nc" id="L419">								model.setNumberOfFilledCircles();</span>
+<span class="nc" id="L420">								model.add(new FilledCircle(&quot;Filled circle &quot; + model.numberOfFilledCircles(), </span>
+										x, y, radius, 
+										new Color(r2, g2, b2), new Color(r1, g1, b1)));
+<span class="nc" id="L423">								break;</span>
+<span class="nc" id="L424">				default: continue;</span>
+			}
+<span class="nc" id="L426">		}</span>
+<span class="nc" id="L427">		br.close();</span>
+<span class="nc" id="L428">	}</span>
+	
+	/**
+	 * Method used to write to the &lt;code&gt;jvd&lt;/code&gt; file. It writes the specification
+	 * of every component in the model in to the file.
+	 * 
+	 * @param file file that will be created
+	 * @param bw buffered writer that will be used to write to the file
+	 * @throws IOException if it is impossible to write to the file
+	 */
+	private void writeToFile(File file, BufferedWriter bw) throws IOException {
+<span class="nc" id="L439">		bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));</span>
+<span class="nc bnc" id="L440" title="All 2 branches missed.">		for(int i = 0; i &lt; model.getSize(); i++) {</span>
+<span class="nc" id="L441">			GeometricalObject object = model.getObject(i);</span>
+<span class="nc" id="L442">			bw.write(object.toFile() + &quot;\n&quot;);</span>
+		}
+<span class="nc" id="L444">		bw.close();</span>
+<span class="nc" id="L445">	}</span>
+	
+	/**
+	 * Method used to export the current image to the specified file with of the specified type.
+	 * Supported file formats are &lt;code&gt;jpg&lt;/code&gt;, &lt;code&gt;gif&lt;/code&gt; and &lt;code&gt;png&lt;/code&gt;. Image will
+	 * be resized to the minimal possible size at which every component is fully visible.
+	 * 
+	 * @param file file that will be created
+	 * @param image buffered image that will be used to create the file
+	 * @param canvas canvas containing the picture
+	 */
+	private void exportImage(File file, BufferedImage image, JDrawingCanvas canvas) {
+<span class="nc" id="L457">		BoundingBox boundingBox = model.minBoundingBox();</span>
+<span class="nc" id="L458">		image = new BufferedImage(boundingBox.getX2() - boundingBox.getX1() + 1,</span>
+				boundingBox.getY2() - boundingBox.getY1() + 1, BufferedImage.TYPE_3BYTE_BGR);
+<span class="nc bnc" id="L460" title="All 2 branches missed.">		for(int i = 0; i &lt; model.getSize(); i++) {</span>
+<span class="nc" id="L461">			GeometricalObject object = model.getObject(i);</span>
+<span class="nc" id="L462">			object.modifyComponent(boundingBox.getX1(), boundingBox.getY1());</span>
+		}
+<span class="nc" id="L464">		Graphics2D g = image.createGraphics();</span>
+<span class="nc" id="L465">		canvas.paintAll(g);</span>
+<span class="nc" id="L466">		g.dispose();</span>
+<span class="nc" id="L467">		String extension = file.getName().substring(file.getName().lastIndexOf(&quot;.&quot;) + 1);</span>
+		try {
+<span class="nc" id="L469">			ImageIO.write(image, extension, file);</span>
+<span class="nc" id="L470">		} catch (IOException e) {</span>
+<span class="nc" id="L471">			JOptionPane.showMessageDialog(null, &quot;Export of file&quot; + file.getName() + &quot;failed.&quot;, </span>
+					&quot;Error&quot;, 
+					JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L474">		}</span>
+<span class="nc bnc" id="L475" title="All 2 branches missed.">		for(int i = 0; i &lt; model.getSize(); i++) {</span>
+<span class="nc" id="L476">			GeometricalObject object = model.getObject(i);</span>
+<span class="nc" id="L477">			object.modifyComponent(-boundingBox.getX1(), -boundingBox.getY1());</span>
+		}
+<span class="nc" id="L479">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

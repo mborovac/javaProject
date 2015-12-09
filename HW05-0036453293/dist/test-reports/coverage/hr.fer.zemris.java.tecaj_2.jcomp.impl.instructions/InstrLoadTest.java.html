@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>InstrLoadTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW4</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions</a> &gt; <span class="el_source">InstrLoadTest.java</span></div><h1>InstrLoadTest.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.tecaj_2.jcomp.impl.instructions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import hr.fer.zemris.java.tecaj_2.jcomp.Computer;
+import hr.fer.zemris.java.tecaj_2.jcomp.InstructionArgument;
+import hr.fer.zemris.java.tecaj_2.jcomp.Memory;
+import hr.fer.zemris.java.tecaj_2.jcomp.Registers;
+import hr.fer.zemris.java.tecaj_2.jcomp.impl.InstructionArgumentImpl;
+
+import org.junit.Test;
+import org.mockito.Mockito;
+
+<span class="fc" id="L15">public class InstrLoadTest {</span>
+	
+	
+<span class="fc" id="L18">	Computer c = Mockito.mock(Computer.class); </span>
+<span class="fc" id="L19">	Registers r = Mockito.mock(Registers.class);</span>
+<span class="fc" id="L20">	Memory m = Mockito.mock(Memory.class);</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void LoadTestException1() {
+<span class="nc" id="L24">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L25">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="nc" id="L26">		arguments.add(new InstructionArgumentImpl(1, true));</span>
+<span class="nc" id="L27">		arguments.add(new InstructionArgumentImpl(2, true));</span>
+<span class="nc" id="L28">		new InstrLoad(arguments).execute(c);</span>
+<span class="nc" id="L29">	}</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void LoadTestException2() {
+<span class="nc" id="L33">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L34">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="nc" id="L35">		arguments.add(new InstructionArgumentImpl(1, true));</span>
+<span class="nc" id="L36">		new InstrLoad(arguments).execute(c);</span>
+<span class="nc" id="L37">	}</span>
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void LoadTestException3() {
+<span class="nc" id="L41">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L42">		arguments.add(new InstructionArgumentImpl(0, false));</span>
+<span class="nc" id="L43">		arguments.add(new InstructionArgumentImpl(1, false));</span>
+<span class="nc" id="L44">		new InstrLoad(arguments).execute(c);</span>
+<span class="nc" id="L45">	}</span>
+	
+	@Test
+	public void LoadTest() {
+<span class="fc" id="L49">		Mockito.when(c.getRegisters()).thenReturn(r);</span>
+<span class="fc" id="L50">		Mockito.when(c.getMemory()).thenReturn(m);</span>
+<span class="fc" id="L51">		Mockito.when(r.getRegisterValue(0)).thenReturn(0);</span>
+<span class="fc" id="L52">		Mockito.when(m.getLocation(1)).thenReturn(4);</span>
+<span class="fc" id="L53">		List&lt;InstructionArgument&gt; arguments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L54">		arguments.add(new InstructionArgumentImpl(0, true));</span>
+<span class="fc" id="L55">		arguments.add(new InstructionArgumentImpl(1, false));</span>
+<span class="fc" id="L56">		new InstrLoad(arguments).execute(c);</span>
+<span class="fc" id="L57">		Mockito.verify(r).setRegisterValue(0, 4);</span>
+<span class="fc" id="L58">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>

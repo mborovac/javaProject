@@ -1,0 +1,38 @@
+# Ovaj program učitava korisnikov unos dok nije unešen cijeli broj i nakon toga
+# ispisuje sljedećih 5 brojeva. (ili sto se vec postavi u @brojac)
+
+		load r1, @nula			; vrijednost koju r2 mora postici da prekine petlju
+		load r2, @brojac		; u r2 spremi brojac iteracija
+		iinput @upisani			; prima korisnikov unos cijelog broja i sprema ga na lokaciju @upisani
+		load r3, @msg1			; priprema ispisa
+		load r4, @msg2
+		load r14, @enter
+		load r5, @upisani		; u r5 spremi upisani broj
+		echo r3					; ispis "Sljedećih "	
+		echo r2					; ispis brojaca iteracija
+		echo r4					; ispis " brojeva je:\n"
+@petlja:	testEquals r2, r1	; je li nam jos sto ostalo ili smo na nuli?	
+		jumpIfTrue @gotovo		; ako smo na nuli, zavrsi petlju
+		decrement r2			; smanji brojac iteracija
+		increment r5			; povecaj dani broj
+		echo r5					; ispisi dani broj
+		echo r14				; ispisi "\n"
+		jump @petlja			; vrati se u petlju na testiranje
+@gotovo:		halt
+		
+		
+		
+# Slijede dodatni podaci koji su smjesteni u memoriju		
+		
+		
+@msg1:			DEFSTR "Sljedećih "		
+@msg2:			DEFSTR " brojeva je:\n"
+@enter:			DEFSTR "\n"		
+@upisani:		DEFINT 0
+@brojac:		DEFINT 5
+@jedan:			DEFINT 1
+@nula:			DEFINT 0
+
+
+
+

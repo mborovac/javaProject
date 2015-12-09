@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JColorArea.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">HW11</a> &gt; <a href="index.source.html" class="el_package">hr.fer.zemris.java.hw11.jvdraw.component</a> &gt; <span class="el_source">JColorArea.java</span></div><h1>JColorArea.java</h1><pre class="source lang-java linenums">package hr.fer.zemris.java.hw11.jvdraw.component;
+
+import hr.fer.zemris.java.hw11.jvdraw.observers.ColorChangeListener;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.beans.Transient;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JColorChooser;
+import javax.swing.JComponent;
+
+/**
+ * Class used to implement a color provider. It is used as a color picker. Once the user clicks
+ * on the component a color panel is shown where the user can pick a color. The picked color is set
+ * as the current color.
+ * 
+ * @author MarkoB
+ * @version 1.0
+ */
+public class JColorArea extends JComponent implements IColorProvider {
+	
+	private static final long serialVersionUID = 1L;
+	private Color selectedColor;
+	private List&lt;ColorChangeListener&gt; listeners;
+	
+	/**
+	 * Class constructor. Constructor takes one argument, the initial color.
+	 * 
+	 * @param selectedColor the initial color
+	 */
+<span class="nc" id="L38">	public JColorArea(Color selectedColor) {</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">		if(selectedColor == null) {</span>
+<span class="nc" id="L40">			throw new IllegalArgumentException(&quot;Color can not be null!&quot;);</span>
+		}
+<span class="nc" id="L42">		this.selectedColor = selectedColor;</span>
+<span class="nc" id="L43">		listeners = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L44">		this.setOpaque(true);</span>
+		
+<span class="nc" id="L46">		MouseListener mouseClick = new MouseAdapter() {</span>
+			/**
+			 * @see java.awt.event.MouseAdapter#mouseClicked(java.awt.event.MouseEvent)
+			 * 
+			 * Method shows a color panel where the user can choose a new color. Insides of the 
+			 * component are then colored with the new color and the picked color is set as the 
+			 * current color. All the registered listeners are informed that the color has
+			 * changed.
+			 */
+			@Override
+			public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L57">				Color oldColor = ((JColorArea) e.getSource()).selectedColor;</span>
+<span class="nc" id="L58">				((JColorArea) e.getSource()).selectedColor = JColorChooser.showDialog(JColorArea.this, </span>
+						&quot;Choose a new color&quot;, JColorArea.this.selectedColor);
+<span class="nc" id="L60">				((JColorArea) e.getSource()).paintComponent(getGraphics());</span>
+<span class="nc" id="L61">				Color newColor = ((JColorArea) e.getSource()).selectedColor;</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">				if(!oldColor.equals(newColor)) {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">					for(ColorChangeListener l: listeners) {</span>
+<span class="nc" id="L64">						l.newColorSelected(((JColorArea) e.getSource()), oldColor, newColor);</span>
+<span class="nc" id="L65">					}</span>
+				}
+<span class="nc" id="L67">			}</span>
+		};
+<span class="nc" id="L69">		this.addMouseListener(mouseClick);</span>
+<span class="nc" id="L70">	}</span>
+	
+	/**
+	 * @see javax.swing.JComponent#getPreferredSize()
+	 */
+	@Override
+	@Transient
+	public Dimension getPreferredSize() {
+<span class="nc" id="L78">		return new Dimension(15, 15);</span>
+	}
+	
+	/**
+	 * @see javax.swing.JComponent#getMaximumSize()
+	 */
+	@Override
+	@Transient
+	public Dimension getMaximumSize() {
+<span class="nc" id="L87">		return new Dimension(15, 15);</span>
+	}
+	
+	/**
+	 * @see javax.swing.JComponent#getMinimumSize()
+	 */
+	@Override
+	@Transient
+	public Dimension getMinimumSize() {
+<span class="nc" id="L96">		return new Dimension(15, 15);</span>
+	}
+	
+	/**
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 * 
+	 * Method paints the inside of the component with the current color.
+	 */
+	@Override
+	protected void paintComponent(Graphics g) {
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (isOpaque()) { //paint background</span>
+<span class="nc" id="L107">            g.setColor(getBackground());</span>
+<span class="nc" id="L108">            g.fillRect(0, 0, getWidth(), getHeight());</span>
+<span class="nc" id="L109">            this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));</span>
+        }
+<span class="nc" id="L111">	}</span>
+	
+	/**
+	 * @see java.awt.Component#getBackground()
+	 */
+	@Override
+	@Transient
+	public Color getBackground() {
+<span class="nc" id="L119">		return this.selectedColor;</span>
+	}
+
+	/**
+	 * @see hr.fer.zemris.java.hw11.jvdraw.component.IColorProvider#getCurrentColor()
+	 */
+	@Override
+	public Color getCurrentColor() {
+<span class="nc" id="L127">		return this.selectedColor;</span>
+	}
+	
+	/**
+	 * Method used to register new listeners to the component.
+	 * 
+	 * @param l new listener
+	 */
+	public void addColorChangeListener(ColorChangeListener l) {
+<span class="nc bnc" id="L136" title="All 2 branches missed.">		if(!listeners.contains(l)) {</span>
+<span class="nc" id="L137">			listeners = new ArrayList&lt;&gt;(listeners);</span>
+<span class="nc" id="L138">			listeners.add(l);</span>
+		}
+<span class="nc" id="L140">	}</span>
+	
+	/**
+	 * Method used to unregister listeners from the component.
+	 * 
+	 * @param l listener to be unregistered
+	 */
+	public void removeColorChangeListener(ColorChangeListener l) {
+<span class="nc" id="L148">		listeners = new ArrayList&lt;&gt;(listeners);</span>
+<span class="nc" id="L149">		listeners.remove(l);</span>
+<span class="nc" id="L150">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.20140326-0205</span></div></body></html>
